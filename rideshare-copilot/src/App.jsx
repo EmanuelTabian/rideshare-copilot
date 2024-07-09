@@ -14,6 +14,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
+
+      <h1>Rideshare Copilot</h1>
     </QueryClientProvider>
   );
 }
