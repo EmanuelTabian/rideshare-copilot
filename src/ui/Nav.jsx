@@ -1,13 +1,38 @@
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+
+const NavList = styled.ul``;
+const StyledNavLink = styled(NavLink)``;
+
 function Nav() {
   return (
-    <div>
-      <NavLink to="/cars">Cars</NavLink>
-      <NavLink to="/calculator">Calculator</NavLink>
-      <NavLink to="/documents">Documents</NavLink>
-      <NavLink to="/dashboard">Dashboard</NavLink>
-      <NavLink to="/settings">Settings</NavLink>
-    </div>
+    <nav>
+      <NavList>
+        <li>
+          <StyledNavLink to="/cars">Cars</StyledNavLink>
+        </li>
+      </NavList>
+      <NavList>
+        <li>
+          <StyledNavLink to="/calculator">Calculator</StyledNavLink>
+        </li>
+      </NavList>
+      <NavList>
+        <li>
+          <StyledNavLink to="/documents">Documents</StyledNavLink>
+        </li>
+      </NavList>
+      <NavList>
+        <li>
+          <StyledNavLink to="/dashboard">Dashboard</StyledNavLink>
+        </li>
+      </NavList>
+      <NavList>
+        <li>
+          <StyledNavLink to="/settings">Settings</StyledNavLink>
+        </li>
+      </NavList>
+    </nav>
   );
 }
 

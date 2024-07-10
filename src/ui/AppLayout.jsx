@@ -1,13 +1,13 @@
 import { Outlet } from "react-router";
 import Header from "./Header";
-import Nav from "./Nav";
 import Footer from "./Footer";
+import NavBar from "./NavBar";
 
 function AppLayout() {
   return (
     <div>
       <Header />
-      <Nav />
+      <NavBar />
       <main>
         <Outlet />
       </main>
