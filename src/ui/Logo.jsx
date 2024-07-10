@@ -1,5 +1,18 @@
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledLogo = styled.div``;
+
+const Img = styled.img``;
+
 function Logo() {
-  return <h1>Rideshare Copilot Logo</h1>;
+  return (
+    <StyledLogo>
+      <NavLink to="/dashboard">
+        <Img src="logo.svg" alt="Rideshare logo" />
+      </NavLink>
+    </StyledLogo>
+  );
 }
 
 export default Logo;

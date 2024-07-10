@@ -11,7 +11,7 @@ function HeaderMenu() {
       <NavLink to="/settings">
         <IoSettings />
       </NavLink>
-      <NavLink to="/settings">
+      <NavLink to="/login">
         <IoLogOutOutline />
       </NavLink>
     </StyledHeaderMenu>
