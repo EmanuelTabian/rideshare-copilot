@@ -16,7 +16,9 @@ function Cars() {
       <H2>Browse car posts</H2>
       <CarList>
         {cars.map((car) => (
-          <CarCard key={car.id} carDetails={car} />
+          <NavLink to="/cars/23">
+            <CarCard key={car.id} carDetails={car} />
+          </NavLink>
         ))}
       </CarList>
     </StyledCars>
