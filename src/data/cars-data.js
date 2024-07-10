@@ -1,5 +1,6 @@
 export const cars = [
   {
+    id: 23,
     name: "Ford",
     model: "Focus",
     version: "mk3",
@@ -18,6 +19,7 @@ export const cars = [
     price: 7000,
   },
   {
+    id: 24,
     name: "Dacia",
     model: "Sandero",
     version: "III",
