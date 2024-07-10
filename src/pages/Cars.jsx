@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+
 import { cars } from "../data/cars-data";
+import CarCard from "../ui/CarCard";
 
 const StyledCars = styled.div``;
 
@@ -14,7 +16,7 @@ function Cars() {
       <H2>Browse car posts</H2>
       <CarList>
         {cars.map((car) => (
-          <CarCard carDetails={car} />
+          <CarCard key={car.id} carDetails={car} />
         ))}
       </CarList>
     </StyledCars>
