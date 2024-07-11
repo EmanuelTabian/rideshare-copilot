@@ -6,9 +6,10 @@ const StyledListItem = styled.li``;
 function CarCard({ carDetails }) {
   const navigate = useNavigate();
 
-  const { name, model, image, year, id } = carDetails;
+  const { name, model, image, year, id, createdAt } = carDetails;
   return (
     <StyledListItem>
+      <span>{createdAt}</span>
       <img src={image} alt={name} />
       <span> {name}</span>
       <span> {model}</span>

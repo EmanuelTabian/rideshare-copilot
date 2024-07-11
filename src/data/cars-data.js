@@ -1,5 +1,6 @@
 export const cars = [
   {
+    createdAt: "11.07.2024",
     id: 23,
     name: "Ford",
     model: "Focus",
@@ -19,6 +20,7 @@ export const cars = [
     price: 7000,
   },
   {
+    createdAt: "10.07.2024",
     id: 24,
     name: "Dacia",
     model: "Sandero",
