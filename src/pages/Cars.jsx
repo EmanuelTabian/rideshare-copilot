@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import { cars } from "../data/cars-data";
@@ -16,9 +15,7 @@ function Cars() {
       <H2>Browse car posts</H2>
       <CarList>
         {cars.map((car) => (
-          <NavLink to="/cars/23">
-            <CarCard key={car.id} carDetails={car} />
-          </NavLink>
+          <CarCard key={car.id} carDetails={car} />
         ))}
       </CarList>
     </StyledCars>
