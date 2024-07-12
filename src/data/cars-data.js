@@ -22,6 +22,7 @@ export const cars = [
     price: 7000,
     emissionStandard: "Euro 5",
     location: "Bucharest",
+    phone: "+1 (139) 636-2286",
   },
   {
     createdAt: "10.07.2024",
@@ -46,5 +47,6 @@ export const cars = [
     price: 6000,
     emissionStandard: "Euro 5",
     location: "Tunari",
+    phone: "+1 (139) 636-2286",
   },
 ];

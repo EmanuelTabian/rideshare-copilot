@@ -28,8 +28,11 @@ function CarPost() {
           <li>Mpg: 10</li>
           <li>Price: 7000</li>
           <li>Emmision Standard: Euro 5</li>
-          <li></li>
         </ul>
+        <div>
+          <span>+1 (139) 636-2286</span>
+          <button>Reveal phone number</button>
+        </div>
       </div>
     </>
   );
