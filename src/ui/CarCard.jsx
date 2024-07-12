@@ -3,12 +3,11 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledListItem = styled.li``;
+const CarDetailContainer = styled.div``;
 const CarInfo = styled.div``;
-const CarHeader = styled.div``;
 const CarHeaderData = styled.span``;
 const CarDetailsData = styled.span``;
-const CarDetails = styled.span``;
-const AdditionalInfo = styled.div``;
+
 const Img = styled.img``;
 const Button = styled.button``;
 function CarCard({ carDetails }) {
@@ -33,7 +32,7 @@ function CarCard({ carDetails }) {
     <StyledListItem>
       <Img src={image} alt={name} />
       <CarInfo>
-        <CarHeader>
+        <CarDetailContainer>
           <CarHeaderData> {name}</CarHeaderData>
           <CarHeaderData> {model}</CarHeaderData>
           <CarHeaderData> {version}</CarHeaderData>
@@ -41,16 +40,16 @@ function CarCard({ carDetails }) {
           <CarHeaderData> {version}</CarHeaderData>
           <CarHeaderData> {power} CP</CarHeaderData>
           <CarHeaderData> {color}</CarHeaderData>
-        </CarHeader>
-        <CarDetails>
+        </CarDetailContainer>
+        <CarDetailContainer>
           <CarDetailsData> {milleage} km</CarDetailsData>
           <CarDetailsData> {fuelType}</CarDetailsData>
           <CarDetailsData> {year}</CarDetailsData>
-        </CarDetails>
-        <AdditionalInfo>
+        </CarDetailContainer>
+        <CarDetailContainer>
           <CarDetailsData> {createdAt}</CarDetailsData>
           <CarDetailsData> {location}</CarDetailsData>
-        </AdditionalInfo>
+        </CarDetailContainer>
       </CarInfo>
       <Button onClick={() => navigate(`/cars/${id}`)}>See details</Button>
     </StyledListItem>
