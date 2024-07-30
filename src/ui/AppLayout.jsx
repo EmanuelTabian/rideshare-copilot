@@ -1,12 +1,23 @@
 import { Outlet } from "react-router";
 import Header from "./Header";
+import Footer from "./Footer";
+import NavBar from "./NavBar";
+import styled from "styled-components";
+
+const AppContainer = styled.div``;
+
+const Main = styled.main``;
 
 function AppLayout() {
   return (
-    <div>
+    <AppContainer>
       <Header />
-      <Outlet />
-    </div>
+      <NavBar />
+      <Main>
+        <Outlet />
+      </Main>
+      <Footer />
+    </AppContainer>
   );
 }
 

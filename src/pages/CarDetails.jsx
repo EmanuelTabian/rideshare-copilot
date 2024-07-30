@@ -1,5 +1,7 @@
+import CarPost from "../ui/CarPost";
+
 function CarDetails() {
-  return <div>Car Details</div>;
+  return <CarPost />;
 }
 
 export default CarDetails;
