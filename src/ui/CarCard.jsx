@@ -52,6 +52,8 @@ function CarCard({ carDetails }) {
         </CarDetailContainer>
       </CarInfo>
       <Button onClick={() => navigate(`/cars/${id}`)}>See details</Button>
+      {/* This button will be conditionally displayed for the current user car posts */}
+      <Button> Edit post</Button>
     </StyledListItem>
   );
 }
