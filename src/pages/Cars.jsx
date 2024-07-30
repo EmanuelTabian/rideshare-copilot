@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { cars } from "../data/cars-data";
 import CarCard from "../ui/CarCard";
 import { NavLink } from "react-router-dom";
+import Button from "../ui/Button";
 
 const StyledCars = styled.div``;
 
@@ -22,6 +23,7 @@ function Cars() {
         </CarList>
       </StyledCars>
       <NavLink to="/cars/myposts">My posts</NavLink>
+      <Button> Add new post</Button>
     </>
   );
 }
