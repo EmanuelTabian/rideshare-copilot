@@ -5,9 +5,14 @@ import { useNavigate } from "react-router-dom";
 function LoginForm() {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
+  const navigate = useNavigate();
+
+  function onSubmit() {
+    navigate("/dashboard");
+  }
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
         <legend>Enter your email and password</legend>
         <div>
