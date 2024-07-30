@@ -1,6 +1,7 @@
 import { UseCalculator } from "../context/CalculatorContext";
 import styled from "styled-components";
 import IncomeField from "./IncomeField";
+import CommissionField from "./CommissionField";
 
 const Income = styled.div`
   padding: 8px;
