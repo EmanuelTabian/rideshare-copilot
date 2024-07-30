@@ -1,7 +1,12 @@
+import { UseCalculatorContext } from "../context/CalculatorContext";
 import CalculatorLayout from "../ui/CalculatorLayout";
 
 function Calculator() {
-  return <CalculatorLayout />;
+  return (
+    <UseCalculatorContext>
+      <CalculatorLayout />;
+    </UseCalculatorContext>
+  );
 }
 
 export default Calculator;

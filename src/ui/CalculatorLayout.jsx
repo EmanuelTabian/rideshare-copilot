@@ -1,12 +1,6 @@
-import ExpenseForm from "./components/ExpenseForm";
-import Output from "./components/Output";
-import IncomeValue from "./components/IncomeValue";
-import CommissionField from "./components/CommissionField";
-import Button from "./components/Button";
-import ExpenseField from "./components/ExpenseField";
-
 import { UseCalculator } from "../context/CalculatorContext";
 import styled from "styled-components";
+import IncomeField from "./IncomeField";
 
 const Income = styled.div`
   padding: 8px;
@@ -53,7 +47,7 @@ function CalculatorLayout() {
   return (
     <div>
       <Income>
-        <IncomeValue />
+        <IncomeField />
         <CommissionField trackValue={rideCom} setValue={setRideCom}>
           Rideshare commission (%)
         </CommissionField>
