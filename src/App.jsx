@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import Documents from "./pages/Documents";
 import Settings from "./pages/Settings";
 import MyPosts from "./pages/MyPosts";
+import PasswordReset from "./pages/PasswordReset";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path: "/password-reset",
+    element: <PasswordReset />,
   },
 
   {
