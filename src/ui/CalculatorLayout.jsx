@@ -1,9 +1,10 @@
 import { UseCalculator } from "../context/CalculatorContext";
 import styled from "styled-components";
 import IncomeField from "./IncomeField";
-import CommissionField from "./CommissionField";
+import CommissionField from "./CalcInput";
 import Button from "./Button";
 import Earnings from "./Earnings";
+import CalcInput from "./CalcInput";
 
 const Income = styled.div`
   padding: 8px;
@@ -51,15 +52,15 @@ function CalculatorLayout() {
     <div>
       <Income>
         <IncomeField />
-        <CommissionField trackValue={rideCom} setValue={setRideCom}>
+        <CalcInput value={rideCom} setValue={setRideCom}>
           Rideshare commission (%)
-        </CommissionField>
-        <CommissionField trackValue={emplCom} setValue={setEmplCom}>
+        </CalcInput>
+        <CalcInput value={emplCom} setValue={setEmplCom}>
           Employer commission (%)
-        </CommissionField>
-        <CommissionField trackValue={otherCom} setValue={setOtherCom}>
+        </CalcInput>
+        <CalcInput value={otherCom} setValue={setOtherCom}>
           Other Commission
-        </CommissionField>
+        </CalcInput>
         {income && (
           <div>
             <Button onClick={handleToggle}>
@@ -70,17 +71,17 @@ function CalculatorLayout() {
         )}
       </Income>
       {toggle && (
-        <ExpenseForm>
-          <ExpenseField value={gasExp} setValue={setGasExp}>
+        <div>
+          <CalcInput value={gasExp} setValue={setGasExp}>
             Gas
-          </ExpenseField>
-          <ExpenseField value={mealsExp} setValue={setMealsExp}>
+          </CalcInput>
+          <CalcInput value={mealsExp} setValue={setMealsExp}>
             Meals
-          </ExpenseField>
-          <ExpenseField value={otherExp} setValue={setOtherExp}>
+          </CalcInput>
+          <CalcInput value={otherExp} setValue={setOtherExp}>
             Cash
-          </ExpenseField>
-        </ExpenseForm>
+          </CalcInput>
+        </div>
       )}
       <Earnings />
     </div>

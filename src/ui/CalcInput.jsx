@@ -1,14 +1,14 @@
-function CommissionField({ setValue, trackValue, children }) {
+function CalcInput({ value, setValue, children }) {
   return (
     <div>
       <span>{children}</span>
       <input
         type="number"
-        value={trackValue}
+        value={value}
         onChange={(e) => setValue(+e.target.value ? +e.target.value : "")}
       />
     </div>
   );
 }
 
-export default CommissionField;
+export default CalcInput;
