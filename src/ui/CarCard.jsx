@@ -22,7 +22,7 @@ function CarCard({ carDetails }) {
     engine,
     power,
     milleage,
-    fuelType,
+    fuel,
     color,
     createdAt,
     location,
@@ -43,7 +43,7 @@ function CarCard({ carDetails }) {
         </CarDetailContainer>
         <CarDetailContainer>
           <CarDetailsData> {milleage} km</CarDetailsData>
-          <CarDetailsData> {fuelType}</CarDetailsData>
+          <CarDetailsData> {fuel}</CarDetailsData>
           <CarDetailsData> {year}</CarDetailsData>
         </CarDetailContainer>
         <CarDetailContainer>
