@@ -1,5 +1,11 @@
+import Spinner from "../ui/Spinner";
+
 function Login() {
-  return <div>Login</div>;
+  return (
+    <div>
+      <Spinner />
+    </div>
+  );
 }
 
 export default Login;
