@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import Button from "../ui/Button";
+import Message from "../ui/Message";
 
 function PasswordReset() {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
@@ -22,6 +23,11 @@ function PasswordReset() {
           <Button>Reset password </Button>
         </fieldset>
       </form>
+      {/* React query will detect when mutation is loading, on form submit, based on that we will render the below listed message */}
+      {/* <Message>
+        You will receive a password reset email soon. Follow the link in the
+        email to reset your password.
+      </Message> */}
     </>
   );
 }
