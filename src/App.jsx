@@ -12,6 +12,7 @@ import Calculator from "./pages/Calculator";
 import Dashboard from "./pages/Dashboard";
 import Documents from "./pages/Documents";
 import Settings from "./pages/Settings";
+import MyPosts from "./pages/MyPosts";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/cars/:carId",
         element: <CarDetails />,
+      },
+      {
+        path: "/cars/myposts",
+        element: <MyPosts />,
       },
       {
         path: "/calculator",
