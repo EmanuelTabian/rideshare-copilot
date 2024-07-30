@@ -1,5 +1,7 @@
+import CalculatorLayout from "../ui/CalculatorLayout";
+
 function Calculator() {
-  return <div>Calculator</div>;
+  return <CalculatorLayout />;
 }
 
 export default Calculator;
