@@ -1,11 +1,7 @@
-import Spinner from "../ui/Spinner";
+import LoginForm from "../ui/LoginForm";
 
 function Login() {
-  return (
-    <div>
-      <Spinner />
-    </div>
-  );
+  return <LoginForm />;
 }
 
 export default Login;

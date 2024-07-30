@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import Button from "./Button";
 
 function Form() {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
