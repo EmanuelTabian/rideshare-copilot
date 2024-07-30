@@ -2,6 +2,8 @@ import { UseCalculator } from "../context/CalculatorContext";
 import styled from "styled-components";
 import IncomeField from "./IncomeField";
 import CommissionField from "./CommissionField";
+import Button from "./Button";
+import Earnings from "./Earnings";
 
 const Income = styled.div`
   padding: 8px;
@@ -80,7 +82,7 @@ function CalculatorLayout() {
           </ExpenseField>
         </ExpenseForm>
       )}
-      <Output />
+      <Earnings />
     </div>
   );
 }
