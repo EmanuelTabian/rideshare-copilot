@@ -14,6 +14,7 @@ import Documents from "./pages/Documents";
 import Settings from "./pages/Settings";
 import MyPosts from "./pages/MyPosts";
 import PasswordReset from "./pages/PasswordReset";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,7 +40,11 @@ const router = createBrowserRouter([
 
   {
     path: "/",
-    element: <AppLayout />,
+    element: (
+      <ProtectedRoute>
+        <AppLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "/cars",
