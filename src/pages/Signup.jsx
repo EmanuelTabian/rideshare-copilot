@@ -14,7 +14,7 @@ function Signup() {
     signup(
       { name, email, password },
       {
-        onSettled: () => navigate("/signin"),
+        onSettled: () => navigate("/login"),
       }
     );
   }
