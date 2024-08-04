@@ -10,8 +10,14 @@ function LoginForm() {
   const { errors } = formState;
   const navigate = useNavigate();
 
-  function onSubmit() {
-    navigate("/dashboard");
+  function onSubmit({ email, password }) {
+    if (!email || !password) return;
+    signin(
+      { email, password },
+      {
+        onSettled: () => reset(),
+      }
+    );
   }
 
   return (
