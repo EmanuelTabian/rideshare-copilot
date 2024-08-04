@@ -1,8 +1,8 @@
-import { useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { signin as signinApi } from "../../services/rideauthApi";
 import { useNavigate } from "react-router-dom";
 
-export function useSignup() {
+export function useSignin() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutate: signin, isLoading } = useMutation({
@@ -17,5 +17,5 @@ export function useSignup() {
     },
   });
 
-  return { signup, isLoading };
+  return { signin, isLoading };
 }
