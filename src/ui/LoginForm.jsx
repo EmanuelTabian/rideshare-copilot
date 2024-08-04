@@ -12,6 +12,8 @@ function LoginForm() {
 
   function onSubmit({ email, password }) {
     if (!email || !password) return;
+    console.log(email, password);
+
     signin(
       { email, password },
       {

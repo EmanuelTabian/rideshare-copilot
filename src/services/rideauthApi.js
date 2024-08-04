@@ -14,16 +14,14 @@ export async function signup(userdata) {
 
 export async function signin({ email, password }) {
   try {
-    const response = await axios.post(
-      `${ridebackendURL}/login`,
-      { email, password },
-      {
-        withCredentials: true,
-      }
-    );
+    axios.defaults.withCredentials = true;
+    const response = await axios.post(`${ridebackendURL}/login`, {
+      email,
+      password,
+    });
     console.log(response);
     return response.data;
   } catch (err) {
-    throw new Error(`${err.message} Incorrect credentials! ☹️`);
+    throw new Error(`${err.message}!`);
   }
 }
