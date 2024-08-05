@@ -19,9 +19,18 @@ export async function signin({ email, password }) {
       email,
       password,
     });
-    console.log(response);
     return response.data;
   } catch (err) {
-    throw new Error(`${err.message}!`);
+    throw new Error(`${err.message} You were unable to sign in!`);
+  }
+}
+
+export async function getCurrentUser() {
+  try {
+    const response = await axios.get(`${ridebackendURL}/user`);
+    console.log(response);
+    return response;
+  } catch (err) {
+    throw new Error(`${err.message} Couldn't fetch the user!`);
   }
 }
