@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { useSignin } from "../features/authentication/useSignin";
 import Button from "./Button";
 
+const testUsername = "test3@example.com";
+const testPassword = "1234";
+
 function LoginForm() {
   const { signin, isLoading } = useSignin();
   const { register, handleSubmit, reset, getValues, formState } = useForm();
@@ -30,6 +33,7 @@ function LoginForm() {
           <label htmlFor="email">Email:</label>
           <input
             type="email"
+            defaultValue={testUsername}
             {...register("email", { required: "This field is required" })}
           />
         </div>
@@ -37,6 +41,7 @@ function LoginForm() {
           <label htmlFor="password">Password:</label>
           <input
             type="password"
+            defaultValue={testPassword}
             {...register("password", { required: "This field is required" })}
           />
         </div>
