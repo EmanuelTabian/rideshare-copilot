@@ -15,8 +15,8 @@ function HeaderMenu() {
       <NavLink to="/settings">
         <IoSettings />
       </NavLink>
-      <Button>
-        <IoLogOutOutline onClick={logout} />
+      <Button onClick={logout}>
+        <IoLogOutOutline />
       </Button>
     </StyledHeaderMenu>
   );
