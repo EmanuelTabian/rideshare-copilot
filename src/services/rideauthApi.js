@@ -33,3 +33,11 @@ export async function getCurrentUser() {
     throw new Error(`${err.message} Couldn't fetch the user!`);
   }
 }
+
+export async function logout() {
+  try {
+    await axios.post(`${ridebackendURL}/logout`);
+  } catch (err) {
+    throw new Error(`${err.message} Couldn't logout, please try again!`);
+  }
+}
