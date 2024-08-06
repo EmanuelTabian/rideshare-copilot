@@ -6,8 +6,6 @@ axios.defaults.withCredentials = true;
 export async function signup(userdata) {
   try {
     const response = await axios.post(`${ridebackendURL}/register`, userdata);
-    console.log(response);
-
     return response.data;
   } catch (err) {
     throw new Error(`${err.message} You were unable to sign up! ☹️`);
@@ -30,7 +28,6 @@ export async function signin({ email, password }) {
 export async function getCurrentUser() {
   try {
     const response = await axios.get(`${ridebackendURL}/user`);
-    // console.log(response.data);
     return response.data;
   } catch (err) {
     throw new Error(`${err.message} Couldn't fetch the user!`);
