@@ -1,18 +1,19 @@
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../features/authentication/useUser";
+import { useEffect } from "react";
 
 function ProtectedRoute({ children }) {
-  // For development process, this will be modified as react query will grab the user credentials.
   const { isLoading, user } = useUser();
-  console.log(user);
+  const navigate = useNavigate();
 
-  const isAuthenticated = true;
+  useEffect(
+    function () {
+      if (!user && !isLoading) navigate("/login");
+    },
+    [user, isLoading, navigate]
+  );
 
-  if (!isAuthenticated) {
-    return <Navigate to="/login" />;
-  }
-
-  return children;
+  if (user) return children;
 }
 
 export default ProtectedRoute;
