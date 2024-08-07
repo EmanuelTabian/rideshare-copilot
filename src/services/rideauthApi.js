@@ -12,6 +12,16 @@ export async function signup(userdata) {
   }
 }
 
+export async function userUpdate(userdata) {
+  try {
+    await axios.put(`${ridebackendURL}/user-update`, userdata);
+  } catch (err) {
+    throw new Error(
+      `${err.message} You were unable to update your credentials! ☹️`
+    );
+  }
+}
+
 export async function signin({ email, password }) {
   try {
     const response = await axios.post(`${ridebackendURL}/login`, {
