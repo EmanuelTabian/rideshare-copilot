@@ -13,6 +13,7 @@ export async function signup(userdata) {
 }
 
 export async function userUpdate(userdata) {
+  console.log(userdata);
   try {
     await axios.put(`${ridebackendURL}/user-update`, userdata);
   } catch (err) {

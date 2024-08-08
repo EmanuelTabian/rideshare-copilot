@@ -3,7 +3,7 @@ import Button from "./Button";
 import { useUserUpdate } from "../features/authentication/useUserUpdate";
 
 function UserUpdateForm() {
-  const { userUpdate, isLoading } = useUserUpdate;
+  const { userUpdate, isLoading } = useUserUpdate();
 
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
