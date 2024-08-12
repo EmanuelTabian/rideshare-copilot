@@ -51,3 +51,13 @@ export async function logout() {
     throw new Error(`${err.message} Couldn't logout, please try again!`);
   }
 }
+
+export async function deleteUser() {
+  try {
+    await axios.post(`${ridebackendURL}/user-delete`);
+  } catch (err) {
+    throw new Error(
+      `${err.message} Couldn't remove de account, please try again!`
+    );
+  }
+}
