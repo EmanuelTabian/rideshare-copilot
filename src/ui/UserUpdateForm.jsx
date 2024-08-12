@@ -8,10 +8,13 @@ function UserUpdateForm() {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
-  function onSubmit({ username, password }) {
-    if (!username && !password) return;
+  function onSubmit({ name, password }) {
+    if (!name && !password) return;
+    let userdata = { name, password };
+    if (!password) userdata = { name };
+    if (!name) userdata = { password };
     userUpdate(
-      { username, password },
+      { userdata },
       {
         onSettled: () => reset(),
       }
@@ -23,8 +26,8 @@ function UserUpdateForm() {
       <fieldset>
         <legend>Update profile info</legend>
         <div>
-          <label htmlFor="username">Username: </label>
-          <input type="text" {...register("username")} />
+          <label htmlFor="name">Username: </label>
+          <input type="text" {...register("name")} />
         </div>
         <div>
           <label htmlFor="password">Password: </label>
