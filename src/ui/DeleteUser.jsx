@@ -1,7 +1,11 @@
+import { useUserDelete } from "../features/authentication/useUserDelete";
 import Button from "./Button";
 
 function DeleteUser() {
-  function handleDeletion() {}
+  const { deleteUser, isLoading } = useUserDelete();
+  function handleDeletion() {
+    deleteUser();
+  }
 
   return (
     <>

@@ -54,7 +54,7 @@ export async function logout() {
 
 export async function deleteUser() {
   try {
-    await axios.post(`${ridebackendURL}/user-delete`);
+    await axios.delete(`${ridebackendURL}/user-delete`);
   } catch (err) {
     throw new Error(
       `${err.message} Couldn't remove de account, please try again!`
