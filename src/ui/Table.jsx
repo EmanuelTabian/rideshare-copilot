@@ -8,14 +8,28 @@ const StyledTable = styled.div`
   overflow: scroll;
 `;
 
-const StyledHeader = styled.div`
+const ReusableRow = styled.div`
   display: grid;
   grid-template-columns: ${(props) => props.columns};
   column-gap: 2rem;
   align-items: center;
+`;
+
+const StyledHeader = styled(ReusableRow)`
   padding: 1rem 1rem;
   text-transform: uppercase;
   font-weight: 500;
+`;
+
+const StyledRow = styled(ReusableRow)`
+  padding: 1rem 1rem;
+`;
+
+const NoData = styled.p`
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 2rem;
 `;
 
 // Compound component originally designed by Jonas Schmedtmann and adapted to current project.
@@ -33,5 +47,20 @@ function Header({ children }) {
   const { columns } = useContext(TableContext);
   return <StyledHeader columns={columns}>{children}</StyledHeader>;
 }
+
+function Row({ children }) {
+  const { columns } = useContext(TableContext);
+  return <StyledRow columns={columns}>{children}</StyledRow>;
+}
+
+function Body({ data, render }) {
+  if (!data.length)
+    return <NoData>You have no calculator entries! Save one!</NoData>;
+  return <section>{data.map(render)}</section>;
+}
+
+Table.Header = Header;
+Table.Row = Row;
+Table.Body = Body;
 
 export default Table;
