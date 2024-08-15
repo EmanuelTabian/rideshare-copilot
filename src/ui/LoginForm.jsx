@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useSignin } from "../features/authentication/useSignin";
 import Button from "./Button";
 
-const testUsername = "test3@example.com";
-const testPassword = "1234";
+const testUsername = "abc@example.com";
+const testPassword = "123Guitarzoner!@#";
+const testUsername2 = "a@example.com";
+const testPassword2 = "123Rideshareapp!@#";
 
 function LoginForm() {
   const { signin, isLoading } = useSignin();
