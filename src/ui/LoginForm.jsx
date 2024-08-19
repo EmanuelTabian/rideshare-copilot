@@ -5,7 +5,7 @@ import { useSignin } from "../features/authentication/useSignin";
 import Button from "./Button";
 
 const testUsername = "abc@example.com";
-const testPassword = "123Guitarzoner!@#";
+const testPassword = "123RideshareCopilot!@#";
 const testUsername2 = "a@example.com";
 const testPassword2 = "123Rideshareapp!@#";
 
