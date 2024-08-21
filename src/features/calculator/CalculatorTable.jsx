@@ -1,5 +1,6 @@
 import { calcEntriesData } from "../../data/calcEntriesData";
 import Table from "../../ui/Table";
+import CalculatorRow from "./CalculatorRow";
 
 function CalculatorTable() {
   const calcData = calcEntriesData;
