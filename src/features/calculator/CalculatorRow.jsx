@@ -2,7 +2,6 @@ import Table from "../../ui/Table";
 
 function CalculatorRow({ calcEntry }) {
   const {
-    id,
     pub_date: pubDate,
     app_income: appIncome,
     commission,
@@ -12,7 +11,11 @@ function CalculatorRow({ calcEntry }) {
 
   return (
     <Table.Row>
-      <div>{id}</div>
+      <div>{pubDate}</div>
+      <div>{appIncome}</div>
+      <div>{commission}</div>
+      <div>{expenses}</div>
+      <div>{earnings}</div>
     </Table.Row>
   );
 }
