@@ -6,7 +6,7 @@ function CalculatorTable() {
   const calcData = calcEntriesData;
 
   return (
-    <Table collumns="">
+    <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
       <Table.Header>
         <div>Pub date</div>
         <div>App Income</div>
