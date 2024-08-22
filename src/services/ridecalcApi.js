@@ -15,3 +15,17 @@ export async function getCalculatorEntries() {
     );
   }
 }
+
+export async function addCalculatorEntries(calcData) {
+  try {
+    const response = await axios.post(
+      `${ridebackendURL}/add-calculator-entries`,
+      calcData
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(
+      `${err.message} Sorry, we were unable to add your calculator entry! ☹️`
+    );
+  }
+}
