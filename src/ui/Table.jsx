@@ -16,7 +16,7 @@ const ReusableRow = styled.div`
 `;
 
 const StyledHeader = styled(ReusableRow)`
-  padding: 1rem 1rem;
+  padding: 1.5rem 1.5rem;
   text-transform: uppercase;
   font-weight: 500;
 `;
