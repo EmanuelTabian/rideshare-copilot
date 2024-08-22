@@ -17,9 +17,11 @@ export async function getCalculatorEntries() {
 }
 
 export async function addCalculatorEntry(calcData) {
+  console.log(calcData);
+
   try {
     const response = await axios.post(
-      `${ridebackendURL}/add-calculator-entries`,
+      `${ridebackendURL}/add-calculator-entry`,
       calcData
     );
     return response.data;

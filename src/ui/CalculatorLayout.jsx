@@ -1,10 +1,11 @@
-import { UseCalculator } from "../context/CalculatorContext";
 import styled from "styled-components";
+
+import { UseCalculator } from "../context/CalculatorContext";
 import IncomeField from "./IncomeField";
-import CommissionField from "./CalcInput";
 import Button from "./Button";
 import Earnings from "./Earnings";
 import CalcInput from "./CalcInput";
+import { useAddCalculatorEntry } from "../features/calculator/useAddCalculatorEntry";
 
 const Income = styled.div`
   padding: 8px;
@@ -15,6 +16,8 @@ const Income = styled.div`
 `;
 
 function CalculatorLayout() {
+  const { addCalculatorEntry, isLoading } = useAddCalculatorEntry();
+
   const {
     income,
     setIncome,
@@ -43,6 +46,11 @@ function CalculatorLayout() {
     setMealsExp("");
     setOtherExp("");
   }
+  function handleAdd() {
+    console.log("click");
+
+    addCalculatorEntry({ income });
+  }
 
   function handleToggle() {
     setToggle((t) => !t);
@@ -67,7 +75,7 @@ function CalculatorLayout() {
               {toggle ? "Close" : " Expenses"}
             </Button>
             <Button onClick={handleReset}>Reset</Button>
-            <Button>Save</Button>
+            <Button onClick={handleAdd}>Save</Button>
           </div>
         )}
       </Income>
