@@ -1,11 +1,12 @@
-import { calcEntriesData } from "../../data/calcEntriesData";
 import Table from "../../ui/Table";
 import CalculatorRow from "./CalculatorRow";
 import { useGetCalculatorEntries } from "./useGetCalculatorEntries";
+import Spinner from "../../ui/Spinner";
 
 function CalculatorTable() {
   const { calcEntries, isLoading } = useGetCalculatorEntries();
-  console.log(calcEntries);
+
+  if (isLoading) return <Spinner />;
 
   return (
     <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">

@@ -4,7 +4,7 @@ import { getCalculatorEntries } from "../../services/ridecalcApi";
 export function useGetCalculatorEntries() {
   const { isLoading, data: calcEntries } = useQuery({
     queryKey: ["calc-entries"],
-    queryFn: getCalculatorEntries,
+    queryFn: () => getCalculatorEntries(),
   });
 
   return { calcEntries, isLoading };
