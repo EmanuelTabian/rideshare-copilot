@@ -16,7 +16,7 @@ export async function getCalculatorEntries() {
   }
 }
 
-export async function addCalculatorEntries(calcData) {
+export async function addCalculatorEntry(calcData) {
   try {
     const response = await axios.post(
       `${ridebackendURL}/add-calculator-entries`,
