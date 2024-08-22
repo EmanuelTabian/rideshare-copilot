@@ -6,6 +6,7 @@ const StyledTable = styled.div`
   border: 1px solid black;
   font-size: 1rem;
   overflow: scroll;
+  text-align: center;
 `;
 
 const ReusableRow = styled.div`
