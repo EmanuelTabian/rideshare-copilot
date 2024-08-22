@@ -67,6 +67,7 @@ function CalculatorLayout() {
               {toggle ? "Close" : " Expenses"}
             </Button>
             <Button onClick={handleReset}>Reset</Button>
+            <Button>Save</Button>
           </div>
         )}
       </Income>
