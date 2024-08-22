@@ -12,7 +12,7 @@ function CalculatorRow({ calcEntry }) {
 
   return (
     <Table.Row>
-      <div>{pubDate}</div>
+      <div>{dateFormatter(pubDate)}</div>
       <div>{appIncome}</div>
       <div>{commission}</div>
       <div>{expenses}</div>
