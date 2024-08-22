@@ -1,4 +1,5 @@
 import Table from "../../ui/Table";
+import TableRowActions from "../../ui/TableRowActions";
 import { dateFormatter } from "../../utils/helpers";
 
 function CalculatorRow({ calcEntry }) {
@@ -17,6 +18,7 @@ function CalculatorRow({ calcEntry }) {
       {commission ? <div>{Math.round(commission)}%</div> : <span>&mdash;</span>}
       {expenses ? <div>{expenses}</div> : <span>&mdash;</span>}
       {earnings ? <div>{earnings}</div> : <span>&mdash;</span>}
+      <TableRowActions />
     </Table.Row>
   );
 }
