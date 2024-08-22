@@ -5,6 +5,7 @@ import { useGetCalculatorEntries } from "./useGetCalculatorEntries";
 
 function CalculatorTable() {
   const { calcEntries, isLoading } = useGetCalculatorEntries();
+  console.log(calcEntries);
 
   return (
     <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
@@ -14,6 +15,7 @@ function CalculatorTable() {
         <div>Commission</div>
         <div>Expenses</div>
         <div>Earnings</div>
+        <div>Actions</div>
       </Table.Header>
       <Table.Body
         data={calcEntries}

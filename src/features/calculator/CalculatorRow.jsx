@@ -1,4 +1,5 @@
 import Table from "../../ui/Table";
+import { dateFormatter } from "../../utils/helpers";
 
 function CalculatorRow({ calcEntry }) {
   const {
