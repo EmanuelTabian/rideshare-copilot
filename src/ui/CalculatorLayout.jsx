@@ -29,12 +29,15 @@ function CalculatorLayout() {
     setEmplCom,
     otherCom,
     setOtherCom,
+    commissionPerc,
     gasExp,
     setGasExp,
     mealsExp,
     setMealsExp,
     otherExp,
     setOtherExp,
+    totalExpenses,
+    netIncome,
   } = UseCalculator();
 
   function handleReset() {
@@ -46,10 +49,16 @@ function CalculatorLayout() {
     setMealsExp("");
     setOtherExp("");
   }
-  function handleAdd() {
-    console.log("click");
 
-    addCalculatorEntry({ income });
+  function handleAdd() {
+    const calcData = {
+      app_income: String(income),
+      commission: String(commissionPerc),
+      expenses: String(totalExpenses),
+      earnings: String(netIncome),
+    };
+
+    addCalculatorEntry({ calcData });
   }
 
   function handleToggle() {

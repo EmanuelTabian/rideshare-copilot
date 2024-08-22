@@ -16,7 +16,7 @@ export async function getCalculatorEntries() {
   }
 }
 
-export async function addCalculatorEntry(calcData) {
+export async function addCalculatorEntry({ calcData }) {
   console.log(calcData);
 
   try {
