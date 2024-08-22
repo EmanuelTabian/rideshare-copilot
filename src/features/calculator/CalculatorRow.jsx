@@ -14,9 +14,9 @@ function CalculatorRow({ calcEntry }) {
     <Table.Row>
       <div>{dateFormatter(pubDate)}</div>
       <div>{appIncome}</div>
-      <div>{commission}</div>
-      <div>{expenses}</div>
-      <div>{earnings}</div>
+      {commission ? <div>{commission}</div> : <span>&mdash;</span>}
+      {expenses ? <div>{expenses}</div> : <span>&mdash;</span>}
+      {earnings ? <div>{earnings}</div> : <span>&mdash;</span>}
     </Table.Row>
   );
 }
