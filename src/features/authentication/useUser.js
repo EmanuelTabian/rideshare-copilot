@@ -8,7 +8,5 @@ export function useUser() {
     retry: false,
   });
 
-  console.log(user);
-
   return { isLoading, user };
 }

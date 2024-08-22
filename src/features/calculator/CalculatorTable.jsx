@@ -1,9 +1,10 @@
 import { calcEntriesData } from "../../data/calcEntriesData";
 import Table from "../../ui/Table";
 import CalculatorRow from "./CalculatorRow";
+import { useGetCalculatorEntries } from "./useGetCalculatorEntries";
 
 function CalculatorTable() {
-  const calcData = calcEntriesData;
+  const { calcEntries, isLoading } = useGetCalculatorEntries();
 
   return (
     <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
@@ -15,7 +16,7 @@ function CalculatorTable() {
         <div>Earnings</div>
       </Table.Header>
       <Table.Body
-        data={calcData}
+        data={calcEntries}
         render={(calcEntry) => (
           <CalculatorRow calcEntry={calcEntry} key={calcEntry.id} />
         )}
