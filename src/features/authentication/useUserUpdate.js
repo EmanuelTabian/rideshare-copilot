@@ -6,6 +6,7 @@ export function useUserUpdate() {
   const { mutate: userUpdate, isLoading } = useMutation({
     mutationFn: userUpdateApi,
     onSuccess: () => {
+      // You may set this up to invalidate only the user query key
       queryClient.invalidateQueries();
     },
   });
