@@ -3,12 +3,14 @@ import Button from "../../ui/Button";
 import { useUpdateCalculatorEntry } from "./useUpdateCalculatorEntry";
 
 function UpdateCalculatorEntryForm({ calculatorEntryID }) {
-  const { updateCalaculatorEntry, isLoading } = useUpdateCalculatorEntry();
+  const { updateCalculatorEntry, isLoading } = useUpdateCalculatorEntry();
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
   function onSubmit(data) {
-    console.log(data);
+    const payload = { ...data, calculatorEntryID };
+
+    updateCalculatorEntry(payload);
   }
 
   return (

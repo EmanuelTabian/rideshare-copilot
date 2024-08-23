@@ -3,14 +3,13 @@ import { updateCalculatorEntry as updateCalculatorEntryApi } from "../../service
 
 export function useUpdateCalculatorEntry() {
   const queryClient = useQueryClient();
-  const { mutate: updateCalaculatorEntry, isLoading } = useMutation({
-    mutationFn: ({ calcData, calcID }) =>
-      updateCalculatorEntryApi(calcData, calcID),
+  const { mutate: updateCalculatorEntry, isLoading } = useMutation({
+    mutationFn: updateCalculatorEntryApi,
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["calc-entries"],
       });
     },
   });
-  return { updateCalaculatorEntry, isLoading };
+  return { updateCalculatorEntry, isLoading };
 }

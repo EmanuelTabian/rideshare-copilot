@@ -32,11 +32,20 @@ export async function addCalculatorEntry({ calcData }) {
   }
 }
 
-export async function updateCalculatorEntry(calcData, calcID) {
+export async function updateCalculatorEntry(calcData) {
+  const data = {
+    app_income: calcData.app_income,
+    commission: calcData.commission,
+    expenses: calcData.expenses,
+    earnings: calcData.earnings,
+  };
+  const { calculatorEntryID: id } = calcData;
+  console.log(data);
+
   try {
     const response = await axios.patch(
-      `${ridebackendURL}/update-calculator-entry/${calcID},`,
-      calcData
+      `${ridebackendURL}/update-calculator-entry/${id}`,
+      data
     );
     return response.data;
   } catch (err) {
