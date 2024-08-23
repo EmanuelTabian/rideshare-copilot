@@ -59,7 +59,8 @@ function Window({ children, name }) {
         </button>
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
-    </Overlay>
+    </Overlay>,
+    document.body
   );
 }
 
