@@ -1,4 +1,4 @@
-function EditCalculatorEntryForm() {
+function UpdateCalculatorEntryForm() {
   return (
     <form>
       <fieldset>
@@ -20,4 +20,4 @@ function EditCalculatorEntryForm() {
   );
 }
 
-export default EditCalculatorEntryForm;
+export default UpdateCalculatorEntryForm;
