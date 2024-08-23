@@ -31,3 +31,17 @@ export async function addCalculatorEntry({ calcData }) {
     );
   }
 }
+
+export async function updateCalculatorEntry(calcData, calcID) {
+  try {
+    const response = await axios.patch(
+      `${ridebackendURL}/update-calculator-entry/${calcID},`,
+      calcData
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(
+      `${err.message} Sorry, we were unable to edit your calculator entry! ☹️`
+    );
+  }
+}
