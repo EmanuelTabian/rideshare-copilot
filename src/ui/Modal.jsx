@@ -57,7 +57,7 @@ function Window({ children, name }) {
         <button onClick={close}>
           <IoCloseCircleOutline />
         </button>
-        <div>{cloneElement(children, { onCLoseModal: close })}</div>
+        <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
     </Overlay>
   );
