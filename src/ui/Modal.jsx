@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { cloneElement, createContext, useState } from "react";
 
 // Modal compound component originally designed by Jonas Schmedtmann.
 
@@ -15,6 +15,12 @@ function Modal({ children }) {
       {children}
     </ModalContext.Provider>
   );
+}
+
+function Open({ children, opens: opensWindowName }) {
+  const { open } = useContext(ModalContext);
+  // We are not able to attatch the handler directly on the button so we're cloning the element and attatch it here
+  return cloneElement(children, { onClick: () => open(opensWindowName) });
 }
 
 export default Modal;
