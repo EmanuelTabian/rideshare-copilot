@@ -1,6 +1,8 @@
 import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import styled from "styled-components";
+import { useCloseForm } from "../hooks/useCloseForm";
 
 const StyledModal = styled.div`
   position: fixed;
