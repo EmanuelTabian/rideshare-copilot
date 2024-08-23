@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import Button from "../../ui/Button";
 
 function UpdateCalculatorEntryForm({ calculatorEntry, onClose }) {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
@@ -20,6 +21,9 @@ function UpdateCalculatorEntryForm({ calculatorEntry, onClose }) {
         <label htmlFor="earnings">Earnings</label>
         {/* This field will compute the new values and perform a new calculation for the expenses */}
         <input disabled={true} type="number" {...register("earnings")} />
+        <div>
+          <Button>Save changes</Button>
+        </div>
       </fieldset>
     </form>
   );
