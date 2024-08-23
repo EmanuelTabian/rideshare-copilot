@@ -2,6 +2,24 @@ import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
+const StyledModal = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 3rem 3rem;
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+`;
+
 // Modal compound component originally designed by Jonas Schmedtmann.
 
 const ModalContext = createContext();
@@ -32,14 +50,14 @@ function Window({ children, name }) {
   if (name !== openName) return null;
   // Create a portel to append the element directly to the body in order to avoid event bubbling and capturing issues
   return createPortal(
-    <div>
-      <div ref={ref}>
+    <Overlay>
+      <StyledModal ref={ref}>
         <button onClick={close}>
           <IoCloseCircleOutline />
         </button>
         <div>{cloneElement(children, { onCLoseModal: close })}</div>
-      </div>
-    </div>
+      </StyledModal>
+    </Overlay>
   );
 }
 
