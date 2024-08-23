@@ -7,8 +7,8 @@ function Calculator() {
     <>
       <UseCalculatorContext>
         <CalculatorLayout />
+        <CalculatorTable />
       </UseCalculatorContext>
-      <CalculatorTable />
     </>
   );
 }
