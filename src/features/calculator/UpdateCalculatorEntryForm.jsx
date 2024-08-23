@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 
-function UpdateCalculatorEntryForm({ calculatorEntry, onClose }) {
+function UpdateCalculatorEntryForm({ calculatorEntryID, onClose }) {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 

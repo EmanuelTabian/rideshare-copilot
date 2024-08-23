@@ -10,6 +10,7 @@ import ConfirmDelete from "../../ui/ConfirmDelete";
 
 function CalculatorRow({ calcEntry }) {
   const {
+    id,
     pub_date: pubDate,
     app_income: appIncome,
     commission,
@@ -38,7 +39,7 @@ function CalculatorRow({ calcEntry }) {
             </Button>
           </Modal.Open>
           <Modal.Window name="edit">
-            <UpdateCalculatorEntryForm />
+            <UpdateCalculatorEntryForm calculatorEntryID={id} />
           </Modal.Window>
           <Modal.Window name="delete">
             <ConfirmDelete
