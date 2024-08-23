@@ -1,12 +1,18 @@
 import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
+import { useUpdateCalculatorEntry } from "./useUpdateCalculatorEntry";
 
-function UpdateCalculatorEntryForm({ calculatorEntryID, onClose }) {
+function UpdateCalculatorEntryForm({ calculatorEntryID }) {
+  const { updateCalaculatorEntry, isLoading } = useUpdateCalculatorEntry();
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
+  function onSubmit(data) {
+    console.log(data);
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
         <legend>Edit calculator entry</legend>
         <label htmlFor="app_income">App income:</label>
