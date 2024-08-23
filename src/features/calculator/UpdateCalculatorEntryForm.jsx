@@ -26,9 +26,6 @@ function UpdateCalculatorEntryForm({ calculatorEntryID }) {
         <input type="number" {...register("commission")} />
         <label htmlFor="expenses">Expenses:</label>
         <input type="number" {...register("expenses")} />
-        <label htmlFor="earnings">Earnings</label>
-        {/* This field will compute the new values and perform a new calculation for the expenses */}
-        <input disabled={true} type="number" {...register("earnings")} />
         <div>
           <Button>Save changes</Button>
         </div>
