@@ -3,7 +3,7 @@ import Button from "../../ui/Button";
 import { useUpdateCalculatorEntry } from "./useUpdateCalculatorEntry";
 import { UseCalculator } from "../../context/CalculatorContext";
 
-function UpdateCalculatorEntryForm({ calcEntry }) {
+function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
   const {
     income,
     setIncome,
@@ -29,9 +29,12 @@ function UpdateCalculatorEntryForm({ calcEntry }) {
 
   function onSubmit(data) {
     const payload = { ...data, id };
-    console.log(payload);
 
-    updateCalculatorEntry(payload);
+    updateCalculatorEntry(payload, {
+      onSuccess: () => {
+        onCloseModal?.();
+      },
+    });
   }
 
   return (
