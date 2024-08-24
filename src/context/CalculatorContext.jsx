@@ -3,6 +3,7 @@ import { useState } from "react";
 const CalcContext = createContext();
 
 function UseCalculatorContext({ children }) {
+  const [test, setTest] = useState();
   const [income, setIncome] = useState("");
   const [rideCom, setRideCom] = useState("");
   const [emplCom, setEmplCom] = useState("");
@@ -21,6 +22,8 @@ function UseCalculatorContext({ children }) {
   return (
     <CalcContext.Provider
       value={{
+        test,
+        setTest,
         income,
         setIncome,
         rideCom,
