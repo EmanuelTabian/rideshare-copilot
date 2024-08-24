@@ -17,7 +17,7 @@ function UpdateCalculatorEntryForm({ calcEntry }) {
   const { app_income, commission, earnings, expenses, id } = calcEntry;
 
   const { updateCalculatorEntry, isLoading } = useUpdateCalculatorEntry();
-  const { register, handleSubmit, reset, formState } = useForm({
+  const { register, handleSubmit, reset, setValue, formState } = useForm({
     defaultValues: {
       app_income,
       commission,
@@ -42,29 +42,30 @@ function UpdateCalculatorEntryForm({ calcEntry }) {
         <input
           type="number"
           {...register("app_income", { required: "This field is required" })}
-          // value={income}
-          // onChange={(e) => setIncome(e.target.value)}
+          value={income}
+          onChange={(e) => setIncome(e.target.value)}
         />
         <label htmlFor="commission">Commission</label>
         <input
           type="number"
           {...register("commission")}
-          // value={rideCom}
-          // onChange={(e) => setRideCom(e.target.value)}
+          value={rideCom}
+          onChange={(e) => setRideCom(e.target.value)}
         />
         <label htmlFor="expenses">Expenses:</label>
         <input
           type="number"
           {...register("expenses")}
-          // value={otherExp}
-          // onChange={(e) => setOtherExp(e.target.value)}
+          value={otherExp}
+          onChange={(e) => setOtherExp(e.target.value)}
         />
         <label htmlFor="earnings">Earnings:</label>
         <input
           type="number"
           disabled={true}
-          // value={netIncome}
           {...register("earnings")}
+          value={netIncome}
+          onChange={setValue("earnings", String(netIncome))}
         />
         <div>
           <Button>Save changes</Button>
