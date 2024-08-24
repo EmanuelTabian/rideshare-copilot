@@ -39,7 +39,7 @@ function CalculatorRow({ calcEntry }) {
             </Button>
           </Modal.Open>
           <Modal.Window name="edit">
-            <UpdateCalculatorEntryForm calculatorEntryID={id} />
+            <UpdateCalculatorEntryForm calcEntry={calcEntry} />
           </Modal.Window>
           <Modal.Window name="delete">
             <ConfirmDelete
