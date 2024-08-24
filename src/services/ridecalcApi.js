@@ -17,8 +17,6 @@ export async function getCalculatorEntries() {
 }
 
 export async function addCalculatorEntry({ calcData }) {
-  console.log(calcData);
-
   try {
     const response = await axios.post(
       `${ridebackendURL}/add-calculator-entry`,
@@ -39,8 +37,7 @@ export async function updateCalculatorEntry(calcData) {
     expenses: calcData.expenses,
     earnings: calcData.earnings,
   };
-  const { calculatorEntryID: id } = calcData;
-  console.log(data);
+  const { id } = calcData;
 
   try {
     const response = await axios.patch(

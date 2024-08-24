@@ -13,16 +13,25 @@ function UpdateCalculatorEntryForm({ calcEntry }) {
     setOtherExp,
     netIncome,
   } = UseCalculator();
+
+  const { app_income, commission, earnings, expenses, id } = calcEntry;
+
   const { updateCalculatorEntry, isLoading } = useUpdateCalculatorEntry();
-  const { register, handleSubmit, reset, formState } = useForm();
+  const { register, handleSubmit, reset, formState } = useForm({
+    defaultValues: {
+      app_income,
+      commission,
+      earnings,
+      expenses,
+    },
+  });
   const { errors } = formState;
 
   function onSubmit(data) {
-    console.log(calcEntry);
+    const payload = { ...data, id };
+    console.log(payload);
 
-    // const payload = { ...data, calcEntry.id };
-
-    // updateCalculatorEntry(payload);
+    updateCalculatorEntry(payload);
   }
 
   return (
