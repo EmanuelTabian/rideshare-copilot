@@ -7,6 +7,7 @@ import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 import UpdateCalculatorEntryForm from "./UpdateCalculatorEntryForm";
 import ConfirmDelete from "../../ui/ConfirmDelete";
+import { TableCalculatorProvider } from "../../context/tableCalculatorContext";
 
 function CalculatorRow({ calcEntry }) {
   const {
@@ -39,7 +40,9 @@ function CalculatorRow({ calcEntry }) {
             </Button>
           </Modal.Open>
           <Modal.Window name="edit">
-            <UpdateCalculatorEntryForm calcEntry={calcEntry} />
+            <TableCalculatorProvider>
+              <UpdateCalculatorEntryForm calcEntry={calcEntry} />
+            </TableCalculatorProvider>
           </Modal.Window>
           <Modal.Window name="delete">
             <ConfirmDelete

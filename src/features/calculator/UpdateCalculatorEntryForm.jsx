@@ -1,18 +1,15 @@
 import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import { useUpdateCalculatorEntry } from "./useUpdateCalculatorEntry";
-import { UseCalculator } from "../../context/CalculatorContext";
+import { useTableCalculator } from "../../context/tableCalculatorContext";
 
 function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
   const {
-    income,
-    setIncome,
-    rideCom,
-    setRideCom,
-    otherExp,
-    setOtherExp,
-    netIncome,
-  } = UseCalculator();
+    income: calcIncome,
+    commission: calcCommission,
+    expenses: calcExpenses,
+    earnings: calcEarnings,
+  } = useTableCalculator();
 
   const { app_income, commission, earnings, expenses, id } = calcEntry;
 

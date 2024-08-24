@@ -46,7 +46,7 @@ function reducer(state, action) {
 
 const TableCalculatorContext = createContext();
 
-function tableCalculatorProvider({ children }) {
+function TableCalculatorProvider({ children }) {
   const [{ income, commission, expenses, earnings }, dispatch] = useReducer(
     reducer,
     InitialState
@@ -68,4 +68,4 @@ function useTableCalculator() {
   return context;
 }
 
-export { useTableCalculator, tableCalculatorProvider };
+export { useTableCalculator, TableCalculatorProvider };
