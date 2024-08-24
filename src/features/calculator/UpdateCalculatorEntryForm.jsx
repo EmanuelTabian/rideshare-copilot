@@ -12,6 +12,8 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
     dispatch,
   } = useTableCalculator();
 
+  console.log(calcIncome, calcCommission, calcExpenses, calcEarnings);
+
   const { app_income, commission, earnings, expenses, id } = calcEntry;
 
   const { updateCalculatorEntry, isLoading } = useUpdateCalculatorEntry();
@@ -45,7 +47,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
           {...register("app_income", { required: "This field is required" })}
           value={calcIncome}
           onChange={(e) =>
-            dispatch({ type: "setIncome", payload: e.target.value })
+            dispatch({ type: "setIncome", payload: +e.target.value })
           }
         />
         <label htmlFor="commission">Commission</label>
@@ -54,7 +56,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
           {...register("commission")}
           value={calcCommission}
           onChange={(e) =>
-            dispatch({ type: "setCommission", payload: e.target.value })
+            dispatch({ type: "setCommission", payload: +e.target.value })
           }
         />
         <label htmlFor="expenses">Expenses:</label>
@@ -63,7 +65,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
           {...register("expenses")}
           value={calcExpenses}
           onChange={(e) =>
-            dispatch({ type: "setExpenses", payload: e.target.value })
+            dispatch({ type: "setExpenses", payload: +e.target.value })
           }
         />
         <label htmlFor="earnings">Earnings:</label>

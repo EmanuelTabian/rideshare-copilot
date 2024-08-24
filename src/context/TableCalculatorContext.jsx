@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { act, createContext, useContext, useReducer } from "react";
 
 const InitialState = {
   income: "",
@@ -13,31 +13,26 @@ function reducer(state, action) {
       return {
         ...state,
         income: action.payload,
-        earnings: Math.round(
-          state.income -
-            (state.commission * state.income) / 100 -
-            state.expenses
-        ),
+        earnings:
+          action.payload -
+          (state.commission / 100) * action.payload -
+          state.expenses,
       };
     case "setCommission":
       return {
         ...state,
         commission: action.payload,
-        earnings: Math.round(
-          state.income -
-            (state.commission * state.income) / 100 -
-            state.expenses
-        ),
+        earnings:
+          state.income - (action.payload / 100) * state.income - state.expenses,
       };
     case "setExpenses":
       return {
         ...state,
         expenses: action.payload,
-        earnings: Math.round(
+        earnings:
           state.income -
-            (state.commission * state.income) / 100 -
-            state.expenses
-        ),
+          (state.commission / 100) * state.income -
+          action.payload,
       };
     default:
       throw new Error("Action unrecognized!");
