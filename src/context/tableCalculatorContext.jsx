@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const InitialState = {
   income: "",
@@ -60,3 +60,12 @@ function tableCalculatorProvider({ children }) {
     </TableCalculatorContext.Provider>
   );
 }
+
+function useTableCalculator() {
+  const context = useContext(TableCalculatorContext);
+  if (context === undefined)
+    throw new Error("Table Calculator used outside Table Calculator Provider");
+  return context;
+}
+
+export { useTableCalculator, tableCalculatorProvider };
