@@ -7,7 +7,7 @@ import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 import UpdateCalculatorEntryForm from "./UpdateCalculatorEntryForm";
 import ConfirmDelete from "../../ui/ConfirmDelete";
-import { TableCalculatorProvider } from "../../context/tableCalculatorContext";
+import { TableCalculatorProvider } from "../../context/TableCalculatorContext";
 
 function CalculatorRow({ calcEntry }) {
   const {

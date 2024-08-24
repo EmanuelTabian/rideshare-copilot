@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import { useUpdateCalculatorEntry } from "./useUpdateCalculatorEntry";
-import { useTableCalculator } from "../../context/tableCalculatorContext";
+import { useTableCalculator } from "../../context/TableCalculatorContext";
 
 function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
   const {
@@ -9,6 +9,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
     commission: calcCommission,
     expenses: calcExpenses,
     earnings: calcEarnings,
+    dispatch,
   } = useTableCalculator();
 
   const { app_income, commission, earnings, expenses, id } = calcEntry;
@@ -18,8 +19,8 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
     defaultValues: {
       app_income,
       commission,
-      earnings,
       expenses,
+      earnings,
     },
   });
   const { errors } = formState;
@@ -42,30 +43,36 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
         <input
           type="number"
           {...register("app_income", { required: "This field is required" })}
-          value={income}
-          onChange={(e) => setIncome(e.target.value)}
+          value={calcIncome}
+          onChange={(e) =>
+            dispatch({ type: "setIncome", payload: e.target.value })
+          }
         />
         <label htmlFor="commission">Commission</label>
         <input
           type="number"
           {...register("commission")}
-          value={rideCom}
-          onChange={(e) => setRideCom(e.target.value)}
+          value={calcCommission}
+          onChange={(e) =>
+            dispatch({ type: "setCommission", payload: e.target.value })
+          }
         />
         <label htmlFor="expenses">Expenses:</label>
         <input
           type="number"
           {...register("expenses")}
-          value={otherExp}
-          onChange={(e) => setOtherExp(e.target.value)}
+          value={calcExpenses}
+          onChange={(e) =>
+            dispatch({ type: "setExpenses", payload: e.target.value })
+          }
         />
         <label htmlFor="earnings">Earnings:</label>
         <input
           type="number"
           disabled={true}
           {...register("earnings")}
-          value={netIncome}
-          onChange={setValue("earnings", String(netIncome))}
+          value={calcEarnings}
+          onChange={setValue("earnings", String(calcEarnings))}
         />
         <div>
           <Button>Save changes</Button>
