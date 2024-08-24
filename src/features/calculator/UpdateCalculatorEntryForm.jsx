@@ -12,9 +12,8 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
     dispatch,
   } = useTableCalculator();
 
-  console.log(calcIncome, calcCommission, calcExpenses, calcEarnings);
-
   const { app_income, commission, earnings, expenses, id } = calcEntry;
+  console.log(app_income, commission, earnings, expenses, id);
 
   const { updateCalculatorEntry, isLoading } = useUpdateCalculatorEntry();
   const { register, handleSubmit, reset, setValue, formState } = useForm({
@@ -22,13 +21,14 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
       app_income,
       commission,
       expenses,
-      earnings,
+      earnings: earnings,
     },
   });
   const { errors } = formState;
 
   function onSubmit(data) {
     const payload = { ...data, id };
+    console.log(payload);
 
     updateCalculatorEntry(payload, {
       onSuccess: () => {

@@ -40,9 +40,7 @@ function CalculatorRow({ calcEntry }) {
             </Button>
           </Modal.Open>
           <Modal.Window name="edit">
-            <TableCalculatorProvider>
-              <UpdateCalculatorEntryForm calcEntry={calcEntry} />
-            </TableCalculatorProvider>
+            <UpdateCalculatorEntryForm calcEntry={calcEntry} />
           </Modal.Window>
           <Modal.Window name="delete">
             <ConfirmDelete

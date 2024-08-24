@@ -13,17 +13,19 @@ function reducer(state, action) {
       return {
         ...state,
         income: action.payload,
-        earnings:
+        earnings: Math.round(
           action.payload -
-          (state.commission / 100) * action.payload -
-          state.expenses,
+            (state.commission / 100) * action.payload -
+            state.expenses
+        ),
       };
     case "setCommission":
       return {
         ...state,
         commission: action.payload,
-        earnings:
-          state.income - (action.payload / 100) * state.income - state.expenses,
+        earnings: Math.round(
+          state.income - (action.payload / 100) * state.income - state.expenses
+        ),
       };
     case "setExpenses":
       return {
@@ -31,8 +33,7 @@ function reducer(state, action) {
         expenses: action.payload,
         earnings:
           state.income -
-          (state.commission / 100) * state.income -
-          action.payload,
+          Math.round((state.commission / 100) * state.income - action.payload),
       };
     default:
       throw new Error("Action unrecognized!");
