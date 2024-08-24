@@ -4,6 +4,8 @@ import { useUpdateCalculatorEntry } from "./useUpdateCalculatorEntry";
 import { useTableCalculator } from "../../context/TableCalculatorContext";
 
 function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
+  const { id } = calcEntry;
+
   const {
     income: calcIncome,
     commission: calcCommission,
@@ -12,7 +14,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
     dispatch,
   } = useTableCalculator();
 
-  const { app_income, commission, earnings, expenses, id } = calcEntry;
+  console.log(calcIncome, calcCommission, calcExpenses, calcEarnings);
 
   const { updateCalculatorEntry, isLoading } = useUpdateCalculatorEntry();
   const { register, handleSubmit, reset, setValue, formState } = useForm({
