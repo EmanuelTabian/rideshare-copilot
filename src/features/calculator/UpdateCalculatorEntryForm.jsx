@@ -13,17 +13,17 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
   } = useTableCalculator();
 
   const { app_income, commission, earnings, expenses, id } = calcEntry;
-  console.log(app_income, commission, earnings, expenses, id);
 
   const { updateCalculatorEntry, isLoading } = useUpdateCalculatorEntry();
   const { register, handleSubmit, reset, setValue, formState } = useForm({
     defaultValues: {
-      app_income,
-      commission,
-      expenses,
-      earnings: earnings,
+      calcIncome,
+      calcCommission,
+      calcExpenses,
+      calcEarnings,
     },
   });
+
   const { errors } = formState;
 
   function onSubmit(data) {
@@ -47,7 +47,10 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
           {...register("app_income", { required: "This field is required" })}
           value={calcIncome}
           onChange={(e) =>
-            dispatch({ type: "setIncome", payload: +e.target.value })
+            dispatch({
+              type: "setIncome",
+              payload: +e.target.value ? +e.target.value : "",
+            })
           }
         />
         <label htmlFor="commission">Commission</label>
@@ -56,7 +59,10 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
           {...register("commission")}
           value={calcCommission}
           onChange={(e) =>
-            dispatch({ type: "setCommission", payload: +e.target.value })
+            dispatch({
+              type: "setCommission",
+              payload: +e.target.value ? +e.target.value : "",
+            })
           }
         />
         <label htmlFor="expenses">Expenses:</label>
@@ -65,7 +71,10 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
           {...register("expenses")}
           value={calcExpenses}
           onChange={(e) =>
-            dispatch({ type: "setExpenses", payload: +e.target.value })
+            dispatch({
+              type: "setExpenses",
+              payload: +e.target.value ? +e.target.value : "",
+            })
           }
         />
         <label htmlFor="earnings">Earnings:</label>
@@ -74,7 +83,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
           disabled={true}
           {...register("earnings")}
           value={calcEarnings}
-          onChange={setValue("earnings", String(calcEarnings))}
+          onChange={setValue("earnings", calcEarnings)}
         />
         <div>
           <Button>Save changes</Button>
