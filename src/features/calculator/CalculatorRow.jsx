@@ -23,8 +23,6 @@ function CalculatorRow({ calcEntry, onCloseModal }) {
   } = calcEntry;
 
   function handleDelete() {
-    console.log("delete");
-
     deleteCalculatorEntry(id, {
       onSuccess: () => {
         onCloseModal?.();
