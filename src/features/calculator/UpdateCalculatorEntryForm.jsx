@@ -15,15 +15,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
   } = useTableCalculator();
 
   const { updateCalculatorEntry, isLoading } = useUpdateCalculatorEntry();
-  const { register, handleSubmit, reset, setValue, formState } = useForm({
-    defaultValues: {
-      app_income,
-      commission,
-      expenses,
-      earnings,
-    },
-    mode: "onChange",
-  });
+  const { register, handleSubmit, reset, setValue, formState } = useForm();
 
   const { errors } = formState;
 
@@ -33,6 +25,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
 
     updateCalculatorEntry(payload, {
       onSuccess: () => {
+        reset();
         dispatch({ type: "resetState" });
         onCloseModal?.();
       },
@@ -85,7 +78,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
           disabled={true}
           {...register("earnings")}
           value={calcEarnings}
-          onChange={setValue("earnings", earnings)}
+          onChange={setValue("earnings", calcEarnings)}
         />
         <div>
           <Button>Save changes</Button>
