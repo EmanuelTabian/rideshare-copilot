@@ -5,7 +5,7 @@ export function useDeleteCalaculatorEntry() {
   const { mutate: deleteCalculatorEntry, isLoading } = useMutation({
     mutationFn: deleteCalculatorEntryAPI,
     onSuccess: () => {
-      queryClient.invalidateQueries(["calc-entries"]);
+      queryClient.invalidateQueries({ queryKey: ["calc-entries"] });
     },
   });
 

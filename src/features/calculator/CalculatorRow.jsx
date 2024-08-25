@@ -58,9 +58,7 @@ function CalculatorRow({ calcEntry, onCloseModal }) {
           <Modal.Window name="delete">
             <ConfirmDelete
               resourceName="calculator entry"
-              // This value will correspond to the isLoading variable from react query
               disabled={false}
-              // This value will correspond to deletion API service that will be built.
               onConfirm={handleDelete}
             />
           </Modal.Window>
