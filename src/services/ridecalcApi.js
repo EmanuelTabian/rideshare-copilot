@@ -51,3 +51,15 @@ export async function updateCalculatorEntry(calcData) {
     );
   }
 }
+
+export async function deleteCalculatorEntry(id) {
+  try {
+    const response = axios.delete(
+      `${ridebackendURL}/delete-calculator-entry/${id}`
+    );
+  } catch (err) {
+    throw new Error(
+      `${err.message} Sorry, we were unable to delete your calculator entry! ☹️`
+    );
+  }
+}
