@@ -4,7 +4,7 @@ import { useUpdateCalculatorEntry } from "./useUpdateCalculatorEntry";
 import { useTableCalculator } from "../../context/TableCalculatorContext";
 
 function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
-  const { id } = calcEntry;
+  const { id, app_income, commission, expenses, earnings } = calcEntry;
 
   const {
     income: calcIncome,
@@ -14,17 +14,8 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
     dispatch,
   } = useTableCalculator();
 
-  console.log(calcIncome, calcCommission, calcExpenses, calcEarnings);
-
   const { updateCalculatorEntry, isLoading } = useUpdateCalculatorEntry();
-  const { register, handleSubmit, reset, setValue, formState } = useForm({
-    defaultValues: {
-      calcIncome,
-      calcCommission,
-      calcExpenses,
-      calcEarnings,
-    },
-  });
+  const { register, handleSubmit, reset, setValue, formState } = useForm();
 
   const { errors } = formState;
 
@@ -35,6 +26,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
     updateCalculatorEntry(payload, {
       onSuccess: () => {
         onCloseModal?.();
+        dispatch();
       },
     });
   }
@@ -47,6 +39,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
         <input
           type="number"
           {...register("app_income", { required: "This field is required" })}
+          placeholder={app_income}
           value={calcIncome}
           onChange={(e) =>
             dispatch({
@@ -59,6 +52,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
         <input
           type="number"
           {...register("commission")}
+          placeholder={commission}
           value={calcCommission}
           onChange={(e) =>
             dispatch({
@@ -71,6 +65,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
         <input
           type="number"
           {...register("expenses")}
+          placeholder={expenses}
           value={calcExpenses}
           onChange={(e) =>
             dispatch({
@@ -84,6 +79,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
           type="number"
           disabled={true}
           {...register("earnings")}
+          placeholder={earnings}
           value={calcEarnings}
           onChange={setValue("earnings", calcEarnings)}
         />
