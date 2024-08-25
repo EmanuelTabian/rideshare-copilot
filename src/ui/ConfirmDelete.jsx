@@ -7,8 +7,12 @@ function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
       <h3>Delete {resourceName}</h3>
       <p>Are you sure you want to delelete this {resourceName} permanently?</p>
       <div>
-        <Button onClick={onCloseModal}>Cancel</Button>
-        <Button onClick={onConfirm}>Delete</Button>
+        <Button disabled={disabled} onClick={onCloseModal}>
+          Cancel
+        </Button>
+        <Button disabled={disabled} onClick={onConfirm}>
+          Delete
+        </Button>
       </div>
     </div>
   );

@@ -8,8 +8,11 @@ import Modal from "../../ui/Modal";
 import UpdateCalculatorEntryForm from "./UpdateCalculatorEntryForm";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { TableCalculatorProvider } from "../../context/TableCalculatorContext";
+import { useDeleteCalaculatorEntry } from "./useDeleteCalculatorEntry";
 
-function CalculatorRow({ calcEntry }) {
+function CalculatorRow({ calcEntry, onCloseModal }) {
+  const { deleteCalculatorEntry, isLoading } = useDeleteCalaculatorEntry();
+
   const {
     id,
     pub_date: pubDate,
@@ -18,6 +21,16 @@ function CalculatorRow({ calcEntry }) {
     expenses,
     earnings,
   } = calcEntry;
+
+  function handleDelete() {
+    console.log("delete");
+
+    deleteCalculatorEntry(id, {
+      onSuccess: () => {
+        onCloseModal?.();
+      },
+    });
+  }
 
   return (
     <Table.Row>
@@ -48,7 +61,7 @@ function CalculatorRow({ calcEntry }) {
               // This value will correspond to the isLoading variable from react query
               disabled={false}
               // This value will correspond to deletion API service that will be built.
-              onConfirm={() => console.log("cabin deleted")}
+              onConfirm={handleDelete}
             />
           </Modal.Window>
         </Modal>
