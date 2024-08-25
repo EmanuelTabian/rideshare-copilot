@@ -15,7 +15,15 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
   } = useTableCalculator();
 
   const { updateCalculatorEntry, isLoading } = useUpdateCalculatorEntry();
-  const { register, handleSubmit, reset, setValue, formState } = useForm();
+  const { register, handleSubmit, reset, setValue, formState } = useForm({
+    defaultValues: {
+      app_income,
+      commission,
+      expenses,
+      earnings,
+    },
+    mode: "onChange",
+  });
 
   const { errors } = formState;
 
@@ -25,8 +33,8 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
 
     updateCalculatorEntry(payload, {
       onSuccess: () => {
+        dispatch({ type: "resetState" });
         onCloseModal?.();
-        dispatch();
       },
     });
   }
@@ -39,7 +47,6 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
         <input
           type="number"
           {...register("app_income", { required: "This field is required" })}
-          placeholder={app_income}
           value={calcIncome}
           onChange={(e) =>
             dispatch({
@@ -52,7 +59,6 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
         <input
           type="number"
           {...register("commission")}
-          placeholder={commission}
           value={calcCommission}
           onChange={(e) =>
             dispatch({
@@ -65,7 +71,6 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
         <input
           type="number"
           {...register("expenses")}
-          placeholder={expenses}
           value={calcExpenses}
           onChange={(e) =>
             dispatch({
@@ -79,9 +84,8 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
           type="number"
           disabled={true}
           {...register("earnings")}
-          placeholder={earnings}
           value={calcEarnings}
-          onChange={setValue("earnings", calcEarnings)}
+          onChange={setValue("earnings", earnings)}
         />
         <div>
           <Button>Save changes</Button>

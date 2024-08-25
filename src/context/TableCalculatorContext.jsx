@@ -34,6 +34,8 @@ function reducer(state, action) {
           (state.commission / 100) * state.income -
           action.payload,
       };
+    case "resetState":
+      return InitialState;
     default:
       throw new Error("Action unrecognized!");
   }
