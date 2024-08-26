@@ -1,11 +1,13 @@
 import axios from "axios";
-const ridebackendURL = "http://127.0.0.1:8000/api";
+export const ridebackendURL = "http://127.0.0.1:8000/api";
 
 axios.defaults.withCredentials = true;
 
 export async function signup(userdata) {
   try {
     const response = await axios.post(`${ridebackendURL}/register`, userdata);
+    console.log(response.data);
+
     return response.data;
   } catch (err) {
     throw new Error(`${err.message} You were unable to sign up! ☹️`);

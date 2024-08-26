@@ -12,9 +12,10 @@ function UseCalculatorContext({ children }) {
   const [otherExp, setOtherExp] = useState("");
   const [toggle, setToggle] = useState(false);
   const commissionPerc = rideCom + emplCom;
-  const totalExpenses = Number(gasExp) + Number(mealsExp) + Number(otherExp);
+  const totalExpenses =
+    Number(gasExp) + Number(mealsExp) + Number(otherExp) + Number(otherCom);
   const netIncome = Math.round(
-    income - (commissionPerc * income) / 100 - otherCom - totalExpenses
+    income - (commissionPerc * income) / 100 - totalExpenses
   );
 
   return (

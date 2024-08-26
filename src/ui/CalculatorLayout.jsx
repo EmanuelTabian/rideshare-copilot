@@ -1,10 +1,11 @@
-import { UseCalculator } from "../context/CalculatorContext";
 import styled from "styled-components";
+
+import { UseCalculator } from "../context/CalculatorContext";
 import IncomeField from "./IncomeField";
-import CommissionField from "./CalcInput";
 import Button from "./Button";
 import Earnings from "./Earnings";
 import CalcInput from "./CalcInput";
+import { useAddCalculatorEntry } from "../features/calculator/useAddCalculatorEntry";
 
 const Income = styled.div`
   padding: 8px;
@@ -15,6 +16,8 @@ const Income = styled.div`
 `;
 
 function CalculatorLayout() {
+  const { addCalculatorEntry, isLoading } = useAddCalculatorEntry();
+
   const {
     income,
     setIncome,
@@ -26,12 +29,15 @@ function CalculatorLayout() {
     setEmplCom,
     otherCom,
     setOtherCom,
+    commissionPerc,
     gasExp,
     setGasExp,
     mealsExp,
     setMealsExp,
     otherExp,
     setOtherExp,
+    totalExpenses,
+    netIncome,
   } = UseCalculator();
 
   function handleReset() {
@@ -42,6 +48,17 @@ function CalculatorLayout() {
     setGasExp("");
     setMealsExp("");
     setOtherExp("");
+  }
+
+  function handleAdd() {
+    const calcData = {
+      app_income: String(income),
+      commission: String(commissionPerc),
+      expenses: String(totalExpenses),
+      earnings: String(netIncome),
+    };
+
+    addCalculatorEntry({ calcData });
   }
 
   function handleToggle() {
@@ -67,6 +84,7 @@ function CalculatorLayout() {
               {toggle ? "Close" : " Expenses"}
             </Button>
             <Button onClick={handleReset}>Reset</Button>
+            <Button onClick={handleAdd}>Save</Button>
           </div>
         )}
       </Income>
