@@ -10,7 +10,7 @@ import ConfirmDelete from "../../ui/ConfirmDelete";
 import { TableCalculatorProvider } from "../../context/TableCalculatorContext";
 import { useDeleteCalaculatorEntry } from "./useDeleteCalculatorEntry";
 
-function CalculatorRow({ calcEntry, onCloseModal }) {
+function CalculatorRow({ calcEntry }) {
   const { deleteCalculatorEntry, isLoading } = useDeleteCalaculatorEntry();
 
   const {
@@ -23,11 +23,7 @@ function CalculatorRow({ calcEntry, onCloseModal }) {
   } = calcEntry;
 
   function handleDelete() {
-    deleteCalculatorEntry(id, {
-      onSuccess: () => {
-        onCloseModal?.();
-      },
-    });
+    deleteCalculatorEntry(id);
   }
 
   return (
