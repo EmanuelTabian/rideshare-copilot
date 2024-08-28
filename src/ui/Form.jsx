@@ -4,8 +4,8 @@ function Form() {
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
-  function onSubmit() {
-    console.log("Submitted");
+  function onSubmit(formData) {
+    console.log(formData.image);
   }
 
   return (
@@ -13,6 +13,10 @@ function Form() {
       <fieldset>
         <legend>Add a car rent post</legend>
         <div>
+          <label htmlFor="image">Image</label>
+          <input type="file" id="image" {...register("image")} />
+        </div>
+        {/* <div>
           <label htmlFor="name">Name</label>
           <input
             type="text"
@@ -163,10 +167,6 @@ function Form() {
           />
         </div>
         <div>
-          <label htmlFor="image">Image</label>
-          <input type="file" id="image" {...register("image")} />
-        </div>
-        <div>
           <label htmlFor="location">Location</label>
           <input
             type="text"
@@ -205,7 +205,7 @@ function Form() {
               required: "This field is required",
             })}
           />
-        </div>
+        </div> */}
         <div>
           <input type="submit" />
         </div>
