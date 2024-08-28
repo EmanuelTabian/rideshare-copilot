@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
+import { useDirectUploadStart } from "../features/carposts/useDirectUploadStart";
 
 function Form() {
+  const { directUploadStart, isLoading } = useDirectUploadStart();
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
   function onSubmit(formData) {
-    console.log(formData.image);
+    directUploadStart(formData);
   }
 
   return (

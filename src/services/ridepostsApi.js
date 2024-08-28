@@ -3,10 +3,16 @@ import { ridebackendURL } from "./rideauthApi";
 
 axios.defaults.withCredentials = true;
 
-export async function directUploadStart(fileName, fileType) {
+export async function directUploadStart(data) {
+  const image = data.image[0].name;
+  const fileType = data.image[0].name.slice(-4);
+  const fileName = data.image[0].name.slice(0, image.lastIndexOf("."));
+
+  console.log(fileType, fileName);
+
   try {
     const response = await axios.post(
-      `${ridebackendURL}/api/files/upload/direct/start/`,
+      `${ridebackendURL}/files/upload/direct/start/`,
       { file_name: fileName, file_type: fileType }
     );
     console.log(response);
