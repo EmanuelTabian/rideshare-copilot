@@ -11,10 +11,10 @@ export async function directUploadStart(data) {
   console.log(fileType, fileName);
 
   try {
-    const response = await axios.post(
-      `${ridebackendURL}/files/upload/direct/start/`,
-      { file_name: fileName, file_type: fileType }
-    );
+    const response = await axios.post(`${ridebackendURL}/upload/direct/start`, {
+      file_name: fileName,
+      file_type: fileType,
+    });
     console.log(response);
   } catch (err) {
     throw new Error(
