@@ -4,9 +4,9 @@ import { ridebackendURL } from "./rideauthApi";
 axios.defaults.withCredentials = true;
 
 export async function directUploadStart(data) {
-  const image = data.image[0].name;
-  const fileType = data.image[0].name.slice(-4);
-  const fileName = data.image[0].name.slice(0, image.lastIndexOf("."));
+  const fileName = data.image[0].name;
+  const fileType = `image/${data.image[0].name.slice(-3)}`;
+  // const fileName = data.image[0].name.slice(0, image.lastIndexOf("."));
 
   console.log(fileType, fileName);
 
