@@ -15,11 +15,11 @@ function Form() {
       <fieldset>
         <legend>Add a car rent post</legend>
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="car_name">Name</label>
           <input
             type="text"
-            id="name"
-            {...register("name", { required: "This field is required" })}
+            id="car_name"
+            {...register("car_name", { required: "This field is required" })}
           />
         </div>
         <div>
@@ -77,11 +77,11 @@ function Form() {
           />
         </div>
         <div>
-          <label htmlFor="gears">Gears</label>
+          <label htmlFor="gear_number">Gears</label>
           <input
             type="number"
-            id="gears"
-            {...register("gears", { required: "This field is required" })}
+            id="gear_number"
+            {...register("gear_number", { required: "This field is required" })}
           />
         </div>
         <div>
@@ -95,24 +95,18 @@ function Form() {
           />
         </div>
         <div>
-          <label htmlFor="seats">Seats</label>
+          <label htmlFor="seat_number">Seats</label>
           <input
             type="number"
-            id="seats"
-            {...register("seats", {
+            id="seat_number"
+            {...register("seat_number", {
               required: "This field is required",
             })}
           />
         </div>
         <div>
-          <label htmlFor="doors">Doors</label>
-          <input
-            type="number"
-            id="doors"
-            {...register("doors", {
-              required: "This field is required",
-            })}
-          />
+          <label htmlFor="door_number">Doors</label>
+          <input type="number" id="door_number" {...register("door_number")} />
         </div>
         <div>
           <label htmlFor="milleage">Milleage</label>
@@ -136,50 +130,22 @@ function Form() {
         </div>
         <div>
           <label htmlFor="mpg">Mpg</label>
-          <input
-            type="number"
-            id="mpg"
-            {...register("mpg", {
-              required: "This field is required",
-            })}
-          />
-        </div>
-        <div>
-          <label htmlFor="doors">Doors</label>
-          <input
-            type="number"
-            id="doors"
-            {...register("doors", {
-              required: "This field is required",
-            })}
-          />
+          <input type="number" id="mpg" {...register("mpg")} />
         </div>
         <div>
           <label htmlFor="description">Description</label>
-          <textarea
-            type="text"
-            id="description"
-            {...register("description", {
-              required: "This field is required",
-            })}
-          />
+          <textarea type="text" id="description" {...register("description")} />
         </div>
         <div>
           <label htmlFor="location">Location</label>
-          <input
-            type="text"
-            id="location"
-            {...register("location", {
-              required: "This field is required",
-            })}
-          />
+          <input type="text" id="location" {...register("location")} />
         </div>
         <div>
-          <label htmlFor="emmision">Emmision</label>
+          <label htmlFor="emission_standard">Emmision</label>
           <input
             type="text"
-            id="emmision"
-            {...register("emmision", {
+            id="emission_standard"
+            {...register("emission_standard", {
               required: "This field is required",
             })}
           />
@@ -195,11 +161,11 @@ function Form() {
           />
         </div>
         <div>
-          <label htmlFor="phone">Phone</label>
+          <label htmlFor="phone_number">Phone</label>
           <input
             type="tel"
-            id="phone"
-            {...register("phone", {
+            id="phone_number"
+            {...register("phone_number", {
               required: "This field is required",
             })}
           />
