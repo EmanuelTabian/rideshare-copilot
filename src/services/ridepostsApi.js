@@ -10,19 +10,30 @@ export async function directUploadStart(data) {
 
   try {
     // Get the presigned data
-    const response = await axios.post(`${ridebackendURL}/upload/direct/start`, {
-      file_name: fileName,
-      file_type: fileType,
-    });
-    console.log(response.data);
-    const { url, fields } = response.data;
+    const presignedRes = await axios.post(
+      `${ridebackendURL}/upload/direct/start`,
+      {
+        file_name: fileName,
+        file_type: fileType,
+      }
+    );
+
+    // Perform the actual upload
+    const { url, fields } = presignedRes.data;
+
     const postData = new FormData();
     Object.entries(fields).forEach(([key, value]) =>
       postData.append(key, value)
     );
     postData.append("file", file);
-    const uploadData = await axios.post(url, postData);
-    console.log(uploadData);
+
+    if (!file) return;
+
+    await axios.post(url, postData);
+    // Mark the upload process as finished
+    await axios.post(`${ridebackendURL}/upload/direct/finish`, {
+      file_id: presignedRes.data.id,
+    });
   } catch (err) {
     throw new Error(
       `${err.message} Sorry, we were unable to start the upload process! ☹️`
