@@ -40,3 +40,12 @@ export async function directUploadStart(data) {
     );
   }
 }
+
+export async function addCarPost({ carData }) {
+  try {
+    const response = await axios.post(`${ridebackendURL}/add-carpost`, carData);
+    return response.data;
+  } catch (err) {
+    throw new Error(`${err.message} Sorry, we were unable to add your post`);
+  }
+}

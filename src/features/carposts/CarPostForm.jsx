@@ -7,7 +7,7 @@ function Form() {
   const { errors } = formState;
 
   function onSubmit(formData) {
-    directUploadStart(formData);
+    // directUploadStart(formData);
   }
 
   return (
