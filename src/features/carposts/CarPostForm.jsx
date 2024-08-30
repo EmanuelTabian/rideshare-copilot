@@ -15,10 +15,6 @@ function Form() {
       <fieldset>
         <legend>Add a car rent post</legend>
         <div>
-          <label htmlFor="image">Image</label>
-          <input type="file" id="image" {...register("image")} />
-        </div>
-        {/* <div>
           <label htmlFor="name">Name</label>
           <input
             type="text"
@@ -207,6 +203,10 @@ function Form() {
               required: "This field is required",
             })}
           />
+        </div>
+        {/* <div>
+          <label htmlFor="image">Image</label>
+          <input type="file" id="image" {...register("image")} />
         </div> */}
         <div>
           <input type="submit" />
