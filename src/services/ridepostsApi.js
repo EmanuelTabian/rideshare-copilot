@@ -41,7 +41,9 @@ export async function directUploadStart(data) {
   }
 }
 
-export async function addCarPost({ carData }) {
+export async function addCarPost(carData) {
+  console.log(carData);
+
   try {
     const response = await axios.post(`${ridebackendURL}/add-carpost`, carData);
     return response.data;
