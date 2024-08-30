@@ -4,8 +4,9 @@ import { NavLink } from "react-router-dom";
 import { cars } from "../data/cars-data";
 import CarCard from "../ui/CarCard";
 import Button from "../ui/Button";
-import Form from "../ui/Form";
+import CarPostForm from "../features/carposts/CarPostForm";
 import Message from "../ui/Message";
+import PostCar from "../features/carposts/PostCar";
 
 const StyledCars = styled.div``;
 
@@ -17,6 +18,8 @@ function Cars() {
   return (
     <>
       <StyledCars>
+        <PostCar />
+        <NavLink to="/cars/myposts">My posts</NavLink>
         <H2>Browse car posts</H2>
         {/* Conditionally rendered when the posts array of objects is empty */}
         {/* <Message>No posts yet</Message> */}
@@ -26,9 +29,6 @@ function Cars() {
           ))}
         </CarList>
       </StyledCars>
-      <NavLink to="/cars/myposts">My posts</NavLink>
-      <Button> Add new post</Button>
-      <Form />
     </>
   );
 }
