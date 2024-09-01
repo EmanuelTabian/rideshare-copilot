@@ -72,3 +72,14 @@ export async function getCarPost(id) {
     );
   }
 }
+
+export async function getUserCarPosts() {
+  try {
+    const response = await axios.get(`${ridebackendURL}/get-user-carposts/`);
+    return response.data;
+  } catch (err) {
+    throw new Error(
+      `${err.message} Sorry, we were unable to get your car posts!`
+    );
+  }
+}

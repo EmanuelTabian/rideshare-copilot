@@ -4,7 +4,6 @@ import Spinner from "../ui/Spinner";
 
 function CarDetails() {
   const { carPost, isLoading } = useGetCarPost();
-  console.log(carPost);
   if (isLoading) return <Spinner />;
   return <CarPost carPost={carPost} />;
 }
