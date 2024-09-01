@@ -4,11 +4,11 @@ import { getCarPost } from "../../services/ridepostsApi";
 
 export function useGetCarPost() {
   const { carId } = useParams();
-
-  const { isLoading, data: carData } = useQuery({
+  // Future update: remove queries on ther car post id selection
+  const { isLoading, data: carPost } = useQuery({
     queryKey: ["car-post", carId],
     queryFn: () => getCarPost(carId),
   });
 
-  return { isLoading, carData };
+  return { isLoading, carPost };
 }

@@ -1,41 +1,64 @@
 import { cars } from "../data/cars-data";
 import { useGetCarPost } from "../features/carposts/useGetCarPost";
+import { dateFormatter } from "../utils/helpers";
 import ImgSlider from "./ImgSlider";
 
 function CarPost() {
   const { carPost, isLoading } = useGetCarPost();
-
-  console.log(carPost);
+  const {
+    created_at: createdAt,
+    car_name: carName,
+    body,
+    color,
+    description,
+    door_number: doorNumber,
+    emission_standard: emissionStandard,
+    engine,
+    fuel,
+    gear_number: gearNumber,
+    image,
+    location,
+    milleage,
+    model,
+    mpg,
+    phone_number: phoneNumber,
+    power,
+    price,
+    seat_number: seatNumber,
+    transmission,
+    version,
+    year,
+  } = carPost;
 
   return (
     <>
       <ImgSlider />
-      <div>Description: Nu bate nu troncane</div>
-      <span>11.07.2024</span>
-      <span>Bucharest</span>
+      <div>Description: {description}</div>
+      <span>{dateFormatter(createdAt)}</span>
+      <span>{location}</span>
       <h1>Car Specs</h1>
       <div>
         <ul>
-          <li>Name: Ford</li>
-          <li>Model: Focus</li>
-          <li>Version: MK3</li>
-          <li>Year: 2015</li>
-          <li>Engine: 2.0 TDI</li>
-          <li>Fuel: Diesel</li>
-          <li>Body: Hatchback</li>
-          <li>Transmission: Manual</li>
-          <li>Gears: 5</li>
-          <li>Color: Blue</li>
-          <li>Seats: 5</li>
-          <li>Doors: 5</li>
-          <li>Milleage: 90432 km</li>
-          <li>Power: 120 CP</li>
-          <li>Mpg: 10</li>
-          <li>Price: 7000</li>
-          <li>Emmision Standard: Euro 5</li>
+          <li>Name: {carName}</li>
+          <li>Model: {model}</li>
+          <li>Version: {version}</li>
+          <li>Year: {year}</li>
+          <li>Engine: {engine}</li>
+          <li>Fuel: {fuel}</li>
+          <li>Body: {body}</li>
+          <li>Transmission: {transmission}</li>
+          <li>Gears: {gearNumber}</li>
+          <li>Color: {color}</li>
+          <li>Seats: {seatNumber}</li>
+          <li>Doors: {doorNumber}</li>
+          <li>Milleage: {milleage} km</li>
+          <li>Power: {power} CP</li>
+          <li>Mpg: {mpg}</li>
+          <li>Price: {price}</li>
+          <li>Emmision Standard: {emissionStandard}</li>
         </ul>
         <div>
-          <span>+1 (139) 636-2286</span>
+          <span>{phoneNumber}</span>
           <button>Reveal phone number</button>
         </div>
       </div>
