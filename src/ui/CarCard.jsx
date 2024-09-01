@@ -1,6 +1,7 @@
 import { version } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { dateFormatter } from "../utils/helpers";
 
 const StyledListItem = styled.li``;
 const CarDetailContainer = styled.div``;
@@ -14,7 +15,7 @@ function CarCard({ carDetails }) {
   const navigate = useNavigate();
 
   const {
-    name,
+    car_name,
     model,
     image,
     year,
@@ -24,16 +25,17 @@ function CarCard({ carDetails }) {
     milleage,
     fuel,
     color,
-    createdAt,
+    created_at: createdAt,
     location,
     id,
   } = carDetails;
+
   return (
     <StyledListItem>
-      <Img src={image} alt={name} />
+      <Img src={image} alt={car_name} />
       <CarInfo>
         <CarDetailContainer>
-          <CarHeaderData> {name}</CarHeaderData>
+          <CarHeaderData> {car_name}</CarHeaderData>
           <CarHeaderData> {model}</CarHeaderData>
           <CarHeaderData> {version}</CarHeaderData>
           <CarHeaderData> {engine}</CarHeaderData>
@@ -47,7 +49,7 @@ function CarCard({ carDetails }) {
           <CarDetailsData> {year}</CarDetailsData>
         </CarDetailContainer>
         <CarDetailContainer>
-          <CarDetailsData> {createdAt}</CarDetailsData>
+          <CarDetailsData> {dateFormatter(createdAt)}</CarDetailsData>
           <CarDetailsData> {location}</CarDetailsData>
         </CarDetailContainer>
       </CarInfo>
