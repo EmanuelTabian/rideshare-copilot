@@ -1,10 +1,9 @@
-import { cars } from "../data/cars-data";
 import { useGetCarPost } from "../features/carposts/useGetCarPost";
 import { dateFormatter } from "../utils/helpers";
 import ImgSlider from "./ImgSlider";
+import Spinner from "./Spinner";
 
-function CarPost() {
-  const { carPost, isLoading } = useGetCarPost();
+function CarPost({ carPost }) {
   const {
     created_at: createdAt,
     car_name: carName,

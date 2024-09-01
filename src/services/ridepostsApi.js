@@ -64,6 +64,7 @@ export async function getCarPosts() {
 export async function getCarPost(id) {
   try {
     const response = await axios.get(`${ridebackendURL}/get-carpost/${id}`);
+
     return response.data;
   } catch (err) {
     throw new Error(

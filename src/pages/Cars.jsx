@@ -7,6 +7,7 @@ import CarPostForm from "../features/carposts/CarPostForm";
 import Message from "../ui/Message";
 import PostCar from "../features/carposts/PostCar";
 import { useGetAllCarPosts } from "../features/carposts/useGetAllCarPosts";
+import Spinner from "../ui/Spinner";
 
 const StyledCars = styled.div``;
 
@@ -18,6 +19,8 @@ const CarList = styled.ul`
 
 function Cars() {
   const { isLoading, carPosts } = useGetAllCarPosts();
+
+  if (isLoading) return <Spinner />;
 
   return (
     <>
