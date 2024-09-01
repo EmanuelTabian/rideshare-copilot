@@ -1,10 +1,14 @@
+import { useUser } from "../features/authentication/useUser";
 import { useGetCarPost } from "../features/carposts/useGetCarPost";
 import { dateFormatter } from "../utils/helpers";
+import Button from "./Button";
 import ImgSlider from "./ImgSlider";
 import Spinner from "./Spinner";
 
 function CarPost({ carPost }) {
+  const { user } = useUser();
   const {
+    user_id,
     created_at: createdAt,
     car_name: carName,
     body,
@@ -28,6 +32,7 @@ function CarPost({ carPost }) {
     version,
     year,
   } = carPost;
+  const canEditOrRemove = user_id === user.id;
 
   return (
     <>
@@ -60,6 +65,13 @@ function CarPost({ carPost }) {
           <span>{phoneNumber}</span>
           <button>Reveal phone number</button>
         </div>
+
+        {canEditOrRemove && (
+          <div>
+            <Button> Edit post</Button>
+            <Button> Delete post</Button>
+          </div>
+        )}
       </div>
     </>
   );
