@@ -1,7 +1,12 @@
 import { cars } from "../data/cars-data";
+import { useGetCarPost } from "../features/carposts/useGetCarPost";
 import ImgSlider from "./ImgSlider";
 
 function CarPost() {
+  const { carPost, isLoading } = useGetCarPost();
+
+  console.log(carPost);
+
   return (
     <>
       <ImgSlider />

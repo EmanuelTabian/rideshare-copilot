@@ -26,12 +26,15 @@ function Cars() {
         <NavLink to="/cars/myposts">My posts</NavLink>
         <H2>Browse car posts</H2>
         {/* Conditionally rendered when the posts array of objects is empty */}
-        {!carPosts.length && <Message>No posts yet</Message>}
-        <CarList>
-          {carPosts.map((carPost) => (
-            <CarCard key={carPost.id} carDetails={carPost} />
-          ))}
-        </CarList>
+        {!carPosts ? (
+          <Message>No posts yet</Message>
+        ) : (
+          <CarList>
+            {carPosts.map((carPost) => (
+              <CarCard key={carPost.id} carDetails={carPost} />
+            ))}
+          </CarList>
+        )}
       </StyledCars>
     </>
   );
