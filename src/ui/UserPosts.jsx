@@ -5,13 +5,13 @@ import { NavLink } from "react-router-dom";
 
 const CarList = styled.ul``;
 
-function UserPosts() {
+function UserPosts({ carPosts }) {
   return (
     <>
       <NavLink to="/cars">Back to all posts</NavLink>
       <CarList>
-        {cars.map((car) => (
-          <CarCard key={car.id} carDetails={car} />
+        {carPosts.map((carPost) => (
+          <CarCard key={carPost.id} carDetails={carPost} />
         ))}
       </CarList>
     </>
