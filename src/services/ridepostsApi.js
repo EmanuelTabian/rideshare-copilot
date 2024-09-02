@@ -17,7 +17,6 @@ export async function directUploadStart(data) {
         file_type: fileType,
       }
     );
-    console.log(presignedRes.data);
 
     // Perform the actual upload
     const { url, fields } = presignedRes.data;
@@ -35,6 +34,8 @@ export async function directUploadStart(data) {
     await axios.post(`${ridebackendURL}/upload/direct/finish`, {
       file_id: presignedRes.data.id,
     });
+
+    return fields;
   } catch (err) {
     throw new Error(
       `${err.message} Sorry, we were unable to start the upload process! ☹️`
@@ -43,6 +44,8 @@ export async function directUploadStart(data) {
 }
 
 export async function addCarPost(carData) {
+  console.log(carData);
+
   try {
     const response = await axios.post(`${ridebackendURL}/add-carpost`, carData);
     return response.data;

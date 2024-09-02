@@ -4,25 +4,24 @@ import { useAddCarPost } from "./useAddCarPost";
 
 function Form() {
   const { addCarPost, isUploadingPost } = useAddCarPost();
-  const { directUploadStart, isLoading } = useDirectUploadStart();
+  const { directUploadStart, isLoading, data } = useDirectUploadStart();
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
   function onSubmit(formData) {
     directUploadStart(formData);
-    console.log(formData);
-
-    // addCarPost(formData, {
-    //   onSuccess: () => {
-    //     reset();
-    //   },
-    // });
+    const dataWithImageKey = { ...formData, image_key: data.key };
+    addCarPost(dataWithImageKey, {
+      onSuccess: () => {
+        reset();
+      },
+    });
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
-        {/* <legend>Add a car rent post</legend>
+        <legend>Add a car rent post</legend>
         <div>
           <label htmlFor="car_name">Name</label>
           <input
@@ -178,7 +177,7 @@ function Form() {
               required: "This field is required",
             })}
           />
-        </div> */}
+        </div>
         <div>
           <label htmlFor="image">Image</label>
           <input type="file" id="image" {...register("image")} />
