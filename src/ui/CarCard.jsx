@@ -11,7 +11,9 @@ const CarInfo = styled.div``;
 const CarHeaderData = styled.span``;
 const CarDetailsData = styled.span``;
 
-const Img = styled.img``;
+const Img = styled.img`
+  width: 100px;
+`;
 const Button = styled.button``;
 function CarCard({ carDetails }) {
   const { user } = useUser();
