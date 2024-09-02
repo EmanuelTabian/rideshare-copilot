@@ -9,20 +9,20 @@ function Form() {
   const { errors } = formState;
 
   function onSubmit(formData) {
-    // directUploadStart(formData);
+    directUploadStart(formData);
     console.log(formData);
 
-    addCarPost(formData, {
-      onSuccess: () => {
-        reset();
-      },
-    });
+    // addCarPost(formData, {
+    //   onSuccess: () => {
+    //     reset();
+    //   },
+    // });
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
-        <legend>Add a car rent post</legend>
+        {/* <legend>Add a car rent post</legend>
         <div>
           <label htmlFor="car_name">Name</label>
           <input
@@ -178,11 +178,11 @@ function Form() {
               required: "This field is required",
             })}
           />
-        </div>
-        {/* <div>
+        </div> */}
+        <div>
           <label htmlFor="image">Image</label>
           <input type="file" id="image" {...register("image")} />
-        </div> */}
+        </div>
         <div>
           <input type="submit" />
         </div>

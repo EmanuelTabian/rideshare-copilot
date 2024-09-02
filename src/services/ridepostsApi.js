@@ -17,6 +17,7 @@ export async function directUploadStart(data) {
         file_type: fileType,
       }
     );
+    console.log(presignedRes.data);
 
     // Perform the actual upload
     const { url, fields } = presignedRes.data;
@@ -81,5 +82,16 @@ export async function getUserCarPosts() {
     throw new Error(
       `${err.message} Sorry, we were unable to get your car posts!`
     );
+  }
+}
+
+export async function getImage(file_key) {
+  try {
+    const response = await axios.get(
+      `${ridebackendURL}/get-image-by-file-key/${file_key}`
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(`${err.message} Sorry, we were unable to get the image!`);
   }
 }
