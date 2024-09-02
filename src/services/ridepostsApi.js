@@ -44,8 +44,6 @@ export async function directUploadStart(data) {
 }
 
 export async function addCarPost(carData) {
-  console.log(carData);
-
   try {
     const response = await axios.post(`${ridebackendURL}/add-carpost`, carData);
     return response.data;
@@ -88,7 +86,7 @@ export async function getUserCarPosts() {
   }
 }
 
-export async function getImage(file_key) {
+export async function getImageUrl(file_key) {
   try {
     const response = await axios.get(
       `${ridebackendURL}/get-image-by-file-key/${file_key}`
