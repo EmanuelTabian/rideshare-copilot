@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dateFormatter } from "../utils/helpers";
 import { useUser } from "../features/authentication/useUser";
+import { useGetImageUrl } from "../features/carposts/useGetImageUrl";
 
 const StyledListItem = styled.li``;
 const CarDetailContainer = styled.div``;
@@ -20,7 +21,7 @@ function CarCard({ carDetails }) {
     user_id,
     car_name,
     model,
-    image,
+    image_key,
     year,
     version,
     engine,
@@ -33,10 +34,11 @@ function CarCard({ carDetails }) {
     id,
   } = carDetails;
   const canEditOrRemove = user_id === user.id;
+  const { isLoading, imageUrl, error } = useGetImageUrl(image_key);
 
   return (
     <StyledListItem>
-      <Img src={image} alt={car_name} />
+      <Img src={imageUrl?.url} alt={car_name} />
       <CarInfo>
         <CarDetailContainer>
           <CarHeaderData> {car_name}</CarHeaderData>
