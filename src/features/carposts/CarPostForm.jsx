@@ -4,16 +4,20 @@ import { useAddCarPost } from "./useAddCarPost";
 
 function Form() {
   const { addCarPost, isUploadingPost } = useAddCarPost();
-  const { directUploadStart, isLoading, data } = useDirectUploadStart();
+  const { directUploadStart, isLoading } = useDirectUploadStart();
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
   function onSubmit(formData) {
-    directUploadStart(formData);
-    const dataWithImageKey = { ...formData, image_key: data.key };
-    addCarPost(dataWithImageKey, {
-      onSuccess: () => {
-        reset();
+    directUploadStart(formData, {
+      onSuccess: (data) => {
+        const dataWithImageKey = { ...formData, image_key: data?.key };
+        console.log(dataWithImageKey);
+        addCarPost(dataWithImageKey, {
+          onSuccess: () => {
+            reset();
+          },
+        });
       },
     });
   }
