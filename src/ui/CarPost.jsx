@@ -1,5 +1,6 @@
 import { useUser } from "../features/authentication/useUser";
 import { useGetCarPost } from "../features/carposts/useGetCarPost";
+import { useGetImageUrl } from "../features/carposts/useGetImageUrl";
 import { dateFormatter } from "../utils/helpers";
 import Button from "./Button";
 import ImgSlider from "./ImgSlider";
@@ -9,6 +10,7 @@ function CarPost({ carPost }) {
   const { user } = useUser();
   const {
     user_id,
+    image_key,
     created_at: createdAt,
     car_name: carName,
     body,
@@ -33,10 +35,11 @@ function CarPost({ carPost }) {
     year,
   } = carPost;
   const canEditOrRemove = user_id === user.id;
+  const { isLoading, imageUrl, error } = useGetImageUrl(image_key);
 
   return (
     <>
-      <ImgSlider />
+      <ImgSlider imageUrl={imageUrl?.url} alt={carName} />
       <div>Description: {description}</div>
       <span>{dateFormatter(createdAt)}</span>
       <span>{location}</span>
