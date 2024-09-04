@@ -4,6 +4,9 @@ import styled from "styled-components";
 import { dateFormatter } from "../utils/helpers";
 import { useUser } from "../features/authentication/useUser";
 import { useGetImageUrl } from "../features/carposts/useGetImageUrl";
+import Modal from "./Modal";
+import CarPostForm from "../features/carposts/CarPostForm";
+import ConfirmDelete from "./ConfirmDelete";
 
 const StyledListItem = styled.li``;
 const CarDetailContainer = styled.div``;
@@ -64,10 +67,24 @@ function CarCard({ carDetails }) {
       <Button onClick={() => navigate(`/cars/${id}`)}>See details</Button>
       {/* This button will be conditionally displayed for the current user car posts */}
       {canEditOrRemove && (
-        <span>
-          <Button> Edit post</Button>
-          <Button> Delete post</Button>
-        </span>
+        <Modal>
+          <Modal.Open opens="edit">
+            <Button> Edit post</Button>
+          </Modal.Open>
+          <Modal.Open opens="delete">
+            <Button> Delete post</Button>
+          </Modal.Open>
+          <Modal.Window name="edit">
+            <CarPostForm />
+          </Modal.Window>
+          <Modal.Window name="delete">
+            <ConfirmDelete
+              resourceName="car post"
+              disabled={false}
+              // onConfirm={}
+            />
+          </Modal.Window>
+        </Modal>
       )}
     </StyledListItem>
   );
