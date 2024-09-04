@@ -41,6 +41,11 @@ function CarCard({ carDetails }) {
   const canEditOrRemove = user_id === user.id;
   const { isLoading, imageUrl, error } = useGetImageUrl(image_key);
 
+  function handleDelete() {
+    console.log(image_key);
+    console.log(id);
+  }
+
   return (
     <StyledListItem>
       <Img src={imageUrl?.url} alt={car_name} />
@@ -81,7 +86,7 @@ function CarCard({ carDetails }) {
             <ConfirmDelete
               resourceName="car post"
               disabled={false}
-              // onConfirm={}
+              onConfirm={handleDelete}
             />
           </Modal.Window>
         </Modal>
