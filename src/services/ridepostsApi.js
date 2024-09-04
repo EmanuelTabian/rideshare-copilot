@@ -97,10 +97,13 @@ export async function getImageUrl(file_key) {
   }
 }
 
-export async function deleteCarPost(carpostId, file_key) {
+export async function deleteCarPost({ id, image_key }) {
+  console.log(image_key);
+
   try {
     // Deletes the post
-    await axios.delete(`${ridebackendURL}/delete-ridepost/${carpostId}`);
+    await axios.delete(`${ridebackendURL}/delete-ridepost/${id}`);
+
     // Deletes the image of the post from the AWS S3 Bucket
     await axios.delete(
       `${ridebackendURL}/delete-image-by-file-key/${file_key}`

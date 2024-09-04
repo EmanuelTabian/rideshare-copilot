@@ -7,6 +7,7 @@ import { useGetImageUrl } from "../features/carposts/useGetImageUrl";
 import Modal from "./Modal";
 import CarPostForm from "../features/carposts/CarPostForm";
 import ConfirmDelete from "./ConfirmDelete";
+import { useDeleteCarPost } from "../features/carposts/useDeleteCarPost";
 
 const StyledListItem = styled.li``;
 const CarDetailContainer = styled.div``;
@@ -19,6 +20,7 @@ const Img = styled.img`
 `;
 const Button = styled.button``;
 function CarCard({ carDetails }) {
+  const { deleteCarPost, isDeletingCarPost } = useDeleteCarPost();
   const { user } = useUser();
   const navigate = useNavigate();
 
@@ -42,8 +44,12 @@ function CarCard({ carDetails }) {
   const { isLoading, imageUrl, error } = useGetImageUrl(image_key);
 
   function handleDelete() {
-    console.log(image_key);
-    console.log(id);
+    const carDeletionData = {
+      id,
+      image_key,
+    };
+
+    deleteCarPost(carDeletionData);
   }
 
   return (
