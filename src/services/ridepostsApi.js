@@ -96,3 +96,16 @@ export async function getImageUrl(file_key) {
     throw new Error(`${err.message} Sorry, we were unable to get the image!`);
   }
 }
+
+export async function deleteCarPost(carpostId, file_key) {
+  try {
+    // Deletes the post
+    await axios.delete(`${ridebackendURL}/delete-ridepost/${carpostId}`);
+    // Deletes the image of the post from the AWS S3 Bucket
+    await axios.delete(
+      `${ridebackendURL}/delete-image-by-file-key/${file_key}`
+    );
+  } catch (err) {
+    throw new Error(`${err.message} Sorry, we were unable to delete the post!`);
+  }
+}
