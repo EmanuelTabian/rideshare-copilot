@@ -87,7 +87,7 @@ function CarCard({ carDetails }) {
             <Button> Delete post</Button>
           </Modal.Open>
           <Modal.Window name="edit">
-            <CarPostForm />
+            <CarPostForm image_key={image_key} />
           </Modal.Window>
           <Modal.Window name="delete">
             <ConfirmDelete

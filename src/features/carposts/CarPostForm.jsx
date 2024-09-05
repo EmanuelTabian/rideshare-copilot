@@ -2,31 +2,37 @@ import { useForm } from "react-hook-form";
 import { useDirectUploadStart } from "./useDirectUploadStart";
 import { useAddCarPost } from "./useAddCarPost";
 
-function Form() {
+function Form({ image_key }) {
   const { addCarPost, isUploadingPost } = useAddCarPost();
   const { directUploadStart, isLoading } = useDirectUploadStart();
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
+  // function onSubmit(formData) {
+  //   directUploadStart(formData, {
+  //     onSettled: (data) => {
+  //       const dataWithImageKey = { ...formData, image_key: data?.key };
+  //       // console.log(dataWithImageKey);
+  //       addCarPost(dataWithImageKey, {
+  //         onSuccess: () => {
+  //           reset();
+  //         },
+  //       });
+  //     },
+  //   });
+  // }
+
   function onSubmit(formData) {
-    directUploadStart(formData, {
-      onSettled: (data) => {
-        const dataWithImageKey = { ...formData, image_key: data?.key };
-        // console.log(dataWithImageKey);
-        addCarPost(dataWithImageKey, {
-          onSuccess: () => {
-            reset();
-          },
-        });
-      },
-    });
+    console.log(formData);
+
+    console.log(image_key);
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
         <legend>Add a car rent post</legend>
-        <div>
+        {/* <div>
           <label htmlFor="car_name">Name</label>
           <input
             type="text"
@@ -181,7 +187,7 @@ function Form() {
               required: "This field is required",
             })}
           />
-        </div>
+        </div> */}
         <div>
           <label htmlFor="image">Image</label>
           <input type="file" id="image" {...register("image")} />
