@@ -113,12 +113,10 @@ export async function deleteCarPost({ id, image_key }) {
   }
 }
 
-export async function updateCarPost({ formData, image_key }) {
+export async function updateCarPost(data) {
   try {
-    await axios.put(
-      `${ridebackendURL}/put-image-by-file-key/${image_key}`,
-      formData
-    );
+    const response = await axios.put(`${ridebackendURL}/put-image`, data);
+    console.log(response.data);
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to update the post!`);
   }

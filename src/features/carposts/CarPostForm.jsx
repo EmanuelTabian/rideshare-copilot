@@ -26,9 +26,11 @@ function Form({ image_key }) {
 
   function onSubmit(formData) {
     const data = {
-      formData,
       image_key,
+      file_name: formData.image[0].name,
+      file_type: `image/${formData.image[0].name.slice(-3)}`,
     };
+    console.log(data.image_key);
 
     updateCarPost(data);
   }
