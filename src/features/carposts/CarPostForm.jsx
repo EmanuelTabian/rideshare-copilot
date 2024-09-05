@@ -12,7 +12,7 @@ function Form() {
     directUploadStart(formData, {
       onSettled: (data) => {
         const dataWithImageKey = { ...formData, image_key: data?.key };
-        console.log(dataWithImageKey);
+        // console.log(dataWithImageKey);
         addCarPost(dataWithImageKey, {
           onSuccess: () => {
             reset();

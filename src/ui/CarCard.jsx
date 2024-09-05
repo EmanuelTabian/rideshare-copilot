@@ -42,6 +42,7 @@ function CarCard({ carDetails }) {
   } = carDetails;
   const canEditOrRemove = user_id === user.id;
   const { isLoading, imageUrl, error } = useGetImageUrl(image_key);
+  console.log(image_key);
 
   function handleDelete() {
     const carDeletionData = {

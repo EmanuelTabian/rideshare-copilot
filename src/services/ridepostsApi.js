@@ -87,6 +87,8 @@ export async function getUserCarPosts() {
 }
 
 export async function getImageUrl(file_key) {
+  console.log(file_key);
+
   try {
     const response = await axios.get(
       `${ridebackendURL}/get-image-by-file-key/${file_key}`
@@ -108,5 +110,16 @@ export async function deleteCarPost({ id, image_key }) {
     );
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to delete the post!`);
+  }
+}
+
+export async function updateCarPost(file, image_key) {
+  try {
+    await axios.put(
+      `${ridebackendURL}/put-image-by-file-key/${image_key}`,
+      file
+    );
+  } catch (err) {
+    throw new Error(`${err.message} Sorry, we were unable to update the post!`);
   }
 }
