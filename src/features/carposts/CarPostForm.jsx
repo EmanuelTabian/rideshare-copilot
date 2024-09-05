@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useDirectUploadStart } from "./useDirectUploadStart";
 import { useAddCarPost } from "./useAddCarPost";
+import { useUpdateCarPost } from "./useUpdateCarPost";
 
 function Form({ image_key }) {
   const { addCarPost, isUploadingPost } = useAddCarPost();
   const { directUploadStart, isLoading } = useDirectUploadStart();
+  const { updateCarPost, isUpdatingCarPost } = useUpdateCarPost();
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
@@ -23,9 +25,12 @@ function Form({ image_key }) {
   // }
 
   function onSubmit(formData) {
-    console.log(formData);
+    const data = {
+      formData,
+      image_key,
+    };
 
-    console.log(image_key);
+    updateCarPost(data);
   }
 
   return (
