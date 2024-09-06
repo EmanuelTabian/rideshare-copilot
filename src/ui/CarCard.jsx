@@ -29,6 +29,7 @@ function CarCard({ carDetails }) {
     car_name,
     model,
     image_key,
+    image_id,
     year,
     version,
     engine,
