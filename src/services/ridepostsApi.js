@@ -124,12 +124,18 @@ export async function updateCarPost(data) {
     console.log(presignedPostEditURL.data);
     const { id, url } = presignedPostEditURL.data;
 
-    const postData = new FormData();
-    postData.append("file", data.formData.image[0]);
+    console.log(data.formData.image[0].type);
 
-    await axios.put(url, postData);
+    // const postData = new FormData();
+    // postData.append("file", data.formData.image[0]);
 
-    // if (!file) return;
+    await axios.put(url, data.formData.image[0], {
+      headers: {
+        "Content-Type": data.formData.image[0].type,
+      },
+    });
+
+    if (!file) return;
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to update the post!`);
   }
