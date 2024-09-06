@@ -41,6 +41,7 @@ function CarCard({ carDetails }) {
     location,
     id,
   } = carDetails;
+
   const canEditOrRemove = user_id === user.id;
   const { isLoading, imageUrl, error } = useGetImageUrl(image_key);
   console.log(image_key);
@@ -88,7 +89,7 @@ function CarCard({ carDetails }) {
             <Button> Delete post</Button>
           </Modal.Open>
           <Modal.Window name="edit">
-            <CarPostForm image_key={image_key} />
+            <CarPostForm carDetails={carDetails} />
           </Modal.Window>
           <Modal.Window name="delete">
             <ConfirmDelete
