@@ -99,10 +99,15 @@ export async function getImageUrl(file_key) {
   }
 }
 
-export async function deleteCarPost({ id, image_key }) {
+export async function deleteCarPost({ id, image_id, image_key }) {
+  const carPostDeleteData = {
+    id,
+    image_id,
+  };
+
   try {
-    // Deletes the post
-    await axios.delete(`${ridebackendURL}/delete-ridepost/${id}`);
+    // Deletes the post and the file entry on the database
+    await axios.delete(`${ridebackendURL}/delete-ridepost`, carPostDeleteData);
 
     // Deletes the image of the post from the AWS S3 Bucket
     await axios.delete(
@@ -123,11 +128,6 @@ export async function updateCarPost(data) {
     );
     console.log(presignedPostEditURL.data);
     const { id, url } = presignedPostEditURL.data;
-
-    console.log(data.formData.image[0].type);
-
-    // const postData = new FormData();
-    // postData.append("file", data.formData.image[0]);
 
     await axios.put(url, data.formData.image[0], {
       headers: {
