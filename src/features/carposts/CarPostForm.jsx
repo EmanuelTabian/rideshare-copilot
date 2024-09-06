@@ -3,46 +3,48 @@ import { useDirectUploadStart } from "./useDirectUploadStart";
 import { useAddCarPost } from "./useAddCarPost";
 import { useUpdateCarPost } from "./useUpdateCarPost";
 
-function Form({ image_key }) {
+function Form({ carDetails }) {
   const { addCarPost, isUploadingPost } = useAddCarPost();
   const { directUploadStart, isLoading } = useDirectUploadStart();
   const { updateCarPost, isUpdatingCarPost } = useUpdateCarPost();
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
-  function onSubmit(formData) {
-    directUploadStart(formData, {
-      onSettled: (data) => {
-        const dataWithImageKey = {
-          ...formData,
-          image_key: data?.fields.key,
-          image_id: data?.id,
-        };
-        addCarPost(dataWithImageKey, {
-          onSuccess: () => {
-            reset();
-          },
-        });
-      },
-    });
-  }
-
   // function onSubmit(formData) {
-  //   const data = {
-  //     image_key,
-  //     file_name: formData.image[0].name,
-  //     file_type: `image/${formData.image[0].name.slice(-3)}`,
-  //   };
-  //   console.log(data.image_key);
-
-  //   updateCarPost(data);
+  //   directUploadStart(formData, {
+  //     onSettled: (data) => {
+  //       const dataWithImageKey = {
+  //         ...formData,
+  //         image_key: data?.fields.key,
+  //         image_id: data?.id,
+  //       };
+  //       addCarPost(dataWithImageKey, {
+  //         onSuccess: () => {
+  //           reset();
+  //         },
+  //       });
+  //     },
+  //   });
   // }
+
+  function onSubmit(formData) {
+    const data = {
+      formData,
+      // This might be confusing as the backend API endpoint expects a field called file_id
+      file_id: carDetails.image_id,
+      file_key: carDetails.image_key,
+      file_name: formData.image[0].name,
+      file_type: `image/${formData.image[0].name.slice(-3)}`,
+    };
+
+    updateCarPost(data);
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
         <legend>Add a car rent post</legend>
-        <div>
+        {/* <div>
           <label htmlFor="car_name">Name</label>
           <input
             type="text"
@@ -197,7 +199,7 @@ function Form({ image_key }) {
               required: "This field is required",
             })}
           />
-        </div>
+        </div> */}
         <div>
           <label htmlFor="image">Image</label>
           <input type="file" id="image" {...register("image")} />

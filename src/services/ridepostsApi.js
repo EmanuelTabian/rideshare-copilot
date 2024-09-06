@@ -114,9 +114,22 @@ export async function deleteCarPost({ id, image_key }) {
 }
 
 export async function updateCarPost(data) {
+  console.log(data);
+
   try {
-    const response = await axios.put(`${ridebackendURL}/put-image`, data);
-    console.log(response.data);
+    const presignedPostEditURL = await axios.put(
+      `${ridebackendURL}/put-image`,
+      data
+    );
+    console.log(presignedPostEditURL.data);
+    const { id, url } = presignedPostEditURL.data;
+
+    const postData = new FormData();
+    postData.append("file", data.formData.image[0]);
+
+    await axios.put(url, postData);
+
+    // if (!file) return;
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to update the post!`);
   }
