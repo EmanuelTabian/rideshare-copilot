@@ -35,7 +35,7 @@ export async function directUploadStart(data) {
       file_id: presignedRes.data.id,
     });
 
-    return fields;
+    return presignedRes.data;
   } catch (err) {
     throw new Error(
       `${err.message} Sorry, we were unable to start the upload process! ☹️`
