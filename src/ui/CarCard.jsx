@@ -49,6 +49,7 @@ function CarCard({ carDetails }) {
   function handleDelete() {
     const carDeletionData = {
       id,
+      image_id,
       image_key,
     };
 
