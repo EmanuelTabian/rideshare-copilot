@@ -35,12 +35,14 @@ function Form({ carDetails = {}, onCloseModal }) {
       const data = {
         formData,
         // This might be confusing as the backend API endpoint expects a field called file_id
-        imageData: {
-          file_id: carDetails.image_id,
-          file_key: carDetails.image_key,
-          file_name: formData.image[0].name,
-          file_type: formData.image[0].type,
-        },
+        imageData: formData.image.length
+          ? {
+              file_id: carDetails.image_id,
+              file_key: carDetails.image_key,
+              file_name: formData.image[0].name,
+              file_type: formData.image[0].type,
+            }
+          : null,
       };
       updateCarPost(data, {
         onSuccess: () => {
