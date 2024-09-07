@@ -99,7 +99,7 @@ export async function getImageUrl(file_key) {
   }
 }
 
-export async function deleteCarPost({ id, image_id, image_key }) {
+export async function deleteCarPost({ id, image_id = undefined, image_key }) {
   const carPostDeleteData = {
     car_post_id: id,
     image_id,
