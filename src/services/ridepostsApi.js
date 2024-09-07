@@ -124,20 +124,19 @@ export async function updateCarPost(data) {
   console.log(data);
 
   try {
+    await axios.patch(`${ridebackendURL}/update-ridepost/${data.id}`, data);
+
     const presignedPostEditURL = await axios.put(
       `${ridebackendURL}/put-image`,
       data
     );
-    console.log(presignedPostEditURL.data);
-    const { id, url } = presignedPostEditURL.data;
+    const { url } = presignedPostEditURL.data;
 
     await axios.put(url, data.formData.image[0], {
       headers: {
         "Content-Type": data.formData.image[0].type,
       },
     });
-
-    if (!file) return;
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to update the post!`);
   }
