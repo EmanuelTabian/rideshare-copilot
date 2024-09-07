@@ -5,8 +5,9 @@ axios.defaults.withCredentials = true;
 
 export async function directUploadStart(data) {
   const fileName = data.image[0].name;
-  const fileType = `image/${data.image[0].name.slice(-3)}`;
+  const fileType = data.image[0].type;
   const file = data.image[0];
+  console.log(fileType);
 
   try {
     // Get the presigned data
@@ -121,14 +122,10 @@ export async function deleteCarPost({ id, image_id = undefined, image_key }) {
 }
 
 export async function updateCarPost({ formData, imageData }) {
-  console.log(formData, imageData);
+  console.log(formData.image[0]);
+  console.log(imageData);
 
   try {
-    await axios.patch(
-      `${ridebackendURL}/update-ridepost/${formData.id}`,
-      formData
-    );
-
     const presignedPostEditURL = await axios.put(
       `${ridebackendURL}/put-image`,
       imageData
@@ -140,6 +137,11 @@ export async function updateCarPost({ formData, imageData }) {
         "Content-Type": formData.image[0].type,
       },
     });
+
+    await axios.patch(
+      `${ridebackendURL}/update-ridepost/${formData.id}`,
+      formData
+    );
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to update the post!`);
   }

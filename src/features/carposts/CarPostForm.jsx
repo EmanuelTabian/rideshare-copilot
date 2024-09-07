@@ -8,7 +8,6 @@ function Form({ carDetails = {} }) {
   const { updateCarPost, isUpdatingCarPost } = useUpdateCarPost();
 
   const updateSession = Boolean(carDetails.id);
-  console.log(updateSession);
 
   const { directUploadStart, isLoading } = useDirectUploadStart();
   const { register, handleSubmit, reset, getValues, formState } = useForm({
@@ -40,7 +39,7 @@ function Form({ carDetails = {} }) {
           file_id: carDetails.image_id,
           file_key: carDetails.image_key,
           file_name: formData.image[0].name,
-          file_type: `image/${formData.image[0].name.slice(-3)}`,
+          file_type: formData.image[0].type,
         },
       };
       updateCarPost(data);
