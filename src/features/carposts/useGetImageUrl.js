@@ -10,7 +10,7 @@ export function useGetImageUrl(fileKey) {
     queryKey: ["image-url", fileKey],
     queryFn: () => getImageUrl(fileKey),
     enabled: !!fileKey,
-    refetchInterval: 3600 * 1000,
+    // refetchInterval: 3600 * 1000,
   });
 
   return { isLoading, imageUrl, error };
