@@ -3,7 +3,7 @@ import { useDirectUploadStart } from "./useDirectUploadStart";
 import { useAddCarPost } from "./useAddCarPost";
 import { useUpdateCarPost } from "./useUpdateCarPost";
 
-function Form({ carDetails = {} }) {
+function Form({ carDetails = {}, onCloseModal }) {
   const { addCarPost, isUploadingPost } = useAddCarPost();
   const { updateCarPost, isUpdatingCarPost } = useUpdateCarPost();
 
@@ -42,7 +42,12 @@ function Form({ carDetails = {} }) {
           file_type: formData.image[0].type,
         },
       };
-      updateCarPost(data);
+      updateCarPost(data, {
+        onSuccess: () => {
+          reset();
+          onCloseModal?.();
+        },
+      });
     }
   }
 
