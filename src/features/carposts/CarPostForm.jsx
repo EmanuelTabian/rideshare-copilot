@@ -8,6 +8,7 @@ function Form({ carDetails = {} }) {
   const { updateCarPost, isUpdatingCarPost } = useUpdateCarPost();
 
   const updateSession = Boolean(carDetails.id);
+  console.log(updateSession);
 
   const { directUploadStart, isLoading } = useDirectUploadStart();
   const { register, handleSubmit, reset, getValues, formState } = useForm({
@@ -15,35 +16,35 @@ function Form({ carDetails = {} }) {
   });
   const { errors } = formState;
 
-  // function onSubmit(formData) {
-  //   directUploadStart(formData, {
-  //     onSettled: (data) => {
-  //       const dataWithImageKey = {
-  //         ...formData,
-  //         image_key: data?.fields.key,
-  //         image_id: data?.id,
-  //       };
-  //       addCarPost(dataWithImageKey, {
-  //         onSuccess: () => {
-  //           reset();
-  //         },
-  //       });
-  //     },
-  //   });
-  // }
-
   function onSubmit(formData) {
-    // const data = {
-    //   formData,
-    //   // This might be confusing as the backend API endpoint expects a field called file_id
-    //   file_id: carDetails.image_id,
-    //   file_key: carDetails.image_key,
-    //   file_name: formData.image[0].name,
-    //   file_type: `image/${formData.image[0].name.slice(-3)}`,
-    // };
-    console.log(formData);
-
-    // updateCarPost(data);
+    if (!updateSession) {
+      directUploadStart(formData, {
+        onSettled: (data) => {
+          const dataWithImageKey = {
+            ...formData,
+            image_key: data?.fields.key,
+            image_id: data?.id,
+          };
+          addCarPost(dataWithImageKey, {
+            onSuccess: () => {
+              reset();
+            },
+          });
+        },
+      });
+    } else {
+      const data = {
+        formData,
+        // This might be confusing as the backend API endpoint expects a field called file_id
+        imageData: {
+          file_id: carDetails.image_id,
+          file_key: carDetails.image_key,
+          file_name: formData.image[0].name,
+          file_type: `image/${formData.image[0].name.slice(-3)}`,
+        },
+      };
+      updateCarPost(data);
+    }
   }
 
   return (

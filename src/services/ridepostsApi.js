@@ -120,21 +120,24 @@ export async function deleteCarPost({ id, image_id = undefined, image_key }) {
   }
 }
 
-export async function updateCarPost(data) {
-  console.log(data);
+export async function updateCarPost({ formData, imageData }) {
+  console.log(formData, imageData);
 
   try {
-    await axios.patch(`${ridebackendURL}/update-ridepost/${data.id}`, data);
+    await axios.patch(
+      `${ridebackendURL}/update-ridepost/${formData.id}`,
+      formData
+    );
 
     const presignedPostEditURL = await axios.put(
       `${ridebackendURL}/put-image`,
-      data
+      imageData
     );
     const { url } = presignedPostEditURL.data;
 
-    await axios.put(url, data.formData.image[0], {
+    await axios.put(url, formData.image[0], {
       headers: {
-        "Content-Type": data.formData.image[0].type,
+        "Content-Type": formData.image[0].type,
       },
     });
   } catch (err) {
