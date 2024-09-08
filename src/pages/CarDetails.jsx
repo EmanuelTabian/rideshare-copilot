@@ -1,7 +1,11 @@
+import { useGetCarPost } from "../features/carposts/useGetCarPost";
 import CarPost from "../ui/CarPost";
+import Spinner from "../ui/Spinner";
 
 function CarDetails() {
-  return <CarPost />;
+  const { carPost, isLoading } = useGetCarPost();
+  if (isLoading) return <Spinner />;
+  return <CarPost carPost={carPost} />;
 }
 
 export default CarDetails;

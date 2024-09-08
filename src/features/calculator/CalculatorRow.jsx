@@ -7,12 +7,10 @@ import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 import UpdateCalculatorEntryForm from "./UpdateCalculatorEntryForm";
 import ConfirmDelete from "../../ui/ConfirmDelete";
-import { TableCalculatorProvider } from "../../context/TableCalculatorContext";
 import { useDeleteCalaculatorEntry } from "./useDeleteCalculatorEntry";
 
 function CalculatorRow({ calcEntry }) {
   const { deleteCalculatorEntry, isLoading } = useDeleteCalaculatorEntry();
-
   const {
     id,
     pub_date: pubDate,
