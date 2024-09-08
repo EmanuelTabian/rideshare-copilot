@@ -54,6 +54,8 @@ export async function addCarPost(carData) {
 }
 
 export async function getCarPosts(page) {
+  console.log(page);
+
   try {
     const response = await axios.get(`${ridebackendURL}/get-carposts/${page}`);
     return response.data;
