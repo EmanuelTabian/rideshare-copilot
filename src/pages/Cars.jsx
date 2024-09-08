@@ -30,6 +30,12 @@ function Cars() {
   const [fieldName, direction] = sortBy.split("-");
   // Set up a modifier that will serve for sorting calculation depending on direction
   const modifier = direction === "asc" ? "1" : "-1";
+  // Ascending/Descending sorting algorithm accounts for a separate scenario, so when the field is a string we use local compare to perform an alphabetical order
+  const sortedCarPosts = carPosts.sort((a, b) =>
+    typeof a[fieldName] === "string"
+      ? a[fieldName].localeCompare(b[fieldName]) * modifier
+      : (a[fieldName] - b[fieldName]) * modifier
+  );
 
   return (
     <>
@@ -39,11 +45,11 @@ function Cars() {
         <H2>Browse car posts</H2>
         <CarPostTableOperations />
         {/* Conditionally rendered when the posts array of objects is empty */}
-        {!carPosts ? (
+        {!sortedCarPosts ? (
           <Message>No posts yet</Message>
         ) : (
           <CarList>
-            {carPosts.map((carPost) => (
+            {sortedCarPosts.map((carPost) => (
               <CarCard key={carPost.id} carDetails={carPost} />
             ))}
           </CarList>
