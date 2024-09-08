@@ -9,6 +9,7 @@ import PostCar from "../features/carposts/PostCar";
 import { useGetAllCarPosts } from "../features/carposts/useGetAllCarPosts";
 import Spinner from "../ui/Spinner";
 import CarPostTableOperations from "../features/carposts/CarPostTableOperations";
+import Pagination from "../ui/Pagination";
 
 const StyledCars = styled.div``;
 
@@ -20,6 +21,8 @@ const CarList = styled.ul`
 
 function Cars() {
   const { isLoading, carPosts } = useGetAllCarPosts();
+  // Dummy count variable for pagination test
+  const count = 54;
   const [searchParams] = useSearchParams();
 
   if (isLoading) return <Spinner />;
@@ -54,6 +57,7 @@ function Cars() {
             ))}
           </CarList>
         )}
+        <Pagination count={count} />
       </StyledCars>
     </>
   );

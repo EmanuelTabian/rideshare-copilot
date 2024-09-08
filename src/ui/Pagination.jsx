@@ -7,7 +7,7 @@ import { HiChevronRight } from "react-icons/hi2";
 function Pagination({ count }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const currentPage = !searchParams.get(page)
+  const currentPage = !searchParams.get("page")
     ? 1
     : Number(searchParams.get("page"));
 
@@ -22,7 +22,7 @@ function Pagination({ count }) {
 
   function previousPage() {
     const prev = currentPage === 1 ? currentPage : currentPage - 1;
-    searchParams("page", prev);
+    searchParams.set("page", prev);
     setSearchParams(searchParams);
   }
 
