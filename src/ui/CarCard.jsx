@@ -40,6 +40,7 @@ function CarCard({ carDetails }) {
     created_at: createdAt,
     location,
     id,
+    price,
   } = carDetails;
 
   const canEditOrRemove = user_id === user.id;
@@ -76,6 +77,7 @@ function CarCard({ carDetails }) {
         <CarDetailContainer>
           <CarDetailsData> {dateFormatter(createdAt)}</CarDetailsData>
           <CarDetailsData> {location}</CarDetailsData>
+          <div> Price: {price} EUR</div>
         </CarDetailContainer>
       </CarInfo>
       <Button onClick={() => navigate(`/cars/${id}`)}>See details</Button>
