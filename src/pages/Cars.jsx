@@ -25,7 +25,7 @@ function Cars() {
   if (isLoading) return <Spinner />;
 
   // Get sortBy params and account for a name-asc default value
-  const sortBy = searchParams.get("sortBy") || "name-asc";
+  const sortBy = searchParams.get("sortBy") || "car_name-asc";
   // Split param components and destructure it into sort criteria and direction
   const [fieldName, direction] = sortBy.split("-");
   // Set up a modifier that will serve for sorting calculation depending on direction
