@@ -1,9 +1,6 @@
 // Component originally built by Jonas Schmedtmann.
 
 function Select({ value, options, onChange }) {
-  console.log(options);
-  console.log(value);
-
   return (
     <select value={value} onChange={onChange}>
       {options.map((option) => (

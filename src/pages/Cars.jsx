@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, useSearchParams } from "react-router-dom";
 
 import CarCard from "../ui/CarCard";
 import Button from "../ui/Button";
@@ -20,8 +20,16 @@ const CarList = styled.ul`
 
 function Cars() {
   const { isLoading, carPosts } = useGetAllCarPosts();
+  const [searchParams] = useSearchParams();
 
   if (isLoading) return <Spinner />;
+
+  // Get sortBy params and account for a name-asc default value
+  const sortBy = searchParams.get("sortBy") || "name-asc";
+  // Split param components and destructure it into sort criteria and direction
+  const [fieldName, direction] = sortBy.split("-");
+  // Set up a modifier that will serve for sorting calculation depending on direction
+  const modifier = direction === "asc" ? "1" : "-1";
 
   return (
     <>
