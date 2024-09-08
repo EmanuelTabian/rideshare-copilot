@@ -1,4 +1,5 @@
 import { useSearchParams } from "react-router-dom";
+import Select from "./Select";
 
 // Re-usable component originally designed by Jonas Schmedtmann.
 function SortBy({ options }) {
