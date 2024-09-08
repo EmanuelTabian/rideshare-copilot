@@ -8,6 +8,7 @@ import Message from "../ui/Message";
 import PostCar from "../features/carposts/PostCar";
 import { useGetAllCarPosts } from "../features/carposts/useGetAllCarPosts";
 import Spinner from "../ui/Spinner";
+import CarPostTableOperations from "../features/carposts/CarPostTableOperations";
 
 const StyledCars = styled.div``;
 
@@ -28,6 +29,7 @@ function Cars() {
         <PostCar />
         <NavLink to="/cars/myposts">My posts</NavLink>
         <H2>Browse car posts</H2>
+        <CarPostTableOperations />
         {/* Conditionally rendered when the posts array of objects is empty */}
         {!carPosts ? (
           <Message>No posts yet</Message>
