@@ -5,12 +5,12 @@ function CarPostTableOperations() {
     <div>
       <SortBy
         options={[
-          { value: "name-asc", label: "Sort by car name (A-Z)" },
-          { value: "name-desc", label: "Sort by car name (Z-A)" },
+          { value: "car_name-asc", label: "Sort by car name (A-Z)" },
+          { value: "car_name-desc", label: "Sort by car name (Z-A)" },
           { value: "price-asc", label: "Sort by price (low first)" },
           { value: "price-desc", label: "Sort by price (high first)" },
-          { value: "date-asc", label: "Sort by date (oldest first)" },
-          { value: "date-desc", label: "Sort by date (recent first)" },
+          { value: "created_at-asc", label: "Sort by date (oldest first)" },
+          { value: "created_at-desc", label: "Sort by date (recent first)" },
         ]}
       />
     </div>
