@@ -7,15 +7,15 @@ import { HiChevronRight } from "react-icons/hi2";
 function Pagination({ count, pagination }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const currentPage = !searchParams.get("page")
-    ? 1
-    : Number(searchParams.get("page"));
-
-  // On a future refactor the value 10 will be modified to a specific value selected by the user that will also be sent to backend for specific post number fetch
-  const pageCount = Math.ceil(count / 10);
+  const {
+    current_page: currentPage,
+    has_next: hasNextPage,
+    has_previous: hasPreviousPage,
+    total_pages: totalPages,
+  } = pagination;
 
   function nextPage() {
-    const next = currentPage === pageCount ? currentPage : currentPage + 1;
+    const next = currentPage === totalPages ? currentPage : currentPage + 1;
     searchParams.set("page", next);
     setSearchParams(searchParams);
   }
@@ -28,10 +28,13 @@ function Pagination({ count, pagination }) {
 
   return (
     <div>
-      <button onClick={previousPage} disabled={currentPage === 1}>
+      <button onClick={previousPage} disabled={!hasPreviousPage}>
         <HiChevronLeft /> <span>Previous</span>
       </button>
-      <button onClick={nextPage} disabled={currentPage === pageCount}>
+      <span>
+        Page {currentPage} of {totalPages}. Showing 10 of {count} results.
+      </span>
+      <button onClick={nextPage} disabled={!hasNextPage}>
         <span>Next</span>
         <HiChevronRight />
       </button>
