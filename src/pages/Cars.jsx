@@ -22,10 +22,10 @@ const CarList = styled.ul`
 function Cars() {
   const { isLoading, carPosts } = useGetAllCarPosts();
 
+  if (isLoading) return <Spinner />;
   const [searchParams] = useSearchParams();
   const { data, count, pagination } = carPosts;
 
-  if (isLoading) return <Spinner />;
   if (!data.length) return <p>Sorry! No posts yet, you can add one!</p>;
   // Get sortBy params and account for a name-asc default value
   const sortBy = searchParams.get("sortBy") || "car_name-asc";
