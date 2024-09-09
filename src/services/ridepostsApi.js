@@ -54,6 +54,8 @@ export async function addCarPost(carData) {
 }
 
 export async function getCarPosts(page) {
+  console.log(page);
+
   try {
     const response = await axios.get(`${ridebackendURL}/get-carposts/${page}`);
     return response.data;
@@ -88,8 +90,6 @@ export async function getUserCarPosts() {
 }
 
 export async function getImageUrl(file_key) {
-  console.log(file_key);
-
   try {
     const response = await axios.get(
       `${ridebackendURL}/get-image-by-file-key/${file_key}`
