@@ -26,7 +26,7 @@ function Cars() {
   const [searchParams] = useSearchParams();
 
   if (isLoading) return <Spinner />;
-
+  if (!carPosts.length) return <p>Sorry! No posts yet, you can add one!</p>;
   // Get sortBy params and account for a name-asc default value
   const sortBy = searchParams.get("sortBy") || "car_name-asc";
   // Split param components and destructure it into sort criteria and direction
