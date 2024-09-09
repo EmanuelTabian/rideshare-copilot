@@ -4,7 +4,7 @@ import { HiChevronDoubleRight } from "react-icons/hi2";
 import { HiChevronLeft } from "react-icons/hi2";
 import { HiChevronRight } from "react-icons/hi2";
 
-function Pagination({ count }) {
+function Pagination({ count, pagination }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const currentPage = !searchParams.get("page")

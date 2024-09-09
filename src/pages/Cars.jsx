@@ -21,12 +21,12 @@ const CarList = styled.ul`
 
 function Cars() {
   const { isLoading, carPosts } = useGetAllCarPosts();
-  // Dummy count variable for pagination test
-  const count = 54;
+
   const [searchParams] = useSearchParams();
+  const { data, count, pagination } = carPosts;
 
   if (isLoading) return <Spinner />;
-  if (!carPosts.length) return <p>Sorry! No posts yet, you can add one!</p>;
+  if (!data.length) return <p>Sorry! No posts yet, you can add one!</p>;
   // Get sortBy params and account for a name-asc default value
   const sortBy = searchParams.get("sortBy") || "car_name-asc";
   // Split param components and destructure it into sort criteria and direction
@@ -34,7 +34,7 @@ function Cars() {
   // Set up a modifier that will serve for sorting calculation depending on direction
   const modifier = direction === "asc" ? "1" : "-1";
   // Ascending/Descending sorting algorithm accounts for a separate scenario, so when the field is a string we use local compare to perform an alphabetical order
-  const sortedCarPosts = carPosts.sort((a, b) =>
+  const sortedCarPosts = data.sort((a, b) =>
     typeof a[fieldName] === "string"
       ? a[fieldName].localeCompare(b[fieldName]) * modifier
       : (a[fieldName] - b[fieldName]) * modifier
@@ -57,7 +57,7 @@ function Cars() {
             ))}
           </CarList>
         )}
-        <Pagination count={count} />
+        <Pagination count={count} pagination={pagination} />
       </StyledCars>
     </>
   );
