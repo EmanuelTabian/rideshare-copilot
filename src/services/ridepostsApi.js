@@ -126,7 +126,7 @@ export async function deleteCarPost({ id, image_id = undefined, image_key }) {
 
 export async function updateCarPost({ formData, imageData }) {
   console.log(formData);
-  console.log(Boolean(imageData));
+  console.log(imageData);
 
   try {
     if (imageData.file_id && imageData.file_name) {

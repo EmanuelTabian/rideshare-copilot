@@ -41,15 +41,34 @@ function Form({ carDetails = {}, onCloseModal }) {
           file_type: formData.image[0]?.type,
         },
       };
-      console.log(data);
-      console.log(carDetails);
 
-      updateCarPost(data, {
-        onSuccess: () => {
-          reset();
-          onCloseModal?.();
-        },
-      });
+      console.log(carDetails);
+      if (!carDetails.image_key) {
+        directUploadStart(formData, {
+          onSettled: (data) => {
+            const dataWithNewImage = {
+              formData,
+              imageData: {
+                file_key: data?.fields.key,
+                file_id: data?.id,
+              },
+            };
+            updateCarPost(dataWithNewImage, {
+              onSuccess: () => {
+                reset();
+                onCloseModal?.();
+              },
+            });
+          },
+        });
+      } else {
+        updateCarPost(data, {
+          onSuccess: () => {
+            reset();
+            onCloseModal?.();
+          },
+        });
+      }
     }
   }
 
