@@ -32,7 +32,7 @@ function Pagination({ count, pagination }) {
         <HiChevronLeft /> <span>Previous</span>
       </button>
       <span>
-        Page {currentPage} of {totalPages}. Showing 10 of {count} results.
+        Page {currentPage} of {totalPages}. Showing 10 of {count} results
       </span>
       <button onClick={nextPage} disabled={!hasNextPage}>
         <span>Next</span>

@@ -22,7 +22,6 @@ const CarList = styled.ul`
 function Cars() {
   const { isLoading, carPosts, error } = useGetAllCarPosts();
   const [searchParams] = useSearchParams();
-  console.log(error);
 
   if (isLoading) return <Spinner />;
 

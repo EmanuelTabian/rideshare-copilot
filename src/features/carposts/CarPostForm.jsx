@@ -44,6 +44,9 @@ function Form({ carDetails = {}, onCloseModal }) {
             }
           : null,
       };
+      console.log(data);
+      console.log(carDetails);
+
       updateCarPost(data, {
         onSuccess: () => {
           reset();

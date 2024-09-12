@@ -105,7 +105,6 @@ export async function deleteCarPost({ id, image_id = undefined, image_key }) {
     car_post_id: id,
     image_id,
   };
-
   try {
     // Deletes the post and the file entry on the database
     await axios.delete(`${ridebackendURL}/delete-ridepost`, {
@@ -114,7 +113,8 @@ export async function deleteCarPost({ id, image_id = undefined, image_key }) {
 
     // Deletes the image of the post from the AWS S3 Bucket
     await axios.delete(
-      `${ridebackendURL}/delete-image-by-file-key/${image_key}`
+      `${ridebackendURL}/delete-image-by-file-key/${image_key}`,
+      { data: carPostDeleteData }
     );
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to delete the post!`);
@@ -131,6 +131,8 @@ export async function updateCarPost({ formData, imageData }) {
         `${ridebackendURL}/put-image`,
         imageData
       );
+      console.log(presignedPostEditURL);
+
       const { url } = presignedPostEditURL.data;
 
       await axios.put(url, formData.image[0], {
@@ -140,7 +142,8 @@ export async function updateCarPost({ formData, imageData }) {
       });
     } else {
       await axios.delete(
-        `${ridebackendURL}/delete-image-by-file-key/${formData.image_key}`
+        `${ridebackendURL}/delete-image-by-file-key/${formData.image_key}`,
+        { data: { image_id: formData.image_id } }
       );
     }
 
