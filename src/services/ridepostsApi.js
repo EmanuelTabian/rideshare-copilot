@@ -112,10 +112,11 @@ export async function deleteCarPost({ id, image_id = undefined, image_key }) {
     });
 
     // Deletes the image of the post from the AWS S3 Bucket
-    await axios.delete(
-      `${ridebackendURL}/delete-image-by-file-key/${image_key}`,
-      { data: carPostDeleteData }
-    );
+    if (image_id)
+      await axios.delete(
+        `${ridebackendURL}/delete-image-by-file-key/${image_key}`,
+        { data: carPostDeleteData }
+      );
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to delete the post!`);
   }
