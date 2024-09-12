@@ -129,7 +129,7 @@ export async function updateCarPost({ formData, imageData }) {
   console.log(Boolean(imageData));
 
   try {
-    if (imageData.file_id) {
+    if (imageData.file_id && imageData.file_name) {
       const presignedPostEditURL = await axios.put(
         `${ridebackendURL}/put-image`,
         imageData
@@ -144,30 +144,6 @@ export async function updateCarPost({ formData, imageData }) {
         },
       });
     }
-    if (!imageData.file_id && imageData.file_name) {
-      const presignedRes = await axios.post(
-        `${ridebackendURL}/upload/direct/start`,
-        {
-          file_name: imageData.file_name,
-          file_type: imageData.file_type,
-        }
-      );
-
-      // Perform the actual upload
-      const { url, fields } = presignedRes.data;
-
-      const postData = new FormData();
-      Object.entries(fields).forEach(([key, value]) =>
-        postData.append(key, value)
-      );
-      postData.append("file", formData.image[0]);
-
-      await axios.post(url, postData);
-
-      await axios.post(`${ridebackendURL}/upload/direct/finish`, {
-        file_id: presignedRes.data.id,
-      });
-    }
 
     if (imageData.file_id && !imageData.file_name) {
       await axios.delete(
@@ -175,7 +151,6 @@ export async function updateCarPost({ formData, imageData }) {
         { data: { image_id: formData.image_id } }
       );
     }
-    console.log(formData);
 
     await axios.patch(
       `${ridebackendURL}/update-ridepost/${formData.id}`,
