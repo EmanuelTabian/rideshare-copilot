@@ -34,22 +34,43 @@ function Form({ carDetails = {}, onCloseModal }) {
     } else {
       const data = {
         formData,
-        // This might be confusing as the backend API endpoint expects a field called file_id
-        imageData: formData.image.length
-          ? {
-              file_id: carDetails.image_id,
-              file_key: carDetails.image_key,
-              file_name: formData.image[0].name,
-              file_type: formData.image[0].type,
-            }
-          : null,
-      };
-      updateCarPost(data, {
-        onSuccess: () => {
-          reset();
-          onCloseModal?.();
+        imageData: {
+          file_id: carDetails.image_id,
+          file_key: carDetails.image_key,
+          file_name: formData.image[0]?.name,
+          file_type: formData.image[0]?.type,
         },
-      });
+      };
+
+      console.log(carDetails);
+      if (!carDetails.image_key) {
+        directUploadStart(formData, {
+          onSettled: (data) => {
+            const dataWithNewImage = {
+              formData,
+              imageData: {
+                file_key: data?.fields.key,
+                file_id: data?.id,
+              },
+            };
+            console.log(dataWithNewImage);
+
+            updateCarPost(dataWithNewImage, {
+              onSuccess: () => {
+                reset();
+                onCloseModal?.();
+              },
+            });
+          },
+        });
+      } else {
+        updateCarPost(data, {
+          onSuccess: () => {
+            reset();
+            onCloseModal?.();
+          },
+        });
+      }
     }
   }
 

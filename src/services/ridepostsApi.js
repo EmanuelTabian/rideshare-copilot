@@ -4,6 +4,8 @@ import { ridebackendURL } from "./rideauthApi";
 axios.defaults.withCredentials = true;
 
 export async function directUploadStart(data) {
+  console.log(data);
+
   const fileName = data.image[0].name;
   const fileType = data.image[0].type;
   const file = data.image[0];
@@ -53,9 +55,11 @@ export async function addCarPost(carData) {
   }
 }
 
-export async function getCarPosts() {
+export async function getCarPosts(page) {
   try {
-    const response = await axios.get(`${ridebackendURL}/get-carposts`);
+    const response = await axios.get(`${ridebackendURL}/get-carposts/${page}`);
+    console.log(response.data);
+
     return response.data;
   } catch (err) {
     throw new Error(
@@ -76,9 +80,11 @@ export async function getCarPost(id) {
   }
 }
 
-export async function getUserCarPosts() {
+export async function getUserCarPosts(page) {
   try {
-    const response = await axios.get(`${ridebackendURL}/get-user-carposts`);
+    const response = await axios.get(
+      `${ridebackendURL}/get-user-carposts/${page}`
+    );
     return response.data;
   } catch (err) {
     throw new Error(
@@ -88,8 +94,6 @@ export async function getUserCarPosts() {
 }
 
 export async function getImageUrl(file_key) {
-  console.log(file_key);
-
   try {
     const response = await axios.get(
       `${ridebackendURL}/get-image-by-file-key/${file_key}`
@@ -105,7 +109,6 @@ export async function deleteCarPost({ id, image_id = undefined, image_key }) {
     car_post_id: id,
     image_id,
   };
-
   try {
     // Deletes the post and the file entry on the database
     await axios.delete(`${ridebackendURL}/delete-ridepost`, {
@@ -113,9 +116,11 @@ export async function deleteCarPost({ id, image_id = undefined, image_key }) {
     });
 
     // Deletes the image of the post from the AWS S3 Bucket
-    await axios.delete(
-      `${ridebackendURL}/delete-image-by-file-key/${image_key}`
-    );
+    if (image_id)
+      await axios.delete(
+        `${ridebackendURL}/delete-image-by-file-key/${image_key}`,
+        { data: carPostDeleteData }
+      );
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to delete the post!`);
   }
@@ -123,14 +128,16 @@ export async function deleteCarPost({ id, image_id = undefined, image_key }) {
 
 export async function updateCarPost({ formData, imageData }) {
   console.log(formData);
-  console.log(Boolean(imageData));
+  console.log(imageData);
 
   try {
-    if (imageData) {
+    if (imageData.image_id) {
       const presignedPostEditURL = await axios.put(
         `${ridebackendURL}/put-image`,
         imageData
       );
+      console.log(presignedPostEditURL);
+
       const { url } = presignedPostEditURL.data;
 
       await axios.put(url, formData.image[0], {
@@ -138,9 +145,12 @@ export async function updateCarPost({ formData, imageData }) {
           "Content-Type": formData.image[0].type,
         },
       });
-    } else {
+    }
+
+    if (imageData.file_id && !formData.image[0]) {
       await axios.delete(
-        `${ridebackendURL}/delete-image-by-file-key/${formData.image_key}`
+        `${ridebackendURL}/delete-image-by-file-key/${formData.image_key}`,
+        { data: { image_id: formData.image_id } }
       );
     }
 
