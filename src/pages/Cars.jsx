@@ -10,6 +10,7 @@ import { useGetAllCarPosts } from "../features/carposts/useGetAllCarPosts";
 import Spinner from "../ui/Spinner";
 import CarPostTableOperations from "../features/carposts/CarPostTableOperations";
 import Pagination from "../ui/Pagination";
+import { useEffect } from "react";
 
 const StyledCars = styled.div``;
 
@@ -21,8 +22,21 @@ const CarList = styled.ul`
 
 function Cars() {
   const { isLoading, carPosts, error } = useGetAllCarPosts();
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
+  useEffect(() => {
+    const page = searchParams.get("page");
+    console.log(carPosts?.pagination.total_pages);
+
+    if (page > carPosts?.pagination.total_pages) {
+      searchParams.set("page", carPosts.pagination.total_pages);
+      setSearchParams(searchParams);
+    }
+    if (page < 1 || typeof page === "string") {
+      searchParams.set("page", 1);
+      setSearchParams(searchParams);
+    }
+  }, [searchParams]);
   if (isLoading) return <Spinner />;
 
   if (!carPosts.data.length)

@@ -3,6 +3,7 @@ import { HiChevronDoubleLeft } from "react-icons/hi2";
 import { HiChevronDoubleRight } from "react-icons/hi2";
 import { HiChevronLeft } from "react-icons/hi2";
 import { HiChevronRight } from "react-icons/hi2";
+import { useEffect } from "react";
 
 function Pagination({ count, pagination }) {
   const [searchParams, setSearchParams] = useSearchParams();
