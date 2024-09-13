@@ -80,9 +80,11 @@ export async function getCarPost(id) {
   }
 }
 
-export async function getUserCarPosts() {
+export async function getUserCarPosts(page) {
   try {
-    const response = await axios.get(`${ridebackendURL}/get-user-carposts`);
+    const response = await axios.get(
+      `${ridebackendURL}/get-user-carposts/${page}`
+    );
     return response.data;
   } catch (err) {
     throw new Error(

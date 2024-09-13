@@ -5,6 +5,7 @@ import { NavLink, useSearchParams } from "react-router-dom";
 import Message from "./Message";
 import CarPostTableOperations from "../features/carposts/CarPostTableOperations";
 import { carPostsSorter } from "../utils/helpers";
+import Pagination from "./Pagination";
 
 const CarList = styled.ul``;
 
@@ -19,7 +20,7 @@ function UserPosts({ carPosts }) {
       <CarPostTableOperations />
       {sortedCars.length ? (
         <CarList>
-          {sortedCars.map((carPost) => (
+          {carPosts.map((carPost) => (
             <CarCard key={carPost.id} carDetails={carPost} />
           ))}
         </CarList>
@@ -28,6 +29,7 @@ function UserPosts({ carPosts }) {
           <Message>Sorry, you have no car posts!</Message>
         </div>
       )}
+      <Pagination />
     </>
   );
 }
