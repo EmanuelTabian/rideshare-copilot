@@ -5,13 +5,13 @@ import UserPosts from "../ui/UserPosts";
 
 function MyPosts() {
   const { isLoading, userCarPosts } = useGetUserCarPosts();
-  console.log(userCarPosts);
 
   if (isLoading) return <Spinner />;
+  const { data, count, pagination } = userCarPosts;
   return (
     <>
       <h1>My posts</h1>
-      <UserPosts carPosts={userCarPosts} />
+      <UserPosts carPosts={data} count={count} pagination={pagination} />
     </>
   );
 }
