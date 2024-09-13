@@ -53,6 +53,8 @@ function Form({ carDetails = {}, onCloseModal }) {
                 file_id: data?.id,
               },
             };
+            console.log(dataWithNewImage);
+
             updateCarPost(dataWithNewImage, {
               onSuccess: () => {
                 reset();

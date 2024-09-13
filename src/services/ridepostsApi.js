@@ -129,7 +129,7 @@ export async function updateCarPost({ formData, imageData }) {
   console.log(imageData);
 
   try {
-    if (imageData.file_id && imageData.file_name) {
+    if (imageData.image_id) {
       const presignedPostEditURL = await axios.put(
         `${ridebackendURL}/put-image`,
         imageData
@@ -145,7 +145,7 @@ export async function updateCarPost({ formData, imageData }) {
       });
     }
 
-    if (imageData.file_id && !imageData.file_name) {
+    if (imageData.file_id && !formData.image[0]) {
       await axios.delete(
         `${ridebackendURL}/delete-image-by-file-key/${formData.image_key}`,
         { data: { image_id: formData.image_id } }
