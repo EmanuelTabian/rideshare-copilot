@@ -21,19 +21,37 @@ function Cars() {
   const { isLoading, carPosts, error } = useGetAllCarPosts();
   const [searchParams, setSearchParams] = useSearchParams();
   if (isLoading) return <Spinner />;
+  if (carPosts.error)
+    return (
+      <>
+        <Message>{carPosts.error}</Message>
+        <div>
+          <Button
+            onClick={() => {
+              searchParams.set("page", 1);
+              setSearchParams(searchParams);
+            }}
+          >
+            {" "}
+            Back to page 1?
+          </Button>
+        </div>
+      </>
+    );
   const { data, count, pagination } = carPosts;
+
   // Get sortBy params and account for a name-asc default value
-  // const sortBy = searchParams.get("sortBy") || "car_name-asc";
+  const sortBy = searchParams.get("sortBy") || "car_name-asc";
   // // Split param components and destructure it into sort criteria and direction
-  // const [fieldName, direction] = sortBy.split("-");
+  const [fieldName, direction] = sortBy.split("-");
   // // Set up a modifier that will serve for sorting calculation depending on direction
-  // const modifier = direction === "asc" ? "1" : "-1";
+  const modifier = direction === "asc" ? "1" : "-1";
   // // Ascending/Descending sorting algorithm accounts for a separate scenario, so when the field is a string we use local compare to perform an alphabetical order
-  // const sortedCarPosts = carPosts.data.sort((a, b) =>
-  //   typeof a[fieldName] === "string"
-  //     ? a[fieldName].localeCompare(b[fieldName]) * modifier
-  //     : (a[fieldName] - b[fieldName]) * modifier
-  // );
+  const sortedCarPosts = data.sort((a, b) =>
+    typeof a[fieldName] === "string"
+      ? a[fieldName].localeCompare(b[fieldName]) * modifier
+      : (a[fieldName] - b[fieldName]) * modifier
+  );
 
   return (
     <>
@@ -41,7 +59,11 @@ function Cars() {
         <PostCar />
         <NavLink to="/cars/myposts">My posts</NavLink>
         <H2>Browse car posts</H2>
-        <CarPostsLayout carPosts={data} count={count} pagination={pagination} />
+        <CarPostsLayout
+          carPosts={sortedCarPosts}
+          count={count}
+          pagination={pagination}
+        />
       </StyledCars>
     </>
   );

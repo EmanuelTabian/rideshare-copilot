@@ -7,23 +7,6 @@ import { useEffect } from "react";
 import Spinner from "../../ui/Spinner";
 
 function CarPostsLayout({ carPosts, count, pagination }) {
-  const [searchParams, setSearchParams] = useSearchParams();
-  console.log(carPosts);
-
-  useEffect(() => {
-    const page = searchParams.get("page");
-    if (page > pagination.total_pages) {
-      searchParams.set("page", pagination.total_pages);
-      setSearchParams(searchParams);
-    }
-    console.log(typeof page);
-
-    if (page < 1 || typeof page === "string") {
-      searchParams.set("page", 1);
-      setSearchParams(searchParams);
-    }
-  }, [searchParams]);
-
   return (
     <>
       <CarPostTableOperations />
