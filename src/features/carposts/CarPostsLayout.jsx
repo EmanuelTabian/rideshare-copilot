@@ -7,13 +7,10 @@ import { useEffect, useState } from "react";
 import Spinner from "../../ui/Spinner";
 import { carPostsSorter } from "../../utils/helpers";
 
-function CarPostsLayout({ carPosts, count, pagination, searchParams }) {
-  const [sortedCarPosts, setSortedCarPosts] = useState([]);
-
-  useEffect(() => {
-    const sorted = carPostsSorter(carPosts, searchParams);
-    setSortedCarPosts(sorted);
-  }, [carPosts, searchParams.get("sortBy")]);
+function CarPostsLayout({ carPosts, count, pagination }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sortBy = searchParams.get("sortBy");
+  const sortedCarPosts = carPostsSorter(carPosts, sortBy);
 
   return (
     <>

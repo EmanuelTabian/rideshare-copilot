@@ -8,8 +8,11 @@ export function dateFormatter(date) {
 }
 
 export function carPostsSorter(cars, searchParams) {
+  console.log(searchParams);
+
   // // Get sortBy params and account for a name-asc default value
-  const sortBy = searchParams.get("sortBy") || "car_name-asc";
+  const sortBy = searchParams || "car_name-asc";
+
   // // // Split param components and destructure it into sort criteria and direction
   const [fieldName, direction] = sortBy.split("-");
   // // // Set up a modifier that will serve for sorting calculation depending on direction
@@ -20,6 +23,7 @@ export function carPostsSorter(cars, searchParams) {
       ? a[fieldName].localeCompare(b[fieldName]) * modifier
       : (a[fieldName] - b[fieldName]) * modifier
   );
+  console.log(sortedCarPosts);
 
   return sortedCarPosts;
 }
