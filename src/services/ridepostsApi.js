@@ -18,6 +18,7 @@ export async function directUploadStart(data) {
       {
         file_name: fileName,
         file_type: fileType,
+        car_post_id: 45,
       }
     );
 
@@ -49,6 +50,8 @@ export async function directUploadStart(data) {
 export async function addCarPost(carData) {
   try {
     const response = await axios.post(`${ridebackendURL}/add-carpost`, carData);
+    console.log(response.data.id);
+
     return response.data;
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to add your post`);
@@ -104,10 +107,9 @@ export async function getImageUrl(file_key) {
   }
 }
 
-export async function deleteCarPost({ id, image_id = undefined, image_key }) {
+export async function deleteCarPost({ id, image_key }) {
   const carPostDeleteData = {
     car_post_id: id,
-    image_id,
   };
   try {
     // Deletes the post and the file entry on the database
