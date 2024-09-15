@@ -3,56 +3,39 @@ import { ridebackendURL } from "./rideauthApi";
 
 axios.defaults.withCredentials = true;
 
-export async function directUploadStart(data) {
-  console.log(data);
-
-  const fileName = data.image[0].name;
-  const fileType = data.image[0].type;
-  const file = data.image[0];
-  console.log(fileType);
-
+export async function addCarPost(data) {
   try {
-    // Get the presigned data
-    const presignedRes = await axios.post(
-      `${ridebackendURL}/upload/direct/start`,
-      {
-        file_name: fileName,
-        file_type: fileType,
-        car_post_id: 45,
-      }
-    );
+    const carPost = await axios.post(`${ridebackendURL}/add-carpost`, data);
 
-    // Perform the actual upload
-    const { url, fields } = presignedRes.data;
+    if (data.image) {
+      const file = data.image[0];
 
-    const postData = new FormData();
-    Object.entries(fields).forEach(([key, value]) =>
-      postData.append(key, value)
-    );
-    postData.append("file", file);
+      // Get the presigned data
+      const presignedResponse = await axios.post(
+        `${ridebackendURL}/upload/direct/start`,
+        {
+          file_name: file.name,
+          file_type: file.type,
+          car_post_id: carPost.data.id,
+        }
+      );
 
-    if (!file) return;
+      // Perform the actual upload
+      const { url, fields } = presignedResponse.data;
+      const postData = new FormData();
+      Object.entries(fields).forEach(([key, value]) =>
+        postData.append(key, value)
+      );
+      postData.append("file", file);
+      await axios.post(url, postData);
 
-    await axios.post(url, postData);
-    // Mark the upload process as finished
-    await axios.post(`${ridebackendURL}/upload/direct/finish`, {
-      file_id: presignedRes.data.id,
-    });
+      // Mark the upload process as finished
+      await axios.post(`${ridebackendURL}/upload/direct/finish`, {
+        file_id: presignedResponse.data.id,
+      });
 
-    return presignedRes.data;
-  } catch (err) {
-    throw new Error(
-      `${err.message} Sorry, we were unable to start the upload process! ☹️`
-    );
-  }
-}
-
-export async function addCarPost(carData) {
-  try {
-    const response = await axios.post(`${ridebackendURL}/add-carpost`, carData);
-    console.log(response.data.id);
-
-    return response.data;
+      return presignedRes.data;
+    }
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to add your post`);
   }
