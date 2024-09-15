@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { useDirectUploadStart } from "./useDirectUploadStart";
 import { useAddCarPost } from "./useAddCarPost";
 import { useUpdateCarPost } from "./useUpdateCarPost";
 
@@ -9,7 +8,6 @@ function Form({ carDetails = {}, onCloseModal }) {
 
   const updateSession = Boolean(carDetails.id);
 
-  const { directUploadStart, isLoading } = useDirectUploadStart();
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: updateSession ? carDetails : {},
   });
@@ -17,18 +15,10 @@ function Form({ carDetails = {}, onCloseModal }) {
 
   function onSubmit(formData) {
     if (!updateSession) {
-      directUploadStart(formData, {
-        onSettled: (data) => {
-          const dataWithImageKey = {
-            ...formData,
-            image_key: data?.fields.key,
-            image_id: data?.id,
-          };
-          addCarPost(dataWithImageKey, {
-            onSuccess: () => {
-              reset();
-            },
-          });
+      addCarPost(formData, {
+        onSuccess: () => {
+          reset();
+          onCloseModal?.();
         },
       });
     } else {

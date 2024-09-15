@@ -5,21 +5,21 @@ axios.defaults.withCredentials = true;
 
 export async function addCarPost(data) {
   try {
-    const carPost = await axios.post(`${ridebackendURL}/add-carpost`, data);
-
-    if (data.image) {
+    const carPostResponse = await axios.post(
+      `${ridebackendURL}/add-carpost`,
+      data
+    );
+    if (data.image.length) {
       const file = data.image[0];
-
       // Get the presigned data
       const presignedResponse = await axios.post(
         `${ridebackendURL}/upload/direct/start`,
         {
           file_name: file.name,
           file_type: file.type,
-          car_post_id: carPost.data.id,
+          car_post_id: carPostResponse.data.id,
         }
       );
-
       // Perform the actual upload
       const { url, fields } = presignedResponse.data;
       const postData = new FormData();
@@ -28,12 +28,10 @@ export async function addCarPost(data) {
       );
       postData.append("file", file);
       await axios.post(url, postData);
-
       // Mark the upload process as finished
       await axios.post(`${ridebackendURL}/upload/direct/finish`, {
         file_id: presignedResponse.data.id,
       });
-
       return presignedRes.data;
     }
   } catch (err) {
