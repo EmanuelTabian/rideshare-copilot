@@ -20,6 +20,8 @@ export async function addCarPost(data) {
           car_post_id: carPostResponse.data.id,
         }
       );
+      console.log(presignedResponse.data);
+
       // Perform the actual upload
       const { url, fields } = presignedResponse.data;
       const postData = new FormData();
@@ -77,10 +79,10 @@ export async function getUserCarPosts(page) {
   }
 }
 
-export async function getImageUrl(file_key) {
+export async function getImageUrl(carPostId) {
   try {
     const response = await axios.get(
-      `${ridebackendURL}/get-image-by-file-key/${file_key}`
+      `${ridebackendURL}/get-image-by-post-id/${carPostId}`
     );
     return response.data;
   } catch (err) {
