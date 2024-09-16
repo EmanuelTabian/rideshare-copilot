@@ -1,16 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { getImageUrl } from "../../services/ridepostsApi";
 
-export function useGetImageUrl(fileKey) {
+export function useGetImageUrl(carPostId) {
   const {
     isLoading,
     data: imageUrl,
     error,
   } = useQuery({
-    queryKey: ["image-url", fileKey],
-    queryFn: () => getImageUrl(fileKey),
-    enabled: !!fileKey,
-    // refetchInterval: 3600 * 1000,
+    queryFn: () => getImageUrl(carPostId),
   });
 
   return { isLoading, imageUrl, error };
