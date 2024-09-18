@@ -103,35 +103,9 @@ export async function deleteCarPost(carPostId) {
   }
 }
 
-export async function updateCarPost({ formData, imageData }) {
-  console.log(formData);
-  console.log(imageData);
-
+export async function updateCarPost(formData) {
   try {
-    if (imageData.image_id) {
-      const presignedPostEditURL = await axios.put(
-        `${ridebackendURL}/put-image`,
-        imageData
-      );
-      console.log(presignedPostEditURL);
-
-      const { url } = presignedPostEditURL.data;
-
-      await axios.put(url, formData.image[0], {
-        headers: {
-          "Content-Type": formData.image[0].type,
-        },
-      });
-    }
-
-    if (imageData.file_id && !formData.image[0]) {
-      await axios.delete(
-        `${ridebackendURL}/delete-image-by-file-key/${formData.image_key}`,
-        { data: { image_id: formData.image_id } }
-      );
-    }
-
-    await axios.patch(
+    await axios.put(
       `${ridebackendURL}/update-ridepost/${formData.id}`,
       formData
     );

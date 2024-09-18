@@ -22,48 +22,9 @@ function Form({ carDetails = {}, onCloseModal }) {
         },
       });
     } else {
-      const data = {
-        formData,
-        imageData: {
-          file_id: carDetails.image_id,
-          file_key: carDetails.image_key,
-          file_name: formData.image[0]?.name,
-          file_type: formData.image[0]?.type,
-        },
-      };
-
-      console.log(carDetails);
-      if (!carDetails.image_key) {
-        directUploadStart(formData, {
-          onSettled: (data) => {
-            const dataWithNewImage = {
-              formData,
-              imageData: {
-                file_key: data?.fields.key,
-                file_id: data?.id,
-              },
-            };
-            console.log(dataWithNewImage);
-
-            updateCarPost(dataWithNewImage, {
-              onSuccess: () => {
-                reset();
-                onCloseModal?.();
-              },
-            });
-          },
-        });
-      } else {
-        updateCarPost(data, {
-          onSuccess: () => {
-            reset();
-            onCloseModal?.();
-          },
-        });
-      }
+      updateCarPost(formData);
     }
   }
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
