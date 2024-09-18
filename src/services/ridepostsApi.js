@@ -104,11 +104,18 @@ export async function deleteCarPost(carPostId) {
 }
 
 export async function updateCarPost(formData) {
+  console.log(formData);
+
+  const data = new FormData();
+  Object.entries(formData).forEach(([key, value]) => data.append(key, value));
+  data.append("image", formData.image[0]);
+
   try {
-    await axios.put(
-      `${ridebackendURL}/update-ridepost/${formData.id}`,
-      formData
-    );
+    await axios.put(`${ridebackendURL}/update-ridepost/${formData.id}`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to update the post!`);
   }
