@@ -23,7 +23,6 @@ function CarCard({ carDetails }) {
   const { deleteCarPost, isDeletingCarPost } = useDeleteCarPost();
   const { user } = useUser();
   const navigate = useNavigate();
-  console.log(carDetails);
 
   const {
     user_id,
@@ -46,13 +45,7 @@ function CarCard({ carDetails }) {
   const { isLoading, imageUrl, error } = useGetImageUrl(id);
 
   function handleDelete() {
-    const carDeletionData = {
-      id,
-      image_id,
-      image_key,
-    };
-
-    deleteCarPost(carDeletionData);
+    deleteCarPost(id);
   }
 
   return (

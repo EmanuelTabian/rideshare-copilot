@@ -8,7 +8,6 @@ export function useDeleteCarPost() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["car-posts"] });
       queryClient.refetchQueries({ queryKey: ["car-posts"] });
-      queryClient.removeQueries({ queryKey: ["car-posts", file_key] });
     },
   });
 

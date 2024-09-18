@@ -90,22 +90,14 @@ export async function getImageUrl(carPostId) {
   }
 }
 
-export async function deleteCarPost({ id, image_key }) {
-  const carPostDeleteData = {
-    car_post_id: id,
-  };
+export async function deleteCarPost(carPostId) {
+  console.log(carPostId);
+
   try {
     // Deletes the post and the file entry on the database
     await axios.delete(`${ridebackendURL}/delete-ridepost`, {
-      data: carPostDeleteData,
+      data: { car_post_id: carPostId },
     });
-
-    // Deletes the image of the post from the AWS S3 Bucket
-    if (image_id)
-      await axios.delete(
-        `${ridebackendURL}/delete-image-by-file-key/${image_key}`,
-        { data: carPostDeleteData }
-      );
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to delete the post!`);
   }
