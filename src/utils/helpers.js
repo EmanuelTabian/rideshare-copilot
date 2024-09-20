@@ -21,7 +21,6 @@ export function carPostsSorter(cars, searchParams) {
       ? a[fieldName].localeCompare(b[fieldName]) * modifier
       : (a[fieldName] - b[fieldName]) * modifier
   );
-  console.log(sortedCarPosts);
 
   return sortedCarPosts;
 }

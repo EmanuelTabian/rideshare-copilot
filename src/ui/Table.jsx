@@ -11,7 +11,7 @@ const StyledTable = styled.div`
 
 const ReusableRow = styled.div`
   display: grid;
-  grid-template-columns: ${(props) => props.columns};
+  grid-template-columns: ${(props) => props.$columns};
   column-gap: 2rem;
   align-items: center;
 `;
@@ -36,22 +36,22 @@ const NoData = styled.p`
 // Compound component originally designed by Jonas Schmedtmann and adapted to current project.
 const TableContext = createContext();
 
-function Table({ columns, children }) {
+function Table({ $columns, children }) {
   return (
-    <TableContext.Provider value={{ columns }}>
+    <TableContext.Provider value={{ $columns }}>
       <StyledTable>{children}</StyledTable>
     </TableContext.Provider>
   );
 }
 
 function Header({ children }) {
-  const { columns } = useContext(TableContext);
-  return <StyledHeader columns={columns}>{children}</StyledHeader>;
+  const { $columns } = useContext(TableContext);
+  return <StyledHeader $columns={$columns}>{children}</StyledHeader>;
 }
 
 function Row({ children }) {
-  const { columns } = useContext(TableContext);
-  return <StyledRow columns={columns}>{children}</StyledRow>;
+  const { $columns } = useContext(TableContext);
+  return <StyledRow $columns={$columns}>{children}</StyledRow>;
 }
 
 function Body({ data, render }) {
