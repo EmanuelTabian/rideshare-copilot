@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { useDirectUploadStart } from "./useDirectUploadStart";
 import { useAddCarPost } from "./useAddCarPost";
 import { useUpdateCarPost } from "./useUpdateCarPost";
 
@@ -9,7 +8,6 @@ function Form({ carDetails = {}, onCloseModal }) {
 
   const updateSession = Boolean(carDetails.id);
 
-  const { directUploadStart, isLoading } = useDirectUploadStart();
   const { register, handleSubmit, reset, getValues, formState } = useForm({
     defaultValues: updateSession ? carDetails : {},
   });
@@ -17,63 +15,21 @@ function Form({ carDetails = {}, onCloseModal }) {
 
   function onSubmit(formData) {
     if (!updateSession) {
-      directUploadStart(formData, {
-        onSettled: (data) => {
-          const dataWithImageKey = {
-            ...formData,
-            image_key: data?.fields.key,
-            image_id: data?.id,
-          };
-          addCarPost(dataWithImageKey, {
-            onSuccess: () => {
-              reset();
-            },
-          });
+      addCarPost(formData, {
+        onSettled: () => {
+          reset();
+          onCloseModal?.();
         },
       });
     } else {
-      const data = {
-        formData,
-        imageData: {
-          file_id: carDetails.image_id,
-          file_key: carDetails.image_key,
-          file_name: formData.image[0]?.name,
-          file_type: formData.image[0]?.type,
+      updateCarPost(formData, {
+        onSettled: () => {
+          reset();
+          onCloseModal?.();
         },
-      };
-
-      console.log(carDetails);
-      if (!carDetails.image_key) {
-        directUploadStart(formData, {
-          onSettled: (data) => {
-            const dataWithNewImage = {
-              formData,
-              imageData: {
-                file_key: data?.fields.key,
-                file_id: data?.id,
-              },
-            };
-            console.log(dataWithNewImage);
-
-            updateCarPost(dataWithNewImage, {
-              onSuccess: () => {
-                reset();
-                onCloseModal?.();
-              },
-            });
-          },
-        });
-      } else {
-        updateCarPost(data, {
-          onSuccess: () => {
-            reset();
-            onCloseModal?.();
-          },
-        });
-      }
+      });
     }
   }
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
@@ -225,11 +181,11 @@ function Form({ carDetails = {}, onCloseModal }) {
           />
         </div>
         <div>
-          <label htmlFor="phone_number">Phone</label>
+          <label htmlFor="contact">Contact</label>
           <input
-            type="tel"
-            id="phone_number"
-            {...register("phone_number", {
+            type="text"
+            id="contact"
+            {...register("contact", {
               required: "This field is required",
             })}
           />

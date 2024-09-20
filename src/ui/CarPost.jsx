@@ -10,7 +10,7 @@ function CarPost({ carPost }) {
   const { user } = useUser();
   const {
     user_id,
-    image_key,
+    id,
     created_at: createdAt,
     car_name: carName,
     body,
@@ -26,7 +26,7 @@ function CarPost({ carPost }) {
     milleage,
     model,
     mpg,
-    phone_number: phoneNumber,
+    contact,
     power,
     price,
     seat_number: seatNumber,
@@ -35,7 +35,7 @@ function CarPost({ carPost }) {
     year,
   } = carPost;
   const canEditOrRemove = user_id === user.id;
-  const { isLoading, imageUrl, error } = useGetImageUrl(image_key);
+  const { isLoading, imageUrl, error } = useGetImageUrl(id);
 
   return (
     <>
@@ -65,8 +65,7 @@ function CarPost({ carPost }) {
           <li>Emmision Standard: {emissionStandard}</li>
         </ul>
         <div>
-          <span>{phoneNumber}</span>
-          <button>Reveal phone number</button>
+          <span>{contact}</span>
         </div>
 
         {canEditOrRemove && (

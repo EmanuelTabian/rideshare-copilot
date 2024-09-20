@@ -40,6 +40,7 @@ function Cars() {
       </>
     );
   const { data, count, pagination } = carPosts;
+
   return (
     <>
       <StyledCars>

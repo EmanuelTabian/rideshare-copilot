@@ -7,7 +7,7 @@ export function useGetUserCarPosts() {
   const page = !searchParams.get("page") ? "1" : searchParams.get("page");
   const { isLoading, data: userCarPosts } = useQuery({
     queryKey: ["user-car-posts", page],
-    queryFn: getUserCarPosts(page),
+    queryFn: () => getUserCarPosts(page),
   });
 
   return { isLoading, userCarPosts };

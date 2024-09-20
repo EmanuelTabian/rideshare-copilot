@@ -9,10 +9,13 @@ import Pagination from "./Pagination";
 
 const CarList = styled.ul``;
 
-function UserPosts({ carPosts }) {
+function UserPosts({ carPosts, count, pagination }) {
+  console.log(carPosts);
+
   const [searchParams] = useSearchParams();
   const sortBy = searchParams.get("sortBy");
   const sortedCars = carPostsSorter(carPosts, sortBy);
+  console.log(sortedCars);
 
   return (
     <>
@@ -20,7 +23,7 @@ function UserPosts({ carPosts }) {
       <CarPostTableOperations />
       {sortedCars.length ? (
         <CarList>
-          {carPosts.map((carPost) => (
+          {sortedCars.map((carPost) => (
             <CarCard key={carPost.id} carDetails={carPost} />
           ))}
         </CarList>
@@ -29,7 +32,7 @@ function UserPosts({ carPosts }) {
           <Message>Sorry, you have no car posts!</Message>
         </div>
       )}
-      <Pagination />
+      <Pagination count={count} pagination={pagination} />
     </>
   );
 }

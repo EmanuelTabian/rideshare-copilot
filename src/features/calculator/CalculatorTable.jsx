@@ -9,7 +9,7 @@ function CalculatorTable() {
   if (isLoading) return <Spinner />;
 
   return (
-    <Table columns="1fr 1fr 1fr 1fr 1fr 1fr">
+    <Table $columns="1fr 1fr 1fr 1fr 1fr 1fr">
       <Table.Header>
         <div>Pub date</div>
         <div>App Income</div>

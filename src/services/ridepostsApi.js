@@ -3,53 +3,39 @@ import { ridebackendURL } from "./rideauthApi";
 
 axios.defaults.withCredentials = true;
 
-export async function directUploadStart(data) {
-  console.log(data);
-
-  const fileName = data.image[0].name;
-  const fileType = data.image[0].type;
-  const file = data.image[0];
-  console.log(fileType);
-
+export async function addCarPost(data) {
   try {
-    // Get the presigned data
-    const presignedRes = await axios.post(
-      `${ridebackendURL}/upload/direct/start`,
-      {
-        file_name: fileName,
-        file_type: fileType,
-      }
+    const carPostResponse = await axios.post(
+      `${ridebackendURL}/add-carpost`,
+      data
     );
+    if (data.image.length) {
+      const file = data.image[0];
+      // Get the presigned data
+      const presignedResponse = await axios.post(
+        `${ridebackendURL}/upload/direct/start`,
+        {
+          file_name: file.name,
+          file_type: file.type,
+          car_post_id: carPostResponse.data.id,
+        }
+      );
 
-    // Perform the actual upload
-    const { url, fields } = presignedRes.data;
+      // Perform the actual upload
+      const { url, fields } = presignedResponse.data;
 
-    const postData = new FormData();
-    Object.entries(fields).forEach(([key, value]) =>
-      postData.append(key, value)
-    );
-    postData.append("file", file);
-
-    if (!file) return;
-
-    await axios.post(url, postData);
-    // Mark the upload process as finished
-    await axios.post(`${ridebackendURL}/upload/direct/finish`, {
-      file_id: presignedRes.data.id,
-    });
-
-    return presignedRes.data;
-  } catch (err) {
-    throw new Error(
-      `${err.message} Sorry, we were unable to start the upload process! ☹️`
-    );
-  }
-}
-
-export async function addCarPost(carData) {
-  try {
-    const response = await axios.post(`${ridebackendURL}/add-carpost`, carData);
-    return response.data;
+      const postData = new FormData();
+      Object.entries(fields).forEach(([key, value]) =>
+        postData.append(key, value)
+      );
+      postData.append("file", file);
+      await axios.post(url, postData);
+      // Mark the upload process as finished
+      await axios.post(`${ridebackendURL}/upload/direct/finish`, {
+        file_id: presignedResponse.data.id,
+      });
+      return presignedRes.data;
+    }
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to add your post`);
   }
@@ -58,7 +44,6 @@ export async function addCarPost(carData) {
 export async function getCarPosts(page) {
   try {
     const response = await axios.get(`${ridebackendURL}/get-carposts/${page}`);
-    console.log(response.data);
 
     return response.data;
   } catch (err) {
@@ -93,10 +78,10 @@ export async function getUserCarPosts(page) {
   }
 }
 
-export async function getImageUrl(file_key) {
+export async function getImageUrl(carPostId) {
   try {
     const response = await axios.get(
-      `${ridebackendURL}/get-image-by-file-key/${file_key}`
+      `${ridebackendURL}/get-image-by-post-id/${carPostId}`
     );
     return response.data;
   } catch (err) {
@@ -104,60 +89,28 @@ export async function getImageUrl(file_key) {
   }
 }
 
-export async function deleteCarPost({ id, image_id = undefined, image_key }) {
-  const carPostDeleteData = {
-    car_post_id: id,
-    image_id,
-  };
+export async function deleteCarPost(carPostId) {
   try {
     // Deletes the post and the file entry on the database
     await axios.delete(`${ridebackendURL}/delete-ridepost`, {
-      data: carPostDeleteData,
+      data: { car_post_id: carPostId },
     });
-
-    // Deletes the image of the post from the AWS S3 Bucket
-    if (image_id)
-      await axios.delete(
-        `${ridebackendURL}/delete-image-by-file-key/${image_key}`,
-        { data: carPostDeleteData }
-      );
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to delete the post!`);
   }
 }
 
-export async function updateCarPost({ formData, imageData }) {
-  console.log(formData);
-  console.log(imageData);
+export async function updateCarPost(formData) {
+  const data = new FormData();
+  Object.entries(formData).forEach(([key, value]) => data.append(key, value));
+  data.append("image", formData.image[0]);
 
   try {
-    if (imageData.image_id) {
-      const presignedPostEditURL = await axios.put(
-        `${ridebackendURL}/put-image`,
-        imageData
-      );
-      console.log(presignedPostEditURL);
-
-      const { url } = presignedPostEditURL.data;
-
-      await axios.put(url, formData.image[0], {
-        headers: {
-          "Content-Type": formData.image[0].type,
-        },
-      });
-    }
-
-    if (imageData.file_id && !formData.image[0]) {
-      await axios.delete(
-        `${ridebackendURL}/delete-image-by-file-key/${formData.image_key}`,
-        { data: { image_id: formData.image_id } }
-      );
-    }
-
-    await axios.patch(
-      `${ridebackendURL}/update-ridepost/${formData.id}`,
-      formData
-    );
+    await axios.put(`${ridebackendURL}/update-ridepost/${formData.id}`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to update the post!`);
   }
