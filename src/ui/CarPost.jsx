@@ -10,7 +10,7 @@ function CarPost({ carPost }) {
   const { user } = useUser();
   const {
     user_id,
-    image_key,
+    id,
     created_at: createdAt,
     car_name: carName,
     body,
@@ -35,8 +35,7 @@ function CarPost({ carPost }) {
     year,
   } = carPost;
   const canEditOrRemove = user_id === user.id;
-  const { isLoading, imageUrl, error } = useGetImageUrl(image_key);
-  console.log(imageUrl);
+  const { isLoading, imageUrl, error } = useGetImageUrl(id);
 
   return (
     <>
