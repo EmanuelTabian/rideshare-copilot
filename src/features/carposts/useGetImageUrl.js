@@ -7,6 +7,7 @@ export function useGetImageUrl(carPostId) {
     data: imageUrl,
     error,
   } = useQuery({
+    queryKey: ["imageUrl", carPostId],
     queryFn: () => getImageUrl(carPostId),
   });
 

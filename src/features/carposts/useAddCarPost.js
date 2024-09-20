@@ -10,7 +10,7 @@ export function useAddCarPost() {
   } = useMutation({
     mutationFn: addCarPostApi,
     onSuccess: () => {
-      queryClient.invalidateQueries(["car-posts"]);
+      queryClient.invalidateQueries({ queryKey: ["car-posts"] });
     },
   });
 

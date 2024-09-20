@@ -40,6 +40,7 @@ function CarCard({ carDetails }) {
     id,
     price,
   } = carDetails;
+  console.log(id);
 
   const canEditOrRemove = user_id === user.id;
   const { isLoading, imageUrl, error } = useGetImageUrl(id);

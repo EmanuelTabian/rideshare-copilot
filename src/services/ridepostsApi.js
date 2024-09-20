@@ -20,10 +20,11 @@ export async function addCarPost(data) {
           car_post_id: carPostResponse.data.id,
         }
       );
-      console.log(presignedResponse.data);
 
       // Perform the actual upload
       const { url, fields } = presignedResponse.data;
+      console.log(url);
+
       const postData = new FormData();
       Object.entries(fields).forEach(([key, value]) =>
         postData.append(key, value)

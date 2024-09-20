@@ -8,8 +8,6 @@ export function dateFormatter(date) {
 }
 
 export function carPostsSorter(cars, searchParams) {
-  console.log(cars);
-
   // // Get sortBy params and account for a name-asc default value
   const sortBy = searchParams || "car_name-asc";
 
