@@ -19,7 +19,7 @@ const Img = styled.img`
   width: 100px;
 `;
 const Button = styled.button``;
-function CarCard({ carDetails }) {
+function CarCard({ carDetails, onCloseModal }) {
   const { deleteCarPost, isDeletingCarPost } = useDeleteCarPost();
   const { user } = useUser();
   const navigate = useNavigate();
