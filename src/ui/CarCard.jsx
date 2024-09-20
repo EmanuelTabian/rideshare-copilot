@@ -46,7 +46,11 @@ function CarCard({ carDetails }) {
   const { isLoading, imageUrl, error } = useGetImageUrl(id);
 
   function handleDelete() {
-    deleteCarPost(id);
+    deleteCarPost(id, {
+      onSettled: () => {
+        onCloseModal?.();
+      },
+    });
   }
 
   return (

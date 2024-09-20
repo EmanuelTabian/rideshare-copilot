@@ -4,10 +4,10 @@ import { deleteCarPost as deleteCarPostApi } from "../../services/ridepostsApi";
 export function useDeleteCarPost() {
   const queryClient = useQueryClient();
   const { mutate: deleteCarPost, isLoading: isDeletingCarPost } = useMutation({
-    mutationFn: deleteCarPostApi,
-    onSuccess: () => {
+    mutationFn: (id) => deleteCarPostApi(id),
+    onSuccess: (data, id) => {
+      queryClient.removeQueries({ queryKey: ["imageUrl", id] });
       queryClient.invalidateQueries({ queryKey: ["car-posts"] });
-      queryClient.refetchQueries({ queryKey: ["car-posts"] });
     },
   });
 
