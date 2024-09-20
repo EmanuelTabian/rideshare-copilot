@@ -26,7 +26,7 @@ function CarPost({ carPost }) {
     milleage,
     model,
     mpg,
-    phone_number: phoneNumber,
+    contact,
     power,
     price,
     seat_number: seatNumber,
@@ -65,8 +65,7 @@ function CarPost({ carPost }) {
           <li>Emmision Standard: {emissionStandard}</li>
         </ul>
         <div>
-          <span>{phoneNumber}</span>
-          <button>Reveal phone number</button>
+          <span>{contact}</span>
         </div>
 
         {canEditOrRemove && (

@@ -23,7 +23,6 @@ export async function addCarPost(data) {
 
       // Perform the actual upload
       const { url, fields } = presignedResponse.data;
-      console.log(url);
 
       const postData = new FormData();
       Object.entries(fields).forEach(([key, value]) =>
@@ -45,7 +44,6 @@ export async function addCarPost(data) {
 export async function getCarPosts(page) {
   try {
     const response = await axios.get(`${ridebackendURL}/get-carposts/${page}`);
-    console.log(response.data);
 
     return response.data;
   } catch (err) {
@@ -92,8 +90,6 @@ export async function getImageUrl(carPostId) {
 }
 
 export async function deleteCarPost(carPostId) {
-  console.log(carPostId);
-
   try {
     // Deletes the post and the file entry on the database
     await axios.delete(`${ridebackendURL}/delete-ridepost`, {
@@ -105,8 +101,6 @@ export async function deleteCarPost(carPostId) {
 }
 
 export async function updateCarPost(formData) {
-  console.log(formData);
-
   const data = new FormData();
   Object.entries(formData).forEach(([key, value]) => data.append(key, value));
   data.append("image", formData.image[0]);

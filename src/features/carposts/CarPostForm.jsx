@@ -181,11 +181,11 @@ function Form({ carDetails = {}, onCloseModal }) {
           />
         </div>
         <div>
-          <label htmlFor="phone_number">Phone</label>
+          <label htmlFor="contact">Contact</label>
           <input
-            type="tel"
-            id="phone_number"
-            {...register("phone_number", {
+            type="text"
+            id="contact"
+            {...register("contact", {
               required: "This field is required",
             })}
           />
