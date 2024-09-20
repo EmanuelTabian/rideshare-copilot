@@ -1,3 +1,4 @@
+import PostCar from "../features/carposts/PostCar";
 import { useGetUserCarPosts } from "../features/carposts/useGetUserCarPosts";
 import Message from "../ui/Message";
 import Spinner from "../ui/Spinner";
@@ -11,6 +12,7 @@ function MyPosts() {
   return (
     <>
       <h1>My posts</h1>
+      <PostCar />
       <UserPosts carPosts={data} count={count} pagination={pagination} />
     </>
   );
