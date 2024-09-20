@@ -16,13 +16,18 @@ function Form({ carDetails = {}, onCloseModal }) {
   function onSubmit(formData) {
     if (!updateSession) {
       addCarPost(formData, {
-        onSuccess: () => {
+        onSettled: () => {
           reset();
           onCloseModal?.();
         },
       });
     } else {
-      updateCarPost(formData);
+      updateCarPost(formData, {
+        onSettled: () => {
+          reset();
+          onCloseModal?.();
+        },
+      });
     }
   }
   return (
