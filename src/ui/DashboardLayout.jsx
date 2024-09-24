@@ -5,9 +5,10 @@ import DocumentStatus from "./DocumentStatus";
 function DashboardLayout() {
   return (
     <>
-      {/* <RecentActivity />
+      {/* <RecentActivity /> */}
       <EarningsGraph />
-      <DocumentStatus /> */}
+
+      {/* <DocumentStatus /> */}
     </>
   );
 }
