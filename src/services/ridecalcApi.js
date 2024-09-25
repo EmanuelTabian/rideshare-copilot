@@ -16,6 +16,19 @@ export async function getCalculatorEntries(page) {
   }
 }
 
+export async function getRecentCalculatorEntries(days) {
+  try {
+    const response = await axios.get(
+      `${ridebackendURL}/get-recent-calculator-entries?days=${days}`
+    );
+    return response.data;
+  } catch (err) {
+    throw new Error(
+      `${err.message} Sorry, we were unable to retrieve your recent calculator entries!`
+    );
+  }
+}
+
 export async function addCalculatorEntry({ calcData }) {
   try {
     const response = await axios.post(
