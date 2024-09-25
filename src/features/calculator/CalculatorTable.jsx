@@ -2,6 +2,7 @@ import Table from "../../ui/Table";
 import CalculatorRow from "./CalculatorRow";
 import { useGetCalculatorEntries } from "./useGetCalculatorEntries";
 import Spinner from "../../ui/Spinner";
+import Pagination from "../../ui/Pagination";
 
 function CalculatorTable() {
   const { calcEntries, isLoading } = useGetCalculatorEntries();
@@ -24,6 +25,9 @@ function CalculatorTable() {
           <CalculatorRow calcEntry={calcEntry} key={calcEntry.id} />
         )}
       />
+      <Table.Footer>
+        <Pagination />
+      </Table.Footer>
     </Table>
   );
 }

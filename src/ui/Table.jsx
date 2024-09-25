@@ -60,8 +60,13 @@ function Body({ data, render }) {
   return <section>{data.map(render)}</section>;
 }
 
+function Footer({ children }) {
+  return <footer>{children}</footer>;
+}
+
 Table.Header = Header;
 Table.Row = Row;
 Table.Body = Body;
+Table.Footer = Footer;
 
 export default Table;

@@ -9,7 +9,7 @@ import {
   YAxis,
 } from "recharts";
 
-function EarningsGraph() {
+function EarningsGraph({ calcEntries }) {
   return (
     <>
       <h1>Earnings graph</h1>

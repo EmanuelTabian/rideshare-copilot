@@ -1,14 +1,14 @@
-import RecentActivity from "../../ui/RecentActivity";
 import EarningsGraph from "../../ui/EarningsGraph";
-import DocumentStatus from "../../ui/DocumentStatus";
+import Spinner from "../../ui/Spinner";
+import { useGetCalculatorEntries } from "../calculator/useGetCalculatorEntries";
 
 function DashboardLayout() {
+  const { calcEntries, isLoading } = useGetCalculatorEntries();
+
+  if (isLoading) return <Spinner />;
   return (
     <>
-      {/* <RecentActivity /> */}
-      <EarningsGraph />
-
-      {/* <DocumentStatus /> */}
+      <EarningsGraph calcEntries={calcEntries} />
     </>
   );
 }
