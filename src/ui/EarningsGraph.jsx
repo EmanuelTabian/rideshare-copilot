@@ -9,7 +9,9 @@ import {
   YAxis,
 } from "recharts";
 
-function EarningsGraph({ calcEntries }) {
+function EarningsGraph({ recentEntries }) {
+  console.log(recentEntries);
+
   return (
     <>
       <h1>Earnings graph</h1>

@@ -4,12 +4,11 @@ import { useGetRecentCalculatorEntries } from "./useGetRecentCalculatorEntries";
 
 function DashboardLayout() {
   const { recentEntries, isLoading } = useGetRecentCalculatorEntries();
-
   if (isLoading) return <Spinner />;
-  console.log(recentEntries);
+
   return (
     <>
-      <EarningsGraph />
+      <EarningsGraph recentEntries={recentEntries} />
     </>
   );
 }

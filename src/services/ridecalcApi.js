@@ -21,7 +21,6 @@ export async function getRecentCalculatorEntries(days) {
     const response = await axios.get(
       `${ridebackendURL}/get-recent-calculator-entries?days=${days}`
     );
-    console.log(response.data);
 
     return response.data;
   } catch (err) {
