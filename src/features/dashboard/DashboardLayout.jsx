@@ -1,14 +1,15 @@
 import EarningsGraph from "../../ui/EarningsGraph";
 import Spinner from "../../ui/Spinner";
-import { useGetCalculatorEntries } from "../calculator/useGetCalculatorEntries";
+import { useGetRecentCalculatorEntries } from "./useGetRecentCalculatorEntries";
 
 function DashboardLayout() {
-  const { calcEntries, isLoading } = useGetCalculatorEntries();
+  const { recentEntries, isLoading } = useGetRecentCalculatorEntries();
 
   if (isLoading) return <Spinner />;
+  console.log(recentEntries);
   return (
     <>
-      <EarningsGraph calcEntries={calcEntries} />
+      <EarningsGraph />
     </>
   );
 }
