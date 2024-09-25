@@ -2,7 +2,10 @@ import styled from "styled-components";
 import {
   Area,
   AreaChart,
+  Bar,
+  BarChart,
   CartesianGrid,
+  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -29,7 +32,7 @@ function EarningsGraph({ recentEntries }) {
           Sales from {chartDateFormatter(recentEntries.at(0).pub_date)} to{" "}
           {chartDateFormatter(recentEntries.at(-1).pub_date)}
         </h2>
-        <ResponsiveContainer width="70%" height={250}>
+        <ResponsiveContainer width="80%" height={200}>
           <AreaChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="label" />
@@ -54,6 +57,31 @@ function EarningsGraph({ recentEntries }) {
               unit="RON"
             />
           </AreaChart>
+        </ResponsiveContainer>
+      </div>
+      <div>
+        <ResponsiveContainer width="80%" height={200}>
+          <BarChart data={data}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="label" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar
+              type="monotone"
+              dataKey="appIncome"
+              fill="#94150C"
+              name="App income"
+              unit="RON"
+            />
+            <Bar
+              type="monotone"
+              dataKey="earnings"
+              fill="#0C9445"
+              name="Earnings"
+              unit="RON"
+            />
+          </BarChart>
         </ResponsiveContainer>
       </div>
     </>
