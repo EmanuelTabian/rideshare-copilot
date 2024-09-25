@@ -34,8 +34,9 @@ export async function addCarPost(data) {
       await axios.post(`${ridebackendURL}/upload/direct/finish`, {
         file_id: presignedResponse.data.id,
       });
-      return presignedRes.data;
     }
+
+    return carPostResponse.data;
   } catch (err) {
     throw new Error(`${err.message} Sorry, we were unable to add your post`);
   }
