@@ -7,7 +7,8 @@ function Settings() {
   return (
     <div>
       <h1>Customize App</h1>
-      <DarkModeToggler />
+      {/* Dark mode toggler will be grayed out as it doesn't take part of the MVP */}
+      {/* <DarkModeToggler /> */}
       <UserUpdateForm />
       <DeleteUser />
     </div>

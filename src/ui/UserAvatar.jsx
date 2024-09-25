@@ -11,10 +11,11 @@ function UserAvatar() {
   const username = "";
   return (
     <StyledUserAvatar>
-      <Avatar
+      {/* Avatar will be commented out as it doen't take part of the MVP */}
+      {/* <Avatar
         src={avatar || "default-user.jpg"}
         alt={`Avatar of ${user.name}`}
-      />
+      /> */}
       <h1>Hi {user.name}</h1>
     </StyledUserAvatar>
   );

@@ -62,10 +62,11 @@ const router = createBrowserRouter([
         path: "/calculator",
         element: <Calculator />,
       },
-      {
-        path: "/documents",
-        element: <Documents />,
-      },
+      // Temporarily deactivate documents section as it doesn't take part of the MVP
+      // {
+      //   path: "/documents",
+      //   element: <Documents />,
+      // },
       {
         path: "/dashboard",
         element: <Dashboard />,
