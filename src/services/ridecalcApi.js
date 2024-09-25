@@ -3,10 +3,10 @@ import { ridebackendURL } from "./rideauthApi";
 
 axios.defaults.withCredentials = true;
 
-export async function getCalculatorEntries() {
+export async function getCalculatorEntries(page) {
   try {
     const response = await axios.get(
-      `${ridebackendURL}/get-calculator-entries`
+      `${ridebackendURL}/get-calculator-entries?page=${page}`
     );
     return response.data;
   } catch (err) {
