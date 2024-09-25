@@ -8,6 +8,7 @@ export function useUpdateCarPost() {
     onSuccess: (data, formData) => {
       queryClient.invalidateQueries({ queryKey: ["imageUrl", formData.id] });
       queryClient.invalidateQueries({ queryKey: ["car-posts"] });
+      queryClient.invalidateQueries({ queryKey: ["user-car-posts"] });
     },
   });
 

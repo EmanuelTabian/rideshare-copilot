@@ -3,15 +3,29 @@ import { ridebackendURL } from "./rideauthApi";
 
 axios.defaults.withCredentials = true;
 
-export async function getCalculatorEntries() {
+export async function getCalculatorEntries(page) {
   try {
     const response = await axios.get(
-      `${ridebackendURL}/get-calculator-entries`
+      `${ridebackendURL}/get-calculator-entries?page=${page}`
     );
     return response.data;
   } catch (err) {
     throw new Error(
       `${err.message} Sorry, we were unable to retrieve your calculator entries! ☹️`
+    );
+  }
+}
+
+export async function getRecentCalculatorEntries(days) {
+  try {
+    const response = await axios.get(
+      `${ridebackendURL}/get-recent-calculator-entries?days=${days}`
+    );
+
+    return response.data;
+  } catch (err) {
+    throw new Error(
+      `${err.message} Sorry, we were unable to retrieve your recent calculator entries!`
     );
   }
 }

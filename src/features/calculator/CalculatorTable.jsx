@@ -2,9 +2,11 @@ import Table from "../../ui/Table";
 import CalculatorRow from "./CalculatorRow";
 import { useGetCalculatorEntries } from "./useGetCalculatorEntries";
 import Spinner from "../../ui/Spinner";
+import Pagination from "../../ui/Pagination";
 
 function CalculatorTable() {
   const { calcEntries, isLoading } = useGetCalculatorEntries();
+  console.log(calcEntries);
 
   if (isLoading) return <Spinner />;
 
@@ -19,11 +21,17 @@ function CalculatorTable() {
         <div>Actions</div>
       </Table.Header>
       <Table.Body
-        data={calcEntries}
+        data={calcEntries.data}
         render={(calcEntry) => (
           <CalculatorRow calcEntry={calcEntry} key={calcEntry.id} />
         )}
       />
+      <Table.Footer>
+        <Pagination
+          count={calcEntries.count}
+          pagination={calcEntries.pagination}
+        />
+      </Table.Footer>
     </Table>
   );
 }

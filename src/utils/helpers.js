@@ -1,9 +1,13 @@
 import { format } from "date-fns";
 import { cs } from "date-fns/locale";
-import { useSearchParams } from "react-router-dom";
 
 export function dateFormatter(date) {
   const formattedDate = format(date, "dd.MM.yyyy HH:mm", { locale: cs });
+  return formattedDate;
+}
+
+export function chartDateFormatter(date) {
+  const formattedDate = format(date, "dd MMM");
   return formattedDate;
 }
 

@@ -9,6 +9,11 @@ function Nav() {
     <nav>
       <NavList>
         <li>
+          <StyledNavLink to="/dashboard">Dashboard</StyledNavLink>
+        </li>
+      </NavList>
+      <NavList>
+        <li>
           <StyledNavLink to="/cars">Cars</StyledNavLink>
         </li>
       </NavList>
@@ -17,16 +22,12 @@ function Nav() {
           <StyledNavLink to="/calculator">Calculator</StyledNavLink>
         </li>
       </NavList>
-      <NavList>
+      {/* Temporarily deactivate documents section as it doesn't take part of the MVP */}
+      {/* <NavList>
         <li>
           <StyledNavLink to="/documents">Documents</StyledNavLink>
         </li>
-      </NavList>
-      <NavList>
-        <li>
-          <StyledNavLink to="/dashboard">Dashboard</StyledNavLink>
-        </li>
-      </NavList>
+      </NavList> */}
       <NavList>
         <li>
           <StyledNavLink to="/settings">Settings</StyledNavLink>
