@@ -6,6 +6,9 @@ import CarPostTableOperations from "./CarPostTableOperations";
 import { useEffect, useState } from "react";
 import Spinner from "../../ui/Spinner";
 import { carPostsSorter } from "../../utils/helpers";
+import styled from "styled-components";
+
+const CarList = styled.ul``;
 
 function CarPostsLayout({ carPosts, count, pagination }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -14,18 +17,24 @@ function CarPostsLayout({ carPosts, count, pagination }) {
 
   return (
     <>
-      <CarPostTableOperations />
       {/* Conditionally rendered when the posts array of objects is empty */}
-      {!sortedCarPosts ? (
+      {!sortedCarPosts.length ? (
         <Message>No posts yet! You can add one!</Message>
       ) : (
-        <ul>
-          {sortedCarPosts.map((carPost) => (
-            <CarCard key={carPost.id} carDetails={carPost} />
-          ))}
-        </ul>
+        <>
+          <CarPostTableOperations />
+          <CarList>
+            {sortedCarPosts.map((carPost) => (
+              <CarCard key={carPost.id} carDetails={carPost} />
+            ))}
+          </CarList>
+          <Pagination
+            count={count}
+            pagination={pagination}
+            pageLength={sortedCarPosts.length}
+          />
+        </>
       )}
-      <Pagination count={count} pagination={pagination} />
     </>
   );
 }

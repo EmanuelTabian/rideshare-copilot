@@ -5,7 +5,7 @@ import { HiChevronLeft } from "react-icons/hi2";
 import { HiChevronRight } from "react-icons/hi2";
 import { useEffect } from "react";
 
-function Pagination({ count, pagination }) {
+function Pagination({ count, pagination, pageLength }) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const {
@@ -14,6 +14,7 @@ function Pagination({ count, pagination }) {
     has_previous: hasPreviousPage,
     total_pages: totalPages,
   } = pagination;
+  console.log(pageLength);
 
   function nextPage() {
     const next = currentPage === totalPages ? currentPage : currentPage + 1;
@@ -33,8 +34,8 @@ function Pagination({ count, pagination }) {
         <HiChevronLeft /> <span>Previous</span>
       </button>
       <span>
-        Page {currentPage} of {totalPages}. Showing {count <= 10 ? count : 10}{" "}
-        of {count} results
+        Page {currentPage} of {totalPages}. Showing{" "}
+        {pageLength <= 10 ? pageLength : 10} of {count} results
       </span>
       <button onClick={nextPage} disabled={!hasNextPage}>
         <span>Next</span>
