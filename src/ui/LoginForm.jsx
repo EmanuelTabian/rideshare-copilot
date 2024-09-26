@@ -48,12 +48,10 @@ const Form = styled.form`
     border-radius: 4px;
     font-size: 1rem;
   }
-
   input[type="checkbox"] {
     width: auto;
     margin-left: 0.5rem;
   }
-
   @media (min-width: 600px) {
     padding: 2rem;
     fieldset {
@@ -117,11 +115,13 @@ function LoginForm() {
             {...register("password", { required: "This field is required" })}
           />
         </div>
-        <label htmlFor="checkbox">Show password</label>
-        <input
-          type="checkbox"
-          onClick={() => setShowPassword((password) => !password)}
-        />
+        <div>
+          <label htmlFor="checkbox">Show password</label>
+          <input
+            type="checkbox"
+            onClick={() => setShowPassword((password) => !password)}
+          />
+        </div>
         <div>
           <Button>Sign in</Button>
         </div>
