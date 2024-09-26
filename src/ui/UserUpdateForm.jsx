@@ -13,7 +13,6 @@ function UserUpdateForm() {
     let userdata = { name, password };
     if (!password) userdata = { name };
     if (!name) userdata = { password };
-    console.log(userdata);
 
     userUpdate(
       { userdata },

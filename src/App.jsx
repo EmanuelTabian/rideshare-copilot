@@ -33,10 +33,11 @@ const router = createBrowserRouter([
     path: "/signup",
     element: <Signup />,
   },
-  {
-    path: "/password-reset",
-    element: <PasswordReset />,
-  },
+  // Comment out password reset as it doens't take part of the MVP
+  // {
+  //   path: "/password-reset",
+  //   element: <PasswordReset />,
+  // },
 
   {
     path: "/",

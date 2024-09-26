@@ -9,12 +9,13 @@ function AuthOperations() {
           <NavLink to="/signup">Sign up</NavLink>
         </span>
       </div>
-      <div>
+      {/* Comment out password reset as it doens't take part of the MVP */}
+      {/* <div>
         <span>Forgot your password? </span>
         <span>
           <NavLink to="/password-reset">Reset password</NavLink>
         </span>
-      </div>
+      </div> */}
     </>
   );
 }

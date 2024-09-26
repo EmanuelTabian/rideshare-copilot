@@ -7,7 +7,7 @@ import Button from "./Button";
 const testUsername = "abc@example.com";
 const testPassword = "123RideshareCopilot!@#";
 const testUsername2 = "a@example.com";
-const testPassword2 = "123Rideshareapp!@#";
+const testPassword2 = "123Rideshare!@#";
 
 function LoginForm() {
   const { signin, isLoading } = useSignin();
