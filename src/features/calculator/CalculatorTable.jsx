@@ -28,6 +28,7 @@ function CalculatorTable() {
       />
       <Table.Footer>
         <Pagination
+          pageLength={calcEntries.data.length}
           count={calcEntries.count}
           pagination={calcEntries.pagination}
         />

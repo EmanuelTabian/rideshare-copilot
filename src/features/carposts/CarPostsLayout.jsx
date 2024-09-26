@@ -28,7 +28,11 @@ function CarPostsLayout({ carPosts, count, pagination }) {
               <CarCard key={carPost.id} carDetails={carPost} />
             ))}
           </CarList>
-          <Pagination count={count} pagination={pagination} />
+          <Pagination
+            count={count}
+            pagination={pagination}
+            pageLength={sortedCarPosts.length}
+          />
         </>
       )}
     </>
