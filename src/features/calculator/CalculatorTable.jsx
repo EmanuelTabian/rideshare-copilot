@@ -6,7 +6,7 @@ import Pagination from "../../ui/Pagination";
 
 function CalculatorTable() {
   const { calcEntries, isLoading } = useGetCalculatorEntries();
-  console.log(calcEntries);
+  // console.log(calcEntries.data.length);
 
   if (isLoading) return <Spinner />;
 
@@ -26,13 +26,15 @@ function CalculatorTable() {
           <CalculatorRow calcEntry={calcEntry} key={calcEntry.id} />
         )}
       />
-      <Table.Footer>
-        <Pagination
-          pageLength={calcEntries.data.length}
-          count={calcEntries.count}
-          pagination={calcEntries.pagination}
-        />
-      </Table.Footer>
+      {Boolean(calcEntries.data.length) && (
+        <Table.Footer>
+          <Pagination
+            pageLength={calcEntries.data.length}
+            count={calcEntries.count}
+            pagination={calcEntries.pagination}
+          />
+        </Table.Footer>
+      )}
     </Table>
   );
 }
