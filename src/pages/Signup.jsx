@@ -15,8 +15,9 @@ const Form = styled.form`
 
   fieldset {
     border: none;
+    width: 100%;
+    max-width: 500px;
     padding: 0;
-    max-width: 400px;
     padding: 0;
     margin: 0;
   }
@@ -27,9 +28,8 @@ const Form = styled.form`
   }
 
   div {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
   }
   label {
     font-weight: bold;
@@ -44,6 +44,7 @@ const Form = styled.form`
   }
 
   @media (min-width: 600px) {
+    padding: 2rem;
     fieldset {
       max-width: 500px;
     }
@@ -79,6 +80,9 @@ function Signup() {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
         <legend>New to Rideshare Copilot?</legend>
+        <p>
+          Sign up to track your earnings, explore car rental posts and more.
+        </p>
         <div>
           <label htmlFor="email">Email:</label>
           <input
