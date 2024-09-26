@@ -22,7 +22,6 @@ const GlobalStyles = createGlobalStyle`
 body {
     margin: 0;
     padding: 0;
-    background-image: var(--app-background-color);
     color: var(--color-grey-100);
     line-height: 1.6;
     font-size: 1rem;

@@ -4,6 +4,73 @@ import { useNavigate } from "react-router-dom";
 import { useSignin } from "../features/authentication/useSignin";
 import Button from "./Button";
 import { useState } from "react";
+import styled from "styled-components";
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  fieldset {
+    border: none;
+    width: 100%;
+    max-width: 400px;
+    padding: 0;
+    margin: 0;
+  }
+
+  legend {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  div {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input[type="email"],
+  input[type="password"],
+  input[type="text"],
+  input[type="checkbox"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  input[type="checkbox"] {
+    width: auto;
+    margin-left: 0.5rem;
+  }
+
+  @media (min-width: 600px) {
+    padding: 2rem;
+    fieldset {
+      max-width: 500px;
+    }
+
+    legend {
+      font-size: 2rem;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+      font-size: 1.25rem;
+    }
+  }
+`;
 
 const testUsername = "abc@example.com";
 const testPassword = "123RideshareCopilot!@#";
@@ -30,9 +97,10 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
-        <legend>Enter your email and password</legend>
+        <legend>Welcome Back!</legend>
+        <p>We're glad to see you again.</p>
         <div>
           <label htmlFor="email">Email:</label>
           <input
@@ -58,7 +126,7 @@ function LoginForm() {
           <Button>Sign in</Button>
         </div>
       </fieldset>
-    </form>
+    </Form>
   );
 }
 
