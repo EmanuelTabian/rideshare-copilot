@@ -14,7 +14,9 @@ import {
 import { chartDateFormatter } from "../utils/helpers";
 
 function EarningsGraph({ recentEntries }) {
-  console.log(recentEntries);
+  const sameDate =
+    chartDateFormatter(recentEntries.at(0).pub_date) ===
+    chartDateFormatter(recentEntries.at(-1).pub_date);
 
   const data = recentEntries.map((entry) => {
     return {
@@ -29,8 +31,10 @@ function EarningsGraph({ recentEntries }) {
       <h1>Earnings graph</h1>
       <div>
         <h2>
-          Sales from {chartDateFormatter(recentEntries.at(0).pub_date)} to{" "}
-          {chartDateFormatter(recentEntries.at(-1).pub_date)}
+          Sales from {chartDateFormatter(recentEntries.at(0).pub_date)}
+          {!sameDate &&
+            `to
+          ${chartDateFormatter(recentEntries.at(-1).pub_date)}`}
         </h2>
         <ResponsiveContainer width="80%" height={200}>
           <AreaChart data={data}>
