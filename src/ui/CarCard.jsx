@@ -41,6 +41,8 @@ function CarCard({ carDetails, onCloseModal }) {
     price,
   } = carDetails;
 
+  console.log(onCloseModal);
+
   const canEditOrRemove = user_id === user.id;
   const { isLoading, imageUrl, error } = useGetImageUrl(id);
 

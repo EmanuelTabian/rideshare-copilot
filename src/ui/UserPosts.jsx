@@ -21,16 +21,16 @@ function UserPosts({ carPosts, count, pagination }) {
     <>
       <NavLink to="/cars">Back to all posts</NavLink>
       <CarPostTableOperations />
-      {sortedCars.length ? (
+      {!sortedCars ? (
+        <div>
+          <Message>Sorry, you have no car posts!</Message>
+        </div>
+      ) : (
         <CarList>
           {sortedCars.map((carPost) => (
             <CarCard key={carPost.id} carDetails={carPost} />
           ))}
         </CarList>
-      ) : (
-        <div>
-          <Message>Sorry, you have no car posts!</Message>
-        </div>
       )}
       <Pagination count={count} pagination={pagination} />
     </>
