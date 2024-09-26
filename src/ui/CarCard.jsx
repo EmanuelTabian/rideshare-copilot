@@ -1,4 +1,4 @@
-import { version } from "react";
+import { useState, version } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dateFormatter } from "../utils/helpers";
@@ -19,8 +19,7 @@ const Img = styled.img`
   width: 100px;
 `;
 const Button = styled.button``;
-function CarCard({ carDetails, onCloseModal }) {
-  const { deleteCarPost, isDeletingCarPost } = useDeleteCarPost();
+function CarCard({ carDetails }) {
   const { user } = useUser();
   const navigate = useNavigate();
 
@@ -40,18 +39,12 @@ function CarCard({ carDetails, onCloseModal }) {
     id,
     price,
   } = carDetails;
-
-  console.log(onCloseModal);
-
   const canEditOrRemove = user_id === user.id;
   const { isLoading, imageUrl, error } = useGetImageUrl(id);
+  const { deleteCarPost, isDeletingCarPost } = useDeleteCarPost();
 
   function handleDelete() {
-    deleteCarPost(id, {
-      onSettled: () => {
-        onCloseModal?.();
-      },
-    });
+    deleteCarPost(id);
   }
 
   return (
