@@ -19,16 +19,18 @@ function CarPostsLayout({ carPosts, count, pagination }) {
     <>
       <CarPostTableOperations />
       {/* Conditionally rendered when the posts array of objects is empty */}
-      {!sortedCarPosts ? (
+      {!sortedCarPosts.length ? (
         <Message>No posts yet! You can add one!</Message>
       ) : (
-        <CarList>
-          {sortedCarPosts.map((carPost) => (
-            <CarCard key={carPost.id} carDetails={carPost} />
-          ))}
-        </CarList>
+        <>
+          <CarList>
+            {sortedCarPosts.map((carPost) => (
+              <CarCard key={carPost.id} carDetails={carPost} />
+            ))}
+          </CarList>
+          <Pagination count={count} pagination={pagination} />
+        </>
       )}
-      <Pagination count={count} pagination={pagination} />
     </>
   );
 }
