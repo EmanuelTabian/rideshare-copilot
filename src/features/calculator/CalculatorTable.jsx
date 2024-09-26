@@ -6,7 +6,6 @@ import Pagination from "../../ui/Pagination";
 
 function CalculatorTable() {
   const { calcEntries, isLoading } = useGetCalculatorEntries();
-  // console.log(calcEntries.data.length);
 
   if (isLoading) return <Spinner />;
 

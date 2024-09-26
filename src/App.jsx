@@ -15,6 +15,7 @@ import Settings from "./pages/Settings";
 import MyPosts from "./pages/MyPosts";
 import PasswordReset from "./pages/PasswordReset";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import PageNotFound from "./pages/PageNotFound";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -38,7 +39,10 @@ const router = createBrowserRouter([
   //   path: "/password-reset",
   //   element: <PasswordReset />,
   // },
-
+  {
+    path: "*",
+    element: <PageNotFound />,
+  },
   {
     path: "/",
     element: (
