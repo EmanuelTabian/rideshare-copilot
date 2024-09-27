@@ -9,10 +9,9 @@ import { useAddCalculatorEntry } from "../features/calculator/useAddCalculatorEn
 
 const Income = styled.div`
   padding: 8px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 11rem 10rem;
+  grid-gap: 8px;
 `;
 
 function CalculatorLayout() {
@@ -70,13 +69,13 @@ function CalculatorLayout() {
       <Income>
         <IncomeField />
         <CalcInput value={rideCom} setValue={setRideCom}>
-          Rideshare commission (%)
+          Rideshare commission (%):
         </CalcInput>
         <CalcInput value={emplCom} setValue={setEmplCom}>
-          Employer commission (%)
+          Employer commission (%):
         </CalcInput>
         <CalcInput value={otherCom} setValue={setOtherCom}>
-          Other Commission
+          Other Commission:
         </CalcInput>
         {income && (
           <div>
