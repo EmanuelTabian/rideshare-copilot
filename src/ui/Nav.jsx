@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const NavList = styled.ul`
   margin-left: 16px;
+  font-size: 1.2rem;
   @media (max-width: 480px) {
     display: none;
   }

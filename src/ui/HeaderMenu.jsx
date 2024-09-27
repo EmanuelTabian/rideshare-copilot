@@ -10,8 +10,6 @@ import NavBar from "./NavBar";
 import { useState } from "react";
 
 const StyledHeaderMenu = styled.div`
-  margin: 0 16px;
-
   & svg {
     font-size: 1.2rem;
     transition: color 0.2s;
@@ -60,7 +58,6 @@ const StyledOverlay = styled.div`
     text-decoration: none;
     transition: color 0.2s;
     display: flex;
-    /* align-items: center; */
   }
 
   & a:hover {
