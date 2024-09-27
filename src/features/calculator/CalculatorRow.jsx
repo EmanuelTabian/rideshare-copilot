@@ -11,10 +11,10 @@ import { useDeleteCalaculatorEntry } from "./useDeleteCalculatorEntry";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  padding: 0.44rem 0.8rem;
+  /* padding: 0.44rem 0.8rem; */
   border: none;
   border-radius: 0 10px 10px 10px;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 900;
   cursor: pointer;
 
@@ -27,6 +27,7 @@ const StyledButton = styled.button`
   }
   @media (min-width: 480px) {
     font-size: 1rem;
+    padding: 0.44rem 0.8rem;
   }
 `;
 

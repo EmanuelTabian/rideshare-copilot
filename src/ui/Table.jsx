@@ -15,6 +15,11 @@ const ReusableRow = styled.div`
   grid-template-columns: ${(props) => props.$columns};
   column-gap: 2rem;
   align-items: center;
+
+  @media (max-width: 480px) {
+    font-size: 0.6rem;
+    column-gap: 0.2rem;
+  }
 `;
 
 const StyledHeader = styled(ReusableRow)`
@@ -22,6 +27,12 @@ const StyledHeader = styled(ReusableRow)`
   text-transform: uppercase;
   font-size: 1rem;
   font-weight: 500;
+
+  @media (max-width: 480px) {
+    padding: 0.2rem;
+    font-size: 0.6rem;
+    text-transform: capitalize;
+  }
 `;
 
 const StyledRow = styled(ReusableRow)`
@@ -33,6 +44,10 @@ const NoData = styled.p`
   font-weight: 500;
   text-align: center;
   margin: 2rem;
+
+  @media (max-width: 480px) {
+    font-size: 0.6rem;
+  }
 `;
 
 // Compound component originally designed by Jonas Schmedtmann and adapted to current project.
