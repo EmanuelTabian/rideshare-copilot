@@ -15,10 +15,27 @@ import CarPostsLayout from "../features/carposts/CarPostsLayout";
 import { carPostsSorter } from "../utils/helpers";
 
 const FlexContainer = styled.div`
+  font-size: 1rem;
+
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-start;
   align-items: center;
+  gap: 1rem;
+`;
+
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: bold;
+  &.active {
+    color: var(--color-brand-600);
+  }
+
+  &:hover {
+    color: var(--color-brand-600);
+  }
 `;
 
 const StyledCars = styled.div`
@@ -54,12 +71,13 @@ function Cars() {
   return (
     <>
       <StyledCars>
+        <H2>Browse car posts</H2>
         <FlexContainer>
-          <NavLink to="/cars/myposts">My posts</NavLink>
+          <StyledNavLink to="/cars/myposts">My posts</StyledNavLink>
           <PostCar />
+          <CarPostTableOperations />
         </FlexContainer>
 
-        <H2>Browse car posts</H2>
         <CarPostsLayout carPosts={data} count={count} pagination={pagination} />
       </StyledCars>
     </>

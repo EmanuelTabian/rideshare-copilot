@@ -22,7 +22,6 @@ function CarPostsLayout({ carPosts, count, pagination }) {
         <Message>No posts yet! You can add one!</Message>
       ) : (
         <>
-          <CarPostTableOperations />
           <CarList>
             {sortedCarPosts.map((carPost) => (
               <CarCard key={carPost.id} carDetails={carPost} />
