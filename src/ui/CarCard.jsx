@@ -31,6 +31,10 @@ const Img = styled.img`
   width: 300px;
   border: none;
   border-radius: 32px;
+
+  @media (min-width: 480px) {
+    width: 400px;
+  }
 `;
 const CarDetailsContainer = styled.div`
   display: grid;
@@ -51,6 +55,9 @@ const Button = styled.button`
   &:hover {
     background-color: var(--color-brand-600);
     color: white;
+  }
+  @media (min-width: 480px) {
+    font-size: 1rem;
   }
 `;
 function CarCard({ carDetails }) {
