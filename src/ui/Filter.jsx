@@ -1,4 +1,36 @@
 import { useSearchParams } from "react-router-dom";
+import styled, { css } from "styled-components";
+// Styled component originally created by: Jonas Schmedtmann
+const StyledFilter = styled.div`
+  border: none;
+  display: flex;
+  gap: 0.5rem;
+`;
+
+const FilterButton = styled.button`
+  background-color: var(--color-grey-0);
+  border: none;
+
+  ${(props) =>
+    props.active &&
+    css`
+      background-color: var(--color-brand-600);
+      color: white;
+    `}
+
+  border-radius: 0px 15px 15px 15px;
+  font-weight: 600;
+  font-size: 1rem;
+
+  /* To give the same height as select */
+  padding: 0.44rem 0.8rem;
+  transition: all 0.3s;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-brand-600);
+    color: white;
+  }
+`;
 
 // Component originally created by: Jonas Schmedtmann
 function Filter({ filterField, options }) {
@@ -11,17 +43,17 @@ function Filter({ filterField, options }) {
   }
 
   return (
-    <div>
+    <StyledFilter>
       {options.map((option) => (
-        <button
+        <FilterButton
           key={option.value}
           onClick={() => handleClick(option.value)}
           active={option.value === currentFilter}
         >
           {option.label}
-        </button>
+        </FilterButton>
       ))}
-    </div>
+    </StyledFilter>
   );
 }
 
