@@ -9,7 +9,20 @@ const StyledModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 3rem 3rem;
+  background-color: var(--color-white);
+  button {
+    font-size: 1.3rem;
+    color: white;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    cursor: pointer;
+    border: none;
+  }
+  button:hover {
+    color: var(--color-grey-300);
+  }
 `;
 
 const Overlay = styled.div`
