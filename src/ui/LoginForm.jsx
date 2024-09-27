@@ -109,14 +109,13 @@ const testUsername2 = "a@example.com";
 const testPassword2 = "123Rideshare!@#";
 
 function LoginForm() {
-  const { signin, isLoading } = useSignin();
+  const { signin, status } = useSignin();
   const [showPassword, setShowPassword] = useState(false);
-  console.log(isLoading);
+  console.log(status);
 
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
   const navigate = useNavigate();
-  console.log(showPassword);
 
   function onSubmit(formData) {
     if (!formData.email || !formData.password) return;
@@ -160,7 +159,7 @@ function LoginForm() {
             />
           </div>
           <div>
-            <Button>{isLoading ? <SpinnerMini /> : "Login"}</Button>
+            <Button>{status === "pending" ? <SpinnerMini /> : "Login"}</Button>
           </div>
         </fieldset>
       </Form>
