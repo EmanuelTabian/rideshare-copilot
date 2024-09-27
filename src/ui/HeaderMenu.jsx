@@ -3,9 +3,11 @@ import styled from "styled-components";
 import { IoSettings } from "react-icons/io5";
 import { IoLogOutOutline } from "react-icons/io5";
 import { HiBars3 } from "react-icons/hi2";
+import { HiXMark } from "react-icons/hi2";
 import Button from "./Button";
 import { useLogout } from "../features/authentication/useLogout";
 import NavBar from "./NavBar";
+import { useState } from "react";
 
 const StyledHeaderMenu = styled.div`
   margin: 0 16px;
@@ -24,11 +26,9 @@ const StyledHeaderMenu = styled.div`
   }
 `;
 const StyledButton = styled.button`
-  margin-left: 1rem;
   border: none;
 `;
 const StyledBurger = styled.button`
-  margin-left: 1rem;
   border: none;
 
   @media (min-width: 480px) {
@@ -48,20 +48,18 @@ const StyledOverlay = styled.div`
   transform: translateX(100%);
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Align items to the start */
+  align-items: flex-start;
   justify-content: flex-start;
   padding: 1rem;
-  &.active {
-    transform: translateX(0);
-  }
 
   & nav {
     width: 100%;
-    margin: 1.6em 1em;
+    margin-top: 1.5em;
   }
   & a {
     color: white;
     font-size: 1rem;
+    font-weight: bold;
     text-decoration: none;
     transition: color 0.2s;
     display: flex;
@@ -71,9 +69,18 @@ const StyledOverlay = styled.div`
   & a:hover {
     color: var(--color-grey-400);
   }
+  & svg {
+    color: white;
+  }
+`;
+
+const StyledNavButton = styled.button`
+  border: none;
+  background-color: transparent;
 `;
 
 function HeaderMenu() {
+  const [burgerActive, setBurgerActive] = useState(false);
   const { logout, isLoadin } = useLogout();
 
   return (
@@ -84,12 +91,19 @@ function HeaderMenu() {
       <StyledButton onClick={logout}>
         <IoLogOutOutline />
       </StyledButton>
-      <StyledBurger>
+      <StyledBurger onClick={() => setBurgerActive(true)}>
         <HiBars3 />
       </StyledBurger>
-      <StyledOverlay>
-        <NavBar />
-      </StyledOverlay>
+      {burgerActive && (
+        <StyledOverlay>
+          <StyledNavButton onClick={() => setBurgerActive(false)}>
+            <HiXMark />
+          </StyledNavButton>
+          <StyledNavButton onClick={() => setBurgerActive(false)}>
+            <NavBar />
+          </StyledNavButton>
+        </StyledOverlay>
+      )}
     </StyledHeaderMenu>
   );
 }
