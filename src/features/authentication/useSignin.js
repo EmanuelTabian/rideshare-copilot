@@ -6,7 +6,7 @@ export function useSignin() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { mutate: signin, isLoading } = useMutation({
-    mutationFn: ({ email, password }) => signinApi({ email, password }),
+    mutationFn: signinApi,
     onSuccess: () => {
       queryClient.invalidateQueries(["user"]);
       navigate("/dashboard", { replace: true });

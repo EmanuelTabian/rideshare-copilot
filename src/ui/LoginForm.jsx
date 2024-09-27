@@ -5,6 +5,7 @@ import { useSignin } from "../features/authentication/useSignin";
 import Button from "./Button";
 import { useState } from "react";
 import styled from "styled-components";
+import SpinnerMini from "./SpinnerMini";
 
 const LogoContainer = styled.div`
   margin-top: 7rem;
@@ -108,22 +109,21 @@ const testUsername2 = "a@example.com";
 const testPassword2 = "123Rideshare!@#";
 
 function LoginForm() {
-  const [showPassword, setShowPassword] = useState(false);
   const { signin, isLoading } = useSignin();
+  const [showPassword, setShowPassword] = useState(false);
+  console.log(isLoading);
+
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
   const navigate = useNavigate();
   console.log(showPassword);
 
-  function onSubmit({ email, password }) {
-    if (!email || !password) return;
+  function onSubmit(formData) {
+    if (!formData.email || !formData.password) return;
 
-    signin(
-      { email, password },
-      {
-        onSettled: () => reset(),
-      }
-    );
+    signin(formData, {
+      onSettled: () => reset(),
+    });
   }
 
   return (
@@ -160,7 +160,7 @@ function LoginForm() {
             />
           </div>
           <div>
-            <Button>Sign in</Button>
+            <Button>{isLoading ? <SpinnerMini /> : "Login"}</Button>
           </div>
         </fieldset>
       </Form>
