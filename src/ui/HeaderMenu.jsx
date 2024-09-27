@@ -6,7 +6,6 @@ import { HiBars3 } from "react-icons/hi2";
 import { HiXMark } from "react-icons/hi2";
 import Button from "./Button";
 import { useLogout } from "../features/authentication/useLogout";
-import NavBar from "./NavBar";
 import { useState } from "react";
 
 const StyledHeaderMenu = styled.div`

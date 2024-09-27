@@ -1,8 +1,8 @@
 import { Outlet } from "react-router";
 import Header from "./Header";
 import Footer from "./Footer";
-import NavBar from "./NavBar";
 import styled from "styled-components";
+import Nav from "./Nav";
 
 const StyledDevider = styled.div`
   /* Aside layout originally designed by Jonas Schmedtmann */
@@ -32,7 +32,7 @@ function AppLayout() {
     <>
       <Header />
       <StyledDevider>
-        <NavBar />
+        <Nav />
         <Main>
           <Container>
             <Outlet />
