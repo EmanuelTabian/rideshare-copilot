@@ -14,7 +14,17 @@ import { useEffect, useState } from "react";
 import CarPostsLayout from "../features/carposts/CarPostsLayout";
 import { carPostsSorter } from "../utils/helpers";
 
-const StyledCars = styled.div``;
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const StyledCars = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const H2 = styled.h2``;
 
@@ -44,8 +54,11 @@ function Cars() {
   return (
     <>
       <StyledCars>
-        <PostCar />
-        <NavLink to="/cars/myposts">My posts</NavLink>
+        <FlexContainer>
+          <NavLink to="/cars/myposts">My posts</NavLink>
+          <PostCar />
+        </FlexContainer>
+
         <H2>Browse car posts</H2>
         <CarPostsLayout carPosts={data} count={count} pagination={pagination} />
       </StyledCars>
