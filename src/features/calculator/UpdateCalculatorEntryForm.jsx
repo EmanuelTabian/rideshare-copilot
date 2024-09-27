@@ -2,6 +2,27 @@ import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import { useUpdateCalculatorEntry } from "./useUpdateCalculatorEntry";
 import { useTableCalculator } from "../../context/TableCalculatorContext";
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  padding: 0.44rem 0.8rem;
+  border: none;
+  border-radius: 0 10px 10px 10px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  cursor: pointer;
+
+  display: inline;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--color-brand-600);
+    color: white;
+  }
+  @media (min-width: 480px) {
+    font-size: 1rem;
+  }
+`;
 
 function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
   const { id, app_income, commission, expenses, earnings } = calcEntry;
@@ -81,7 +102,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
           onChange={setValue("earnings", calcEarnings)}
         />
         <div>
-          <Button>Save changes</Button>
+          <StyledButton>Save changes</StyledButton>
         </div>
       </fieldset>
     </form>

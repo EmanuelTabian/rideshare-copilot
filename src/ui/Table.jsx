@@ -3,27 +3,29 @@ import styled from "styled-components";
 
 // Styled components
 const StyledTable = styled.div`
-  border: 1px solid black;
   font-size: 1rem;
   overflow: scroll;
   text-align: center;
 `;
 
 const ReusableRow = styled.div`
+  font-size: 1rem;
   display: grid;
+  border-top: 1px solid var(--color-brand-600);
   grid-template-columns: ${(props) => props.$columns};
   column-gap: 2rem;
   align-items: center;
 `;
 
 const StyledHeader = styled(ReusableRow)`
-  padding: 1.5rem 1.5rem;
+  padding: 1rem 1rem;
   text-transform: uppercase;
+  font-size: 1rem;
   font-weight: 500;
 `;
 
 const StyledRow = styled(ReusableRow)`
-  padding: 1rem 1rem;
+  /* padding: 1rem 1rem; */
 `;
 
 const NoData = styled.p`
