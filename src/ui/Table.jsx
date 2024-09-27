@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 // Styled components
 const StyledTable = styled.div`
-  font-size: 1rem;
+  margin-top: 32px;
   overflow: scroll;
   text-align: center;
 `;

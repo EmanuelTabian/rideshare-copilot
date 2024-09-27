@@ -10,17 +10,19 @@ const StyledModal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--color-white);
-  button {
-    font-size: 1.3rem;
-    color: black;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    cursor: pointer;
-    border: none;
-  }
-  button:hover {
+`;
+
+const CloseButton = styled.button`
+  font-size: 1.3rem;
+  color: black;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  cursor: pointer;
+  border: none;
+
+  &:hover {
     color: var(--color-brand-600);
   }
 `;
@@ -67,9 +69,9 @@ function Window({ children, name }) {
   return createPortal(
     <Overlay>
       <StyledModal ref={ref}>
-        <button onClick={close}>
+        <CloseButton onClick={close}>
           <IoCloseCircleOutline />
-        </button>
+        </CloseButton>
         <div>{cloneElement(children, { onCloseModal: close })}</div>
       </StyledModal>
     </Overlay>,

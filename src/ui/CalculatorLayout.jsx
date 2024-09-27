@@ -21,7 +21,7 @@ const CalcFields = styled.div`
 const StyledButton = styled.button`
   padding: 0.44rem 0.8rem;
   border: none;
-  border-radius: 0 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
   font-size: 0.75rem;
   font-weight: 900;
   cursor: pointer;
@@ -36,6 +36,10 @@ const StyledButton = styled.button`
   @media (min-width: 480px) {
     font-size: 1rem;
   }
+`;
+
+const StyledDiv = styled.div`
+  margin: 16px 0;
 `;
 
 function CalculatorLayout() {
@@ -103,13 +107,13 @@ function CalculatorLayout() {
         </CalcInput>
       </CalcFields>
       {income && (
-        <div>
+        <StyledDiv>
           <StyledButton onClick={handleToggle}>
             {toggle ? "Close" : " Expenses"}
           </StyledButton>
           <StyledButton onClick={handleReset}>Reset</StyledButton>
           <StyledButton onClick={handleAdd}>Save</StyledButton>
-        </div>
+        </StyledDiv>
       )}
       {toggle && (
         <CalcFields>
