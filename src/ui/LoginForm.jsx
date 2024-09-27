@@ -6,6 +6,38 @@ import Button from "./Button";
 import { useState } from "react";
 import styled from "styled-components";
 
+const LogoContainer = styled.div`
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    top: 16px;
+    position: absolute;
+    width: 100px;
+    height: auto;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    /* text-transform: uppercase; */
+    letter-spacing: 4px;
+  }
+  @media (min-width: 600px) {
+    margin-top: 8.5rem;
+    img {
+      width: 150px;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+  }
+`;
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -24,7 +56,7 @@ const Form = styled.form`
   }
 
   legend {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 1rem;
     text-align: center;
@@ -54,7 +86,6 @@ const Form = styled.form`
     margin-left: 0.5rem;
   }
   @media (min-width: 600px) {
-    padding: 2rem;
     fieldset {
       max-width: 500px;
     }
@@ -96,38 +127,44 @@ function LoginForm() {
   }
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <fieldset>
-        <legend>Welcome to RideshareCopilot!</legend>
-        <p>We're glad to see you again.</p>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            defaultValue={testUsername}
-            {...register("email", { required: "This field is required" })}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type={showPassword ? "text" : "password"}
-            defaultValue={testPassword}
-            {...register("password", { required: "This field is required" })}
-          />
-        </div>
-        <div>
-          <label htmlFor="checkbox">Show password</label>
-          <input
-            type="checkbox"
-            onClick={() => setShowPassword((password) => !password)}
-          />
-        </div>
-        <div>
-          <Button>Sign in</Button>
-        </div>
-      </fieldset>
-    </Form>
+    <>
+      <LogoContainer>
+        <img src="../../public/RC-logo.svg" alt="Rideshare logo" />
+        <h1>RideshareCopilot</h1>
+      </LogoContainer>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <fieldset>
+          <legend>Welcome back!</legend>
+          <p>We're glad to see you again.</p>
+          <div>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              defaultValue={testUsername}
+              {...register("email", { required: "This field is required" })}
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password:</label>
+            <input
+              type={showPassword ? "text" : "password"}
+              defaultValue={testPassword}
+              {...register("password", { required: "This field is required" })}
+            />
+          </div>
+          <div>
+            <label htmlFor="checkbox">Show password</label>
+            <input
+              type="checkbox"
+              onClick={() => setShowPassword((password) => !password)}
+            />
+          </div>
+          <div>
+            <Button>Sign in</Button>
+          </div>
+        </fieldset>
+      </Form>
+    </>
   );
 }
 
