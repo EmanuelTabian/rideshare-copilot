@@ -60,7 +60,7 @@ const StyledOverlay = styled.div`
     text-decoration: none;
     transition: color 0.2s;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
   }
 
   & a:hover {
