@@ -11,6 +11,10 @@ const Img = styled.img`
   position: absolute;
   left: 34px;
   margin-right: 8px;
+
+  @media (min-width: 480px) {
+    left: 40px;
+  }
 `;
 const StyledHeader = styled.h1`
   display: flex;
