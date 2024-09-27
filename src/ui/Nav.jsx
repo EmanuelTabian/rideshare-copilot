@@ -1,7 +1,12 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const NavList = styled.ul``;
+const NavList = styled.ul`
+  margin-left: 16px;
+  @media (max-width: 480px) {
+    display: none;
+  }
+`;
 const StyledNavLink = styled(NavLink)``;
 
 function Nav() {

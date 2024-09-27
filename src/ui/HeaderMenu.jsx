@@ -52,14 +52,11 @@ const StyledOverlay = styled.div`
   justify-content: flex-start;
   padding: 1rem;
 
-  & nav {
-    width: 100%;
-    margin-top: 1.5em;
-  }
   & a {
+    padding-bottom: 5px;
     color: white;
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 1.2rem;
+    font-weight: 600;
     text-decoration: none;
     transition: color 0.2s;
     display: flex;
@@ -100,7 +97,23 @@ function HeaderMenu() {
             <HiXMark />
           </StyledNavButton>
           <StyledNavButton onClick={() => setBurgerActive(false)}>
-            <NavBar />
+            <nav>
+              <ul>
+                <li>
+                  <NavLink to="/dashboard">Dashboard</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/cars">Cars</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/calculator">Calculator</NavLink>
+                </li>
+
+                <li>
+                  <NavLink to="/settings">Settings</NavLink>
+                </li>
+              </ul>
+            </nav>
           </StyledNavButton>
         </StyledOverlay>
       )}
