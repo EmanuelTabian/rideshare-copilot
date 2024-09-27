@@ -3,13 +3,11 @@ import styled from "styled-components";
 
 const StyledLogo = styled.div``;
 
-const Img = styled.img``;
-
 function Logo() {
   return (
     <StyledLogo>
       <NavLink to="/dashboard">
-        <Img src="logo.svg" alt="Rideshare logo" />
+        <img src="../../public/RC-logo.svg" alt="Rideshare logo" />
       </NavLink>
     </StyledLogo>
   );

@@ -9,7 +9,6 @@ const StyledNavBar = styled.nav``;
 function NavBar() {
   return (
     <StyledNavBar>
-      <Logo />
       <Nav />
     </StyledNavBar>
   );

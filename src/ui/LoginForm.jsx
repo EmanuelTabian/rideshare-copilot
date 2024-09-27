@@ -111,7 +111,6 @@ const testPassword2 = "123Rideshare!@#";
 function LoginForm() {
   const { signin, status } = useSignin();
   const [showPassword, setShowPassword] = useState(false);
-  console.log(status);
 
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;

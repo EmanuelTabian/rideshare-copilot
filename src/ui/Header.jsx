@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Nav from "./NavBar";
 import UserAvatar from "./UserAvatar";
 import HeaderMenu from "./HeaderMenu";
+import Logo from "./Logo";
 
 const StyledHeader = styled.div``;
 

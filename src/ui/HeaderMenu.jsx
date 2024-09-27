@@ -6,7 +6,9 @@ import Button from "./Button";
 import { useLogout } from "../features/authentication/useLogout";
 
 const StyledHeaderMenu = styled.div``;
-
+const StyledButton = styled.button`
+  margin-left: 1rem;
+`;
 function HeaderMenu() {
   const { logout, isLoadin } = useLogout();
 
@@ -15,9 +17,9 @@ function HeaderMenu() {
       <NavLink to="/settings">
         <IoSettings />
       </NavLink>
-      <Button onClick={logout}>
+      <StyledButton onClick={logout}>
         <IoLogOutOutline />
-      </Button>
+      </StyledButton>
     </StyledHeaderMenu>
   );
 }
