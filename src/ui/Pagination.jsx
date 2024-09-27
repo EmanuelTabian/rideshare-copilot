@@ -4,6 +4,33 @@ import { HiChevronDoubleRight } from "react-icons/hi2";
 import { HiChevronLeft } from "react-icons/hi2";
 import { HiChevronRight } from "react-icons/hi2";
 import { useEffect } from "react";
+import styled from "styled-components";
+
+const StyledPagination = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    padding: 0.44rem 0.8rem;
+    border: none;
+    border-radius: 0 10px 10px 10px;
+    font-size: 0.75rem;
+    font-weight: 900;
+    cursor: pointer;
+
+    display: inline;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: var(--color-brand-600);
+      color: white;
+    }
+    span {
+      text-align: center;
+    }
+  }
+`;
 
 function Pagination({ count, pagination, pageLength }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -29,7 +56,7 @@ function Pagination({ count, pagination, pageLength }) {
   }
 
   return (
-    <div>
+    <StyledPagination>
       <button onClick={previousPage} disabled={!hasPreviousPage}>
         <HiChevronLeft /> <span>Previous</span>
       </button>
@@ -38,10 +65,10 @@ function Pagination({ count, pagination, pageLength }) {
         {pageLength <= 10 ? pageLength : 10} of {count} results
       </span>
       <button onClick={nextPage} disabled={!hasNextPage}>
-        <span>Next</span>
         <HiChevronRight />
+        <span>Next</span>
       </button>
-    </div>
+    </StyledPagination>
   );
 }
 
