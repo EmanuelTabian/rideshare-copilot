@@ -7,11 +7,35 @@ import Earnings from "./Earnings";
 import CalcInput from "./CalcInput";
 import { useAddCalculatorEntry } from "../features/calculator/useAddCalculatorEntry";
 
-const Income = styled.div`
+const CalcFields = styled.div`
   padding: 8px;
   display: grid;
-  grid-template-columns: 11rem 10rem;
   grid-gap: 8px;
+  grid-template-columns: 10rem 5rem;
+
+  @media (min-width: 480px) {
+    grid-template-columns: 11rem 15rem;
+  }
+`;
+
+const StyledButton = styled.button`
+  padding: 0.44rem 0.8rem;
+  border: none;
+  border-radius: 0 10px 10px 10px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  cursor: pointer;
+
+  display: inline;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--color-brand-600);
+    color: white;
+  }
+  @media (min-width: 480px) {
+    font-size: 1rem;
+  }
 `;
 
 function CalculatorLayout() {
@@ -66,7 +90,7 @@ function CalculatorLayout() {
 
   return (
     <div>
-      <Income>
+      <CalcFields>
         <IncomeField />
         <CalcInput value={rideCom} setValue={setRideCom}>
           Rideshare commission (%):
@@ -77,18 +101,18 @@ function CalculatorLayout() {
         <CalcInput value={otherCom} setValue={setOtherCom}>
           Other Commission:
         </CalcInput>
-        {income && (
-          <div>
-            <Button onClick={handleToggle}>
-              {toggle ? "Close" : " Expenses"}
-            </Button>
-            <Button onClick={handleReset}>Reset</Button>
-            <Button onClick={handleAdd}>Save</Button>
-          </div>
-        )}
-      </Income>
-      {toggle && (
+      </CalcFields>
+      {income && (
         <div>
+          <StyledButton onClick={handleToggle}>
+            {toggle ? "Close" : " Expenses"}
+          </StyledButton>
+          <StyledButton onClick={handleReset}>Reset</StyledButton>
+          <StyledButton onClick={handleAdd}>Save</StyledButton>
+        </div>
+      )}
+      {toggle && (
+        <CalcFields>
           <CalcInput value={gasExp} setValue={setGasExp}>
             Gas
           </CalcInput>
@@ -98,7 +122,7 @@ function CalculatorLayout() {
           <CalcInput value={otherExp} setValue={setOtherExp}>
             Cash
           </CalcInput>
-        </div>
+        </CalcFields>
       )}
       <Earnings />
     </div>
