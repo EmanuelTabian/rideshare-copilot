@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 535.02 797.77">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-2, .cls-4, .cls-5 {
+        stroke: #8dc63f;
+      }
+
+      .cls-1, .cls-3, .cls-4, .cls-5 {
+        fill: none;
+      }
+
+      .cls-1, .cls-4 {
+        stroke-linecap: round;
+        stroke-width: 6px;
+      }
+
+      .cls-6 {
+        opacity: 0;
+      }
+
+      .cls-2 {
+        fill: #009444;
+      }
+
+      .cls-2, .cls-3, .cls-5 {
+        stroke-width: 5px;
+      }
+
+      .cls-3 {
+        stroke: #009444;
+      }
+
+      .cls-7 {
+        fill: #8dc63f;
+      }
+
+      .cls-4 {
+        stroke-dasharray: 0 0 60.23 60.23;
+      }
+    </style>
+  </defs>
+  <g id="Layer_9" data-name="Layer 9">
+    <image class="cls-6" width="1536" height="2048" transform="scale(.35 .39)" xlink:href="C:\Users\speed\Downloads\WhatsApp Image 2024-09-11 at 20.49.23.png"/>
+  </g>
+  <g id="Thunderbolt">
+    <path class="cls-2" d="m236.93,282.24c52.88-16.13,105.76-32.26,158.63-48.39-57.1,159.8-114.19,319.61-171.29,479.41,8.32-85.5,16.63-171.01,24.95-256.51-57.02,18.19-114.05,36.37-171.07,54.56,53.87-150.15,107.74-300.29,161.61-450.44-.94,73.79-1.89,147.58-2.83,221.37Z"/>
+    <path class="cls-7" d="m228.59,292.77c.91-61.55,1.81-123.09,2.72-184.64-33.8,94.21-67.6,188.41-101.4,282.62,75.34-23.22,150.69-46.44,226.03-69.67,8.94-24.97,17.87-49.94,26.81-74.91l-154.15,46.59Z"/>
+    <g>
+      <path class="cls-1" d="m128.93,404.36c7.96-2.48,15.91-4.96,23.87-7.44"/>
+      <path class="cls-4" d="m210.3,379c28.75-8.96,57.5-17.92,86.25-26.88"/>
+      <path class="cls-1" d="m325.3,343.16c7.96-2.48,15.91-4.96,23.87-7.44"/>
+    </g>
+    <path class="cls-3" d="m148.68,331.19c76.83-23.12,153.66-46.24,230.49-69.37"/>
+    <path class="cls-5" d="m86.78,488.36c81.27-25.51,162.54-51.02,243.8-76.54"/>
+  </g>
+</svg>

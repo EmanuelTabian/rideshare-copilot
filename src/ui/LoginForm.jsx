@@ -25,6 +25,7 @@ const Form = styled.form`
 
   legend {
     font-size: 1.5rem;
+    font-weight: 700;
     margin-bottom: 1rem;
     text-align: center;
   }
@@ -97,7 +98,7 @@ function LoginForm() {
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
-        <legend>Welcome Back!</legend>
+        <legend>Welcome to RideshareCopilot!</legend>
         <p>We're glad to see you again.</p>
         <div>
           <label htmlFor="email">Email:</label>
