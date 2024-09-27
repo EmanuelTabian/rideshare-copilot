@@ -18,6 +18,8 @@ const GlobalStyles = createGlobalStyle`
     --color-brand-500: #0A9245;
     --color-brand-600: #0CAE53;
     --color-brand-700: #0ECB60;
+
+    --color-brand-2-100: #94150C
 }
 body {
     margin: 0;

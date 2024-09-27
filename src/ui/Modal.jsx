@@ -12,7 +12,7 @@ const StyledModal = styled.div`
   background-color: var(--color-white);
   button {
     font-size: 1.3rem;
-    color: white;
+    color: black;
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -21,7 +21,7 @@ const StyledModal = styled.div`
     border: none;
   }
   button:hover {
-    color: var(--color-grey-300);
+    color: var(--color-brand-600);
   }
 `;
 

@@ -26,9 +26,6 @@ const StyledPagination = styled.div`
       background-color: var(--color-brand-600);
       color: white;
     }
-    span {
-      text-align: center;
-    }
   }
 `;
 
