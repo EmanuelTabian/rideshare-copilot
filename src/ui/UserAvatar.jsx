@@ -1,8 +1,30 @@
 import styled from "styled-components";
 import { useUser } from "../features/authentication/useUser";
 
-const StyledUserAvatar = styled.div``;
-const Avatar = styled.img``;
+const StyledUserData = styled.div`
+  margin: 32px 16px;
+`;
+
+const Img = styled.img`
+  width: 50px;
+  height: auto;
+  position: absolute;
+  left: 34px;
+  margin-right: 8px;
+
+  @media (min-width: 480px) {
+    left: 40px;
+  }
+`;
+const StyledHeader = styled.h1`
+  display: flex;
+  align-items: center;
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+`;
 
 function UserAvatar() {
   const { user } = useUser();
@@ -10,14 +32,17 @@ function UserAvatar() {
   const avatar = "";
   const username = "";
   return (
-    <StyledUserAvatar>
-      {/* Avatar will be commented out as it doen't take part of the MVP */}
-      {/* <Avatar
-        src={avatar || "default-user.jpg"}
-        alt={`Avatar of ${user.name}`}
-      /> */}
-      <h1>Hi {user.name}</h1>
-    </StyledUserAvatar>
+    <StyledUserData>
+      <StyledHeader>
+        <span></span>
+        Hi{" "}
+        <span>
+          <Img src="../../public/RC-logo.svg" alt="RC Logo" />
+        </span>
+        &nbsp;&nbsp; &nbsp;&nbsp;
+        {user.name}
+      </StyledHeader>
+    </StyledUserData>
   );
 }
 

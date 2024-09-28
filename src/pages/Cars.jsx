@@ -14,7 +14,34 @@ import { useEffect, useState } from "react";
 import CarPostsLayout from "../features/carposts/CarPostsLayout";
 import { carPostsSorter } from "../utils/helpers";
 
-const StyledCars = styled.div``;
+const FlexContainer = styled.div`
+  font-size: 1rem;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-start;
+  align-items: center;
+  gap: 1rem;
+`;
+
+const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: bold;
+  &.active {
+    color: var(--color-brand-600);
+  }
+
+  &:hover {
+    color: var(--color-brand-600);
+  }
+`;
+
+const StyledCars = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const H2 = styled.h2``;
 
@@ -44,9 +71,13 @@ function Cars() {
   return (
     <>
       <StyledCars>
-        <PostCar />
-        <NavLink to="/cars/myposts">My posts</NavLink>
         <H2>Browse car posts</H2>
+        <FlexContainer>
+          <StyledNavLink to="/cars/myposts">My posts</StyledNavLink>
+          <PostCar />
+          <CarPostTableOperations />
+        </FlexContainer>
+
         <CarPostsLayout carPosts={data} count={count} pagination={pagination} />
       </StyledCars>
     </>

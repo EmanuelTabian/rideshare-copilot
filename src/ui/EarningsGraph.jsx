@@ -36,7 +36,7 @@ function EarningsGraph({ recentEntries }) {
             ` to
           ${chartDateFormatter(recentEntries.at(-1).pub_date)}`}
         </h2>
-        <ResponsiveContainer width="80%" height={200}>
+        <ResponsiveContainer width="100%" height={200}>
           <AreaChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="label" />
@@ -64,7 +64,7 @@ function EarningsGraph({ recentEntries }) {
         </ResponsiveContainer>
       </div>
       <div>
-        <ResponsiveContainer width="80%" height={200}>
+        <ResponsiveContainer width="100%" height={200}>
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="label" />

@@ -3,29 +3,33 @@ import CalculatorRow from "./CalculatorRow";
 import { useGetCalculatorEntries } from "./useGetCalculatorEntries";
 import Spinner from "../../ui/Spinner";
 import Pagination from "../../ui/Pagination";
+import styled from "styled-components";
+
+const TableLowWidth = styled.div``;
 
 function CalculatorTable() {
   const { calcEntries, isLoading } = useGetCalculatorEntries();
-  // console.log(calcEntries.data.length);
 
   if (isLoading) return <Spinner />;
 
   return (
     <Table $columns="1fr 1fr 1fr 1fr 1fr 1fr">
-      <Table.Header>
-        <div>Pub date</div>
-        <div>App Income</div>
-        <div>Commission</div>
-        <div>Expenses</div>
-        <div>Earnings</div>
-        <div>Actions</div>
-      </Table.Header>
-      <Table.Body
-        data={calcEntries.data}
-        render={(calcEntry) => (
-          <CalculatorRow calcEntry={calcEntry} key={calcEntry.id} />
-        )}
-      />
+      <TableLowWidth>
+        <Table.Header>
+          <div>Pub date</div>
+          <div>App Income</div>
+          <div>Commission</div>
+          <div>Expenses</div>
+          <div>Earnings</div>
+          <div>Actions</div>
+        </Table.Header>
+        <Table.Body
+          data={calcEntries.data}
+          render={(calcEntry) => (
+            <CalculatorRow calcEntry={calcEntry} key={calcEntry.id} />
+          )}
+        />
+      </TableLowWidth>
       {Boolean(calcEntries.data.length) && (
         <Table.Footer>
           <Pagination

@@ -3,27 +3,40 @@ import styled from "styled-components";
 
 // Styled components
 const StyledTable = styled.div`
-  border: 1px solid black;
-  font-size: 1rem;
+  margin-top: 32px;
   overflow: scroll;
   text-align: center;
 `;
 
 const ReusableRow = styled.div`
+  font-size: 1rem;
   display: grid;
+  border-top: 1px solid var(--color-brand-600);
   grid-template-columns: ${(props) => props.$columns};
   column-gap: 2rem;
   align-items: center;
+
+  @media (max-width: 480px) {
+    font-size: 0.6rem;
+    column-gap: 0.2rem;
+  }
 `;
 
 const StyledHeader = styled(ReusableRow)`
-  padding: 1.5rem 1.5rem;
+  padding: 1rem 1rem;
   text-transform: uppercase;
+  font-size: 1rem;
   font-weight: 500;
+
+  @media (max-width: 480px) {
+    padding: 0.2rem;
+    font-size: 0.6rem;
+    text-transform: capitalize;
+  }
 `;
 
 const StyledRow = styled(ReusableRow)`
-  padding: 1rem 1rem;
+  /* padding: 1rem 1rem; */
 `;
 
 const NoData = styled.p`
@@ -31,6 +44,10 @@ const NoData = styled.p`
   font-weight: 500;
   text-align: center;
   margin: 2rem;
+
+  @media (max-width: 480px) {
+    font-size: 0.6rem;
+  }
 `;
 
 // Compound component originally designed by Jonas Schmedtmann and adapted to current project.

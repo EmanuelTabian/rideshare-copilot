@@ -9,16 +9,57 @@ import CarPostForm from "../features/carposts/CarPostForm";
 import ConfirmDelete from "./ConfirmDelete";
 import { useDeleteCarPost } from "../features/carposts/useDeleteCarPost";
 
-const StyledListItem = styled.li``;
-const CarDetailContainer = styled.div``;
-const CarInfo = styled.div``;
-const CarHeaderData = styled.span``;
-const CarDetailsData = styled.span``;
+const StyledListItem = styled.li`
+  display: flex;
+  flex-direction: column;
+
+  span {
+    padding: 8px;
+    border-bottom: 1px solid var(--color-brand-600);
+
+    margin: 4px;
+  }
+
+  @media (min-width: 480px) {
+    flex-direction: row;
+  }
+`;
 
 const Img = styled.img`
-  width: 100px;
+  padding: 8px 0;
+  min-width: 300px;
+  width: 300px;
+  border: none;
+  border-radius: 32px;
+
+  @media (min-width: 480px) {
+    width: 400px;
+  }
 `;
-const Button = styled.button``;
+const CarDetailsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+`;
+
+const Button = styled.button`
+  padding: 0.44rem 0.8rem;
+  border: none;
+  border-radius: 0 10px 10px 10px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  cursor: pointer;
+
+  display: inline;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--color-brand-600);
+    color: white;
+  }
+  @media (min-width: 480px) {
+    font-size: 1rem;
+  }
+`;
 function CarCard({ carDetails }) {
   const { user } = useUser();
   const navigate = useNavigate();
@@ -48,52 +89,54 @@ function CarCard({ carDetails }) {
   }
 
   return (
-    <StyledListItem>
-      <Img src={imageUrl?.url} alt={car_name} />
-      <CarInfo>
-        <CarDetailContainer>
-          <CarHeaderData> {car_name}</CarHeaderData>
-          <CarHeaderData> {model}</CarHeaderData>
-          <CarHeaderData> {version}</CarHeaderData>
-          <CarHeaderData> {engine}</CarHeaderData>
-          <CarHeaderData> {version}</CarHeaderData>
-          <CarHeaderData> {power} CP</CarHeaderData>
-          <CarHeaderData> {color}</CarHeaderData>
-        </CarDetailContainer>
-        <CarDetailContainer>
-          <CarDetailsData> {milleage} km</CarDetailsData>
-          <CarDetailsData> {fuel}</CarDetailsData>
-          <CarDetailsData> {year}</CarDetailsData>
-        </CarDetailContainer>
-        <CarDetailContainer>
-          <CarDetailsData> {dateFormatter(createdAt)}</CarDetailsData>
-          <CarDetailsData> {location}</CarDetailsData>
-          <div> Price: {price} EUR</div>
-        </CarDetailContainer>
-      </CarInfo>
-      <Button onClick={() => navigate(`/cars/${id}`)}>See details</Button>
-      {/* This button will be conditionally displayed for the current user car posts */}
-      {canEditOrRemove && (
-        <Modal>
-          <Modal.Open opens="edit">
-            <Button> Edit post</Button>
-          </Modal.Open>
-          <Modal.Open opens="delete">
-            <Button> Delete post</Button>
-          </Modal.Open>
-          <Modal.Window name="edit">
-            <CarPostForm carDetails={carDetails} />
-          </Modal.Window>
-          <Modal.Window name="delete">
-            <ConfirmDelete
-              resourceName="car post"
-              disabled={false}
-              onConfirm={handleDelete}
-            />
-          </Modal.Window>
-        </Modal>
-      )}
-    </StyledListItem>
+    <>
+      <StyledListItem>
+        <Img
+          src={imageUrl?.url ? imageUrl?.url : `../../public/no-photo.png`}
+          alt={car_name}
+        />
+
+        <div>
+          <CarDetailsContainer>
+            <span> {car_name}</span>
+            <span> {model}</span>
+            <span>Version: {version ? version : "N/A"}</span>
+            <span>Engine: {engine}</span>
+            <span>Power: {power} CP</span>
+            <span>Color: {color}</span>
+            <span>Milleage: {milleage} km</span>
+            <span>Fuel type: {fuel}</span>
+            <span>Year: {year}</span>
+            <span>Publication date: {dateFormatter(createdAt)}</span>
+            <span>Location: {location ? location : "N/A"}</span>
+            <span>Price: {price} EUR</span>
+          </CarDetailsContainer>
+
+          <Button onClick={() => navigate(`/cars/${id}`)}>See details</Button>
+          {/* This button will be conditionally displayed for the current user car posts */}
+          {canEditOrRemove && (
+            <Modal>
+              <Modal.Open opens="edit">
+                <Button> Edit post</Button>
+              </Modal.Open>
+              <Modal.Open opens="delete">
+                <Button> Delete post</Button>
+              </Modal.Open>
+              <Modal.Window name="edit">
+                <CarPostForm carDetails={carDetails} />
+              </Modal.Window>
+              <Modal.Window name="delete">
+                <ConfirmDelete
+                  resourceName="car post"
+                  disabled={false}
+                  onConfirm={handleDelete}
+                />
+              </Modal.Window>
+            </Modal>
+          )}
+        </div>
+      </StyledListItem>
+    </>
   );
 }
 

@@ -8,7 +8,11 @@ import Spinner from "../../ui/Spinner";
 import { carPostsSorter } from "../../utils/helpers";
 import styled from "styled-components";
 
-const CarList = styled.ul``;
+const CarList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 32px 0;
+`;
 
 function CarPostsLayout({ carPosts, count, pagination }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -22,7 +26,6 @@ function CarPostsLayout({ carPosts, count, pagination }) {
         <Message>No posts yet! You can add one!</Message>
       ) : (
         <>
-          <CarPostTableOperations />
           <CarList>
             {sortedCarPosts.map((carPost) => (
               <CarCard key={carPost.id} carDetails={carPost} />

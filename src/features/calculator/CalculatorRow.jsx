@@ -8,6 +8,28 @@ import Modal from "../../ui/Modal";
 import UpdateCalculatorEntryForm from "./UpdateCalculatorEntryForm";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { useDeleteCalaculatorEntry } from "./useDeleteCalculatorEntry";
+import styled from "styled-components";
+
+const StyledButton = styled.button`
+  /* padding: 0.44rem 0.8rem; */
+  border: none;
+  border-radius: 0 10px 10px 10px;
+  font-size: 0.8rem;
+  font-weight: 900;
+  cursor: pointer;
+
+  display: inline;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--color-brand-600);
+    color: white;
+  }
+  @media (min-width: 480px) {
+    font-size: 1rem;
+    padding: 0.44rem 0.8rem;
+  }
+`;
 
 function CalculatorRow({ calcEntry }) {
   const { deleteCalculatorEntry, isLoading } = useDeleteCalaculatorEntry();
@@ -35,14 +57,14 @@ function CalculatorRow({ calcEntry }) {
       <div>
         <Modal>
           <Modal.Open opens="edit">
-            <Button>
+            <StyledButton>
               <IoPencilSharp />
-            </Button>
+            </StyledButton>
           </Modal.Open>
           <Modal.Open opens="delete">
-            <Button>
+            <StyledButton>
               <IoTrashBinSharp />
-            </Button>
+            </StyledButton>
           </Modal.Open>
           <Modal.Window name="edit">
             <UpdateCalculatorEntryForm calcEntry={calcEntry} />

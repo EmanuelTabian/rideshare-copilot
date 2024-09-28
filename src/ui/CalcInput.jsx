@@ -1,13 +1,22 @@
+import styled from "styled-components";
+
+const Input = styled.input`
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-brand-700);
+`;
+
 function CalcInput({ value, setValue, children }) {
   return (
-    <div>
+    <>
       <span>{children}</span>
-      <input
+      <Input
+        placeholder="Commission"
         type="number"
         value={value}
         onChange={(e) => setValue(+e.target.value ? +e.target.value : "")}
       />
-    </div>
+    </>
   );
 }
 

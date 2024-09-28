@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { useUser } from "../features/authentication/useUser";
 import { useGetCarPost } from "../features/carposts/useGetCarPost";
 import { useGetImageUrl } from "../features/carposts/useGetImageUrl";
@@ -5,6 +6,22 @@ import { dateFormatter } from "../utils/helpers";
 import Button from "./Button";
 import ImgSlider from "./ImgSlider";
 import Spinner from "./Spinner";
+
+import { TbFileDescription } from "react-icons/tb";
+import { MdDateRange } from "react-icons/md";
+import { MdLocationPin } from "react-icons/md";
+
+const StyledCarList = styled.div`
+  margin: 8px;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+`;
 
 function CarPost({ carPost }) {
   const { user } = useUser();
@@ -39,12 +56,27 @@ function CarPost({ carPost }) {
 
   return (
     <>
-      <ImgSlider imageUrl={imageUrl?.url} alt={carName} />
-      <div>Description: {description}</div>
-      <span>{dateFormatter(createdAt)}</span>
-      <span>{location}</span>
+      <ImgSlider
+        imageUrl={imageUrl?.url ? imageUrl?.url : "../../public/no-photo.png"}
+        alt={carName}
+      />
+      <Container>
+        <div>
+          <TbFileDescription></TbFileDescription> <span> {description}</span>{" "}
+        </div>
+        <span>
+          <MdDateRange></MdDateRange>
+          {dateFormatter(createdAt)}
+        </span>
+
+        <span>
+          {" "}
+          <MdLocationPin />
+          {location}
+        </span>
+      </Container>
       <h1>Car Specs</h1>
-      <div>
+      <StyledCarList>
         <ul>
           <li>Name: {carName}</li>
           <li>Model: {model}</li>
@@ -74,7 +106,7 @@ function CarPost({ carPost }) {
             <Button> Delete post</Button>
           </div>
         )}
-      </div>
+      </StyledCarList>
     </>
   );
 }

@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
-import Nav from "./NavBar";
 import UserAvatar from "./UserAvatar";
 import HeaderMenu from "./HeaderMenu";
 
-const StyledHeader = styled.div``;
+const StyledHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+`;
 
 function Header() {
   return (
