@@ -1,5 +1,5 @@
 import axios from "axios";
-export const ridebackendURL = "http://127.0.0.1:8000/api";
+export const ridebackendURL = "https://api.rideshare-copilot.eu/api";
 
 axios.defaults.withCredentials = true;
 
