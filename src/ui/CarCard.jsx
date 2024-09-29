@@ -92,7 +92,7 @@ function CarCard({ carDetails }) {
     <>
       <StyledListItem>
         <Img
-          src={imageUrl?.url ? imageUrl?.url : `../../public/no-photo.png`}
+          src={imageUrl?.url ? imageUrl?.url : `no-photo.png`}
           alt={car_name}
         />
 

@@ -103,11 +103,6 @@ const Form = styled.form`
   }
 `;
 
-const testUsername = "abc@example.com";
-const testPassword = "123RideshareCopilot!@#";
-const testUsername2 = "a@example.com";
-const testPassword2 = "123Rideshare!@#";
-
 function LoginForm() {
   const { signin, status } = useSignin();
   const [showPassword, setShowPassword] = useState(false);
@@ -127,7 +122,7 @@ function LoginForm() {
   return (
     <>
       <LogoContainer>
-        <img src="../../public/RC-logo.svg" alt="Rideshare logo" />
+        <img src="RC-logo.svg" alt="Rideshare logo" />
         <h1>RideshareCopilot</h1>
       </LogoContainer>
       <Form onSubmit={handleSubmit(onSubmit)}>
@@ -138,7 +133,6 @@ function LoginForm() {
             <label htmlFor="email">Email:</label>
             <input
               type="email"
-              defaultValue={testUsername}
               {...register("email", { required: "This field is required" })}
             />
           </div>
@@ -146,7 +140,6 @@ function LoginForm() {
             <label htmlFor="password">Password:</label>
             <input
               type={showPassword ? "text" : "password"}
-              defaultValue={testPassword}
               {...register("password", { required: "This field is required" })}
             />
           </div>

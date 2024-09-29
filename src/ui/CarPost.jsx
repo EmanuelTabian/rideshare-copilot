@@ -57,7 +57,7 @@ function CarPost({ carPost }) {
   return (
     <>
       <ImgSlider
-        imageUrl={imageUrl?.url ? imageUrl?.url : "../../public/no-photo.png"}
+        imageUrl={imageUrl?.url ? imageUrl?.url : "no-photo.png"}
         alt={carName}
       />
       <Container>
