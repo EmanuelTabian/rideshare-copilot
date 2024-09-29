@@ -37,7 +37,7 @@ function UserAvatar() {
         <span></span>
         Hi{" "}
         <span>
-          <Img src="../../public/RC-logo.svg" alt="RC Logo" />
+          <Img src="RC-logo.svg" alt="RC Logo" />
         </span>
         &nbsp;&nbsp; &nbsp;&nbsp;
         {user.name}

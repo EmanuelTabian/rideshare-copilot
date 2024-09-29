@@ -122,7 +122,7 @@ function LoginForm() {
   return (
     <>
       <LogoContainer>
-        <img src="../../public/RC-logo.svg" alt="Rideshare logo" />
+        <img src="RC-logo.svg" alt="Rideshare logo" />
         <h1>RideshareCopilot</h1>
       </LogoContainer>
       <Form onSubmit={handleSubmit(onSubmit)}>
