@@ -26,6 +26,7 @@ export async function userUpdate({ userdata }) {
 }
 
 export async function signin(data) {
+  console.log(data);
   const { email, password } = data;
 
   try {

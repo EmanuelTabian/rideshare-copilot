@@ -17,9 +17,11 @@ const LogoContainer = styled.div`
     position: absolute;
     width: 100px;
     height: auto;
+    /* z-index: 0; */
   }
 
   h1 {
+    z-index: 100;
     margin: 0;
     font-size: 1.5rem;
     font-weight: 700;
