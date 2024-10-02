@@ -4,23 +4,32 @@ import { useGetCarPost } from "../features/carposts/useGetCarPost";
 import { useGetImageUrl } from "../features/carposts/useGetImageUrl";
 import { dateFormatter } from "../utils/helpers";
 import Button from "./Button";
-import ImgSlider from "./ImgSlider";
 import Spinner from "./Spinner";
 
 import { TbFileDescription } from "react-icons/tb";
 import { MdDateRange } from "react-icons/md";
 import { MdLocationPin } from "react-icons/md";
 
+const ImgContainer = styled.div`
+  margin: 32px;
+`;
+const StyledImg = styled.img`
+  object-fit: contain;
+  border: none;
+  border-radius: 32px;
+`;
+
 const StyledCarList = styled.div`
   margin: 8px;
 `;
 
 const Container = styled.div`
+  margin: 0 32px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
+  align-items: flex-start;
+  gap: 5px;
+  font-size: 1.5rem;
 `;
 
 function CarPost({ carPost }) {
@@ -56,10 +65,14 @@ function CarPost({ carPost }) {
 
   return (
     <>
-      <ImgSlider
-        imageUrl={imageUrl?.url ? imageUrl?.url : "no-photo.png"}
-        alt={carName}
-      />
+      <ImgContainer>
+        <StyledImg
+          // src={imageUrl?.url ? imageUrl?.url : "no-photo.png"}
+          // For test purpose
+          src="../../public/no-photo.png"
+          alt={carName}
+        />
+      </ImgContainer>
       <Container>
         <div>
           <TbFileDescription></TbFileDescription> <span> {description}</span>{" "}
