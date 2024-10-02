@@ -3,6 +3,7 @@
 import styled from "styled-components";
 
 const StyledSelect = styled.select`
+  background-color: white;
   font-size: 1rem;
   border: none;
   border-radius: var(--border-radius-sm);
