@@ -17,7 +17,6 @@ const LogoContainer = styled.div`
     position: absolute;
     width: 100px;
     height: auto;
-    /* z-index: 0; */
   }
 
   h1 {

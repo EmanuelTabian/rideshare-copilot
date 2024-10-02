@@ -29,8 +29,6 @@ const StyledHeader = styled.h1`
 function UserAvatar() {
   const { user } = useUser();
 
-  const avatar = "";
-  const username = "";
   return (
     <StyledUserData>
       <StyledHeader>

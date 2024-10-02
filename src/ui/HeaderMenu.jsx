@@ -10,23 +10,30 @@ import { useState } from "react";
 
 const StyledHeaderMenu = styled.div`
   & svg {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
+
     transition: color 0.2s;
   }
   & svg:hover {
     color: var(--color-brand-600);
   }
+
+  & button {
+    padding: 10px;
+  }
   @media (min-width: 480px) {
     & svg {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
     }
   }
 `;
 const StyledButton = styled.button`
   border: none;
+  background-color: white;
 `;
 const StyledBurger = styled.button`
   border: none;
+  background-color: white;
 
   @media (min-width: 480px) {
     display: none;
@@ -69,7 +76,7 @@ const StyledOverlay = styled.div`
 
 const StyledNavButton = styled.button`
   border: none;
-  background-color: transparent;
+  background-color: inherit;
 `;
 
 function HeaderMenu() {
@@ -78,11 +85,13 @@ function HeaderMenu() {
 
   return (
     <StyledHeaderMenu>
-      <NavLink to="/settings">
-        <IoSettings />
-      </NavLink>
       <StyledButton onClick={logout}>
         <IoLogOutOutline />
+      </StyledButton>
+      <StyledButton>
+        <NavLink to="/settings">
+          <IoSettings />
+        </NavLink>
       </StyledButton>
       <StyledBurger onClick={() => setBurgerActive(true)}>
         <HiBars3 />
