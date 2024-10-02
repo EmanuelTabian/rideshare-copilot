@@ -4,7 +4,7 @@ import { IoSettings } from "react-icons/io5";
 import { IoLogOutOutline } from "react-icons/io5";
 import { HiBars3 } from "react-icons/hi2";
 import { HiXMark } from "react-icons/hi2";
-import Button from "./Button";
+
 import { useLogout } from "../features/authentication/useLogout";
 import { useState } from "react";
 

@@ -25,7 +25,12 @@ const StyledListItem = styled.li`
   }
 `;
 
+const ImgContainer = styled.div`
+  display: flex;
+`;
+
 const Img = styled.img`
+  object-fit: contain;
   padding: 8px 0;
   min-width: 300px;
   width: 300px;
@@ -91,10 +96,12 @@ function CarCard({ carDetails }) {
   return (
     <>
       <StyledListItem>
-        <Img
-          src={imageUrl?.url ? imageUrl?.url : `no-photo.png`}
-          alt={car_name}
-        />
+        <ImgContainer>
+          <Img
+            src={imageUrl?.url ? imageUrl?.url : `no-photo.png`}
+            alt={car_name}
+          />
+        </ImgContainer>
 
         <div>
           <CarDetailsContainer>
