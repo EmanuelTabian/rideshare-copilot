@@ -17,6 +17,11 @@ const StyledImg = styled.img`
   object-fit: contain;
   border: none;
   border-radius: 32px;
+  width: 100%;
+
+  @media (min-width: 480px) {
+    max-width: 700px;
+  }
 `;
 
 const StyledCarList = styled.div`
@@ -29,7 +34,26 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 5px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+`;
+
+const StyledUl = styled.ul`
+  margin: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  & li {
+    list-style-type: none;
+    margin: 8px;
+    border-bottom: 1px solid var(--color-brand-600);
+  }
+`;
+
+const StyledH1 = styled.h1`
+  margin: 16px 32px;
 `;
 
 function CarPost({ carPost }) {
@@ -67,9 +91,9 @@ function CarPost({ carPost }) {
     <>
       <ImgContainer>
         <StyledImg
-          // src={imageUrl?.url ? imageUrl?.url : "no-photo.png"}
+          src={imageUrl?.url ? imageUrl?.url : "no-photo.png"}
           // For test purpose
-          src="../../public/no-photo.png"
+          // src="../../public/no-photo.png"
           alt={carName}
         />
       </ImgContainer>
@@ -88,9 +112,9 @@ function CarPost({ carPost }) {
           {location}
         </span>
       </Container>
-      <h1>Car Specs</h1>
+      <StyledH1>Car Specs</StyledH1>
       <StyledCarList>
-        <ul>
+        <StyledUl>
           <li>Name: {carName}</li>
           <li>Model: {model}</li>
           <li>Version: {version}</li>
@@ -108,10 +132,8 @@ function CarPost({ carPost }) {
           <li>Mpg: {mpg}</li>
           <li>Price: {price}</li>
           <li>Emmision Standard: {emissionStandard}</li>
-        </ul>
-        <div>
-          <span>{contact}</span>
-        </div>
+          <li>Contact : {contact}</li>
+        </StyledUl>
 
         {canEditOrRemove && (
           <div>
