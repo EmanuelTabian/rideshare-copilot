@@ -52,7 +52,7 @@ const Container = styled.div`
 `;
 
 const StyledUl = styled.ul`
-  margin: 0 32px;
+  margin: 0 32px 32px 32px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   @media (max-width: 768px) {

@@ -52,6 +52,7 @@ const CarDetailsContainer = styled.div`
 `;
 
 const Button = styled.button`
+  background-color: white;
   margin: 8px;
   padding: 0.44rem 0.8rem;
   border: none;

@@ -19,7 +19,7 @@ function DashboardLayout() {
   if (isLoading)
     return (
       <SpinnerContainer>
-        <Spinner />;
+        <Spinner />
       </SpinnerContainer>
     );
 

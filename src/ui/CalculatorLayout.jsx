@@ -70,6 +70,7 @@ function CalculatorLayout() {
   function handleReset() {
     setIncome("");
     setToggle("");
+    setRideCom("");
     setEmplCom("");
     setOtherCom("");
     setGasExp("");
