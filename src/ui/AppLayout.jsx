@@ -40,8 +40,8 @@ function AppLayout() {
           </Container>
         </Main>
       </StyledDevider>
-
-      <Footer />
+      {/* Temporarily deactivate the footer */}
+      {/* <Footer /> */}
     </>
   );
 }
