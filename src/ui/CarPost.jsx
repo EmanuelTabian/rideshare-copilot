@@ -11,6 +11,8 @@ import { MdLocationPin } from "react-icons/md";
 import Modal from "./Modal";
 import ConfirmDelete from "./ConfirmDelete";
 import { useDeleteCarPost } from "../features/carposts/useDeleteCarPost";
+import { useNavigate } from "react-router-dom";
+import { useMoveBack } from "../hooks/useMoveBack";
 
 const ImgContainer = styled.div`
   margin: 32px;
@@ -81,6 +83,7 @@ const StyledButton = styled.button`
 `;
 
 function CarPost({ carPost }) {
+  const navigate = useMoveBack();
   const { user } = useUser();
   const {
     user_id,
@@ -114,9 +117,11 @@ function CarPost({ carPost }) {
   const { deleteCarPost, isDeletingCarPost } = useDeleteCarPost();
 
   function handleDelete() {
+    console.log(id);
+
     deleteCarPost(id, {
-      onSuccess: () => {
-        navigate("/cars");
+      onSettled: () => {
+        navigate();
       },
     });
   }
