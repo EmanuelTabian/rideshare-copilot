@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import { useUser } from "../features/authentication/useUser";
-import { useGetCarPost } from "../features/carposts/useGetCarPost";
 import { useGetImageUrl } from "../features/carposts/useGetImageUrl";
 import { dateFormatter } from "../utils/helpers";
-import Button from "./Button";
 import Spinner from "./Spinner";
+import CarPostForm from "../features/carposts/CarPostForm";
 
 import { TbFileDescription } from "react-icons/tb";
 import { MdDateRange } from "react-icons/md";
 import { MdLocationPin } from "react-icons/md";
+import Modal from "./Modal";
+import ConfirmDelete from "./ConfirmDelete";
+import { useDeleteCarPost } from "../features/carposts/useDeleteCarPost";
 
 const ImgContainer = styled.div`
   margin: 32px;
@@ -56,6 +58,28 @@ const StyledH1 = styled.h1`
   margin: 16px 32px;
 `;
 
+const StyledButton = styled.button`
+  margin: 0 32px;
+  padding: 0.44rem 0.8rem;
+  border: none;
+  border-radius: 0 10px 10px 10px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  cursor: pointer;
+  background-color: white;
+
+  display: inline;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--color-brand-600);
+    color: white;
+  }
+  @media (min-width: 480px) {
+    font-size: 1rem;
+  }
+`;
+
 function CarPost({ carPost }) {
   const { user } = useUser();
   const {
@@ -86,6 +110,16 @@ function CarPost({ carPost }) {
   } = carPost;
   const canEditOrRemove = user_id === user.id;
   const { isLoading, imageUrl, error } = useGetImageUrl(id);
+
+  const { deleteCarPost, isDeletingCarPost } = useDeleteCarPost();
+
+  function handleDelete() {
+    deleteCarPost(id, {
+      onSuccess: () => {
+        navigate("/cars");
+      },
+    });
+  }
 
   return (
     <>
@@ -136,10 +170,24 @@ function CarPost({ carPost }) {
         </StyledUl>
 
         {canEditOrRemove && (
-          <div>
-            <Button> Edit post</Button>
-            <Button> Delete post</Button>
-          </div>
+          <Modal>
+            <Modal.Open opens="edit">
+              <StyledButton> Edit post</StyledButton>
+            </Modal.Open>
+            <Modal.Open opens="delete">
+              <StyledButton> Delete post</StyledButton>
+            </Modal.Open>
+            <Modal.Window name="edit">
+              <CarPostForm carDetails={carPost} />
+            </Modal.Window>
+            <Modal.Window name="delete">
+              <ConfirmDelete
+                resourceName="car post"
+                disabled={false}
+                onConfirm={handleDelete}
+              />
+            </Modal.Window>
+          </Modal>
         )}
       </StyledCarList>
     </>
