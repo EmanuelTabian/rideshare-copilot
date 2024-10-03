@@ -15,7 +15,10 @@ import { useNavigate } from "react-router-dom";
 import { useMoveBack } from "../hooks/useMoveBack";
 
 const ImgContainer = styled.div`
-  margin: 32px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 16px;
 `;
 const StyledImg = styled.img`
   object-fit: contain;
@@ -129,12 +132,16 @@ function CarPost({ carPost }) {
   return (
     <>
       <ImgContainer>
-        <StyledImg
-          src={imageUrl?.url ? imageUrl?.url : "no-photo.png"}
-          // For test purpose
-          // src="../../public/no-photo.png"
-          alt={carName}
-        />
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <StyledImg
+            // src={imageUrl?.url ? imageUrl?.url : "no-photo.png"}
+            // For test purpose
+            src="../../public/no-photo.png"
+            alt={carName}
+          />
+        )}
       </ImgContainer>
       <Container>
         <div>
