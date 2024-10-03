@@ -14,12 +14,19 @@ import { useDeleteCarPost } from "../features/carposts/useDeleteCarPost";
 import { useNavigate } from "react-router-dom";
 import { useMoveBack } from "../hooks/useMoveBack";
 
+const SpinnerContainer = styled.div`
+  margin: 16px;
+  display: flex;
+  justify-content: center;
+`;
+
 const ImgContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
   margin: 16px;
 `;
+
 const StyledImg = styled.img`
   object-fit: contain;
   border: none;
@@ -131,18 +138,20 @@ function CarPost({ carPost }) {
 
   return (
     <>
-      <ImgContainer>
-        {isLoading ? (
+      {isLoading ? (
+        <SpinnerContainer>
           <Spinner />
-        ) : (
+        </SpinnerContainer>
+      ) : (
+        <ImgContainer>
           <StyledImg
-            // src={imageUrl?.url ? imageUrl?.url : "no-photo.png"}
+            src={imageUrl?.url ? imageUrl?.url : "no-photo.png"}
             // For test purpose
-            src="../../public/no-photo.png"
+            // src="../../public/no-photo.png"
             alt={carName}
           />
-        )}
-      </ImgContainer>
+        </ImgContainer>
+      )}
       <Container>
         <div>
           <TbFileDescription></TbFileDescription> <span> {description}</span>{" "}

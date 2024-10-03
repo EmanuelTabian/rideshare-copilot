@@ -48,8 +48,7 @@ const H2 = styled.h2``;
 function Cars() {
   const { isLoading, carPosts, error } = useGetAllCarPosts();
   const [searchParams, setSearchParams] = useSearchParams();
-  if (isLoading) return <Spinner />;
-  if (carPosts.error)
+  if (carPosts?.error)
     return (
       <>
         <Message>{carPosts.error}</Message>
@@ -66,7 +65,7 @@ function Cars() {
         </div>
       </>
     );
-  const { data, count, pagination } = carPosts;
+  // const { data, count, pagination } = carPosts;
 
   return (
     <>
@@ -78,7 +77,15 @@ function Cars() {
           <CarPostTableOperations />
         </FlexContainer>
 
-        <CarPostsLayout carPosts={data} count={count} pagination={pagination} />
+        {isLoading ? (
+          ""
+        ) : (
+          <CarPostsLayout
+            carPosts={carPosts.data}
+            count={carPosts.count}
+            pagination={carPosts.pagination}
+          />
+        )}
       </StyledCars>
     </>
   );
