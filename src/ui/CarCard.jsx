@@ -96,8 +96,6 @@ function CarCard({ carDetails }) {
   const { isLoading, imageUrl, error } = useGetImageUrl(id);
   const { deleteCarPost, isDeletingCarPost } = useDeleteCarPost();
 
-  console.log(isLoading);
-
   function handleDelete() {
     deleteCarPost(id);
   }

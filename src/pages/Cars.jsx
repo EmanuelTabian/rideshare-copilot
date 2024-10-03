@@ -43,8 +43,6 @@ const StyledCars = styled.div`
   flex-direction: column;
 `;
 
-const H2 = styled.h2``;
-
 function Cars() {
   const { isLoading, carPosts, error } = useGetAllCarPosts();
   const [searchParams, setSearchParams] = useSearchParams();
@@ -70,7 +68,7 @@ function Cars() {
   return (
     <>
       <StyledCars>
-        <H2>Browse car posts</H2>
+        <h2>Browse car posts</h2>
         <FlexContainer>
           <StyledNavLink to="/cars/myposts">My posts</StyledNavLink>
           <PostCar />
