@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 const StyledPagination = styled.div`
+  margin: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

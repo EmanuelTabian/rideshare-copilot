@@ -47,6 +47,7 @@ const CarDetailsContainer = styled.div`
 `;
 
 const Button = styled.button`
+  margin: 8px;
   padding: 0.44rem 0.8rem;
   border: none;
   border-radius: 0 10px 10px 10px;
