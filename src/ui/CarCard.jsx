@@ -26,7 +26,7 @@ const StyledListItem = styled.li`
 `;
 
 const ImgContainer = styled.div`
-  display: flex;
+  margin: 8px;
 `;
 
 const Img = styled.img`
