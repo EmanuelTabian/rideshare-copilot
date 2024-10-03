@@ -8,6 +8,7 @@ import Modal from "./Modal";
 import CarPostForm from "../features/carposts/CarPostForm";
 import ConfirmDelete from "./ConfirmDelete";
 import { useDeleteCarPost } from "../features/carposts/useDeleteCarPost";
+import Spinner from "./Spinner";
 
 const StyledListItem = styled.li`
   display: flex;
@@ -25,7 +26,16 @@ const StyledListItem = styled.li`
   }
 `;
 
+const ImgContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  margin: 8px;
+`;
+
 const Img = styled.img`
+  object-fit: contain;
   padding: 8px 0;
   min-width: 300px;
   width: 300px;
@@ -42,6 +52,8 @@ const CarDetailsContainer = styled.div`
 `;
 
 const Button = styled.button`
+  background-color: white;
+  margin: 8px;
   padding: 0.44rem 0.8rem;
   border: none;
   border-radius: 0 10px 10px 10px;
@@ -91,10 +103,16 @@ function CarCard({ carDetails }) {
   return (
     <>
       <StyledListItem>
-        <Img
-          src={imageUrl?.url ? imageUrl?.url : `no-photo.png`}
-          alt={car_name}
-        />
+        <ImgContainer>
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            <Img
+              src={imageUrl?.url ? imageUrl?.url : `../../public/no-photo.png`}
+              alt={car_name}
+            />
+          )}
+        </ImgContainer>
 
         <div>
           <CarDetailsContainer>

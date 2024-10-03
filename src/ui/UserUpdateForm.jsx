@@ -1,6 +1,59 @@
 import { useForm } from "react-hook-form";
 import Button from "./Button";
 import { useUserUpdate } from "../features/authentication/useUserUpdate";
+import styled from "styled-components";
+
+const Form = styled.form`
+  fieldset {
+    border: none;
+    width: 100%;
+    max-width: 500px;
+    padding: 8px;
+
+    margin: 8px;
+
+    & div {
+      display: grid;
+      grid-template-columns: 5rem 12rem;
+      margin: 8px;
+      gap: 8px;
+    }
+
+    & div > input {
+      border: none;
+      border-radius: 8px;
+      background-color: var(--color-brand-700);
+      color: white;
+    }
+  }
+
+  legend {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+`;
+
+const StyledButton = styled.button`
+  background-color: white;
+  margin: 8px;
+  padding: 0.44rem 0.8rem;
+  border: none;
+  border-radius: 0 10px 10px 10px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  cursor: pointer;
+
+  display: inline;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: var(--color-brand-600);
+    color: white;
+  }
+  @media (min-width: 480px) {
+    font-size: 1rem;
+  }
+`;
 
 function UserUpdateForm() {
   const { userUpdate, isLoading } = useUserUpdate();
@@ -23,7 +76,7 @@ function UserUpdateForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <fieldset>
         <legend>Update profile info</legend>
         <div>
@@ -34,9 +87,9 @@ function UserUpdateForm() {
           <label htmlFor="password">Password: </label>
           <input type="password" {...register("password")} />
         </div>
-        <Button>Save</Button>
+        <StyledButton>Save</StyledButton>
       </fieldset>
-    </form>
+    </Form>
   );
 }
 

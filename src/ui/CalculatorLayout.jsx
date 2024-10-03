@@ -25,7 +25,7 @@ const StyledButton = styled.button`
   font-size: 0.75rem;
   font-weight: 900;
   cursor: pointer;
-
+  background-color: white;
   display: inline;
   transition: background-color 0.3s;
 
@@ -70,6 +70,7 @@ function CalculatorLayout() {
   function handleReset() {
     setIncome("");
     setToggle("");
+    setRideCom("");
     setEmplCom("");
     setOtherCom("");
     setGasExp("");

@@ -12,7 +12,6 @@ const StyledDevider = styled.div`
     grid-template-columns: 13.5rem 1fr;
     grid-template-rows: auto 1fr;
     height: 100vh;
-    overflow: hidden;
   }
 `;
 const Container = styled.div`
@@ -40,8 +39,8 @@ function AppLayout() {
           </Container>
         </Main>
       </StyledDevider>
-
-      <Footer />
+      {/* Temporarily deactivate the footer */}
+      {/* <Footer /> */}
     </>
   );
 }

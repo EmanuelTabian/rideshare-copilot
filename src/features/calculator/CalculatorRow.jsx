@@ -17,7 +17,7 @@ const StyledButton = styled.button`
   font-size: 0.8rem;
   font-weight: 900;
   cursor: pointer;
-
+  background-color: white;
   display: inline;
   transition: background-color 0.3s;
 

@@ -43,13 +43,10 @@ const StyledCars = styled.div`
   flex-direction: column;
 `;
 
-const H2 = styled.h2``;
-
 function Cars() {
   const { isLoading, carPosts, error } = useGetAllCarPosts();
   const [searchParams, setSearchParams] = useSearchParams();
-  if (isLoading) return <Spinner />;
-  if (carPosts.error)
+  if (carPosts?.error)
     return (
       <>
         <Message>{carPosts.error}</Message>
@@ -66,19 +63,27 @@ function Cars() {
         </div>
       </>
     );
-  const { data, count, pagination } = carPosts;
+  // const { data, count, pagination } = carPosts;
 
   return (
     <>
       <StyledCars>
-        <H2>Browse car posts</H2>
+        <h2>Browse car posts</h2>
         <FlexContainer>
           <StyledNavLink to="/cars/myposts">My posts</StyledNavLink>
           <PostCar />
           <CarPostTableOperations />
         </FlexContainer>
 
-        <CarPostsLayout carPosts={data} count={count} pagination={pagination} />
+        {isLoading ? (
+          ""
+        ) : (
+          <CarPostsLayout
+            carPosts={carPosts.data}
+            count={carPosts.count}
+            pagination={carPosts.pagination}
+          />
+        )}
       </StyledCars>
     </>
   );

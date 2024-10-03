@@ -1,7 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import GlobalStyles from "./styles/GlobalStyles";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
 
 import AppLayout from "./ui/AppLayout";
 import Cars from "./pages/Cars";
@@ -51,6 +55,10 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
+      {
+        path: "",
+        element: <Navigate replace to="dashboard" />,
+      },
       {
         path: "/cars",
         element: <Cars />,

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { UseCalculator } from "../context/CalculatorContext";
 
 const Input = styled.input`
+  color: white;
   border: none;
   border-radius: 8px;
   background-color: var(--color-brand-700);

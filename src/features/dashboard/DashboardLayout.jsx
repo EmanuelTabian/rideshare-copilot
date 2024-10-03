@@ -4,13 +4,24 @@ import Message from "../../ui/Message";
 import Spinner from "../../ui/Spinner";
 import { useGetRecentCalculatorEntries } from "./useGetRecentCalculatorEntries";
 
+const SpinnerContainer = styled.div`
+  margin: 16px;
+  display: flex;
+  justify-content: center;
+`;
+
 const StyledGraph = styled.div`
   margin-right: 16px;
 `;
 
 function DashboardLayout() {
   const { recentEntries, isLoading } = useGetRecentCalculatorEntries();
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <SpinnerContainer>
+        <Spinner />
+      </SpinnerContainer>
+    );
 
   return (
     <StyledGraph>

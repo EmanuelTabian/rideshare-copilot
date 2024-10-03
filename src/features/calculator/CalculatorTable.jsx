@@ -5,16 +5,19 @@ import Spinner from "../../ui/Spinner";
 import Pagination from "../../ui/Pagination";
 import styled from "styled-components";
 
-const TableLowWidth = styled.div``;
+const SpinnerContainer = styled.div`
+  overflow: hidden;
+  margin: 8px;
+  display: flex;
+  justify-content: center;
+`;
 
 function CalculatorTable() {
   const { calcEntries, isLoading } = useGetCalculatorEntries();
-
-  if (isLoading) return <Spinner />;
-
+  // if (isLoading) return;
   return (
     <Table $columns="1fr 1fr 1fr 1fr 1fr 1fr">
-      <TableLowWidth>
+      <div>
         <Table.Header>
           <div>Pub date</div>
           <div>App Income</div>
@@ -23,14 +26,22 @@ function CalculatorTable() {
           <div>Earnings</div>
           <div>Actions</div>
         </Table.Header>
-        <Table.Body
-          data={calcEntries.data}
-          render={(calcEntry) => (
-            <CalculatorRow calcEntry={calcEntry} key={calcEntry.id} />
-          )}
-        />
-      </TableLowWidth>
-      {Boolean(calcEntries.data.length) && (
+        {isLoading ? (
+          <SpinnerContainer>
+            <Spinner />
+          </SpinnerContainer>
+        ) : (
+          <Table.Body
+            data={calcEntries.data}
+            render={(calcEntry) => (
+              <CalculatorRow calcEntry={calcEntry} key={calcEntry.id} />
+            )}
+          />
+        )}
+      </div>
+      {!Boolean(calcEntries?.data.length) || isLoading ? (
+        ""
+      ) : (
         <Table.Footer>
           <Pagination
             pageLength={calcEntries.data.length}

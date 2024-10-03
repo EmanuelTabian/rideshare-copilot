@@ -20,6 +20,7 @@ const LogoContainer = styled.div`
   }
 
   h1 {
+    z-index: 100;
     margin: 0;
     font-size: 1.5rem;
     font-weight: 700;
@@ -44,7 +45,7 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  background-color: #f9f9f9;
+  background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 const StyledPagination = styled.div`
+  margin: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -18,11 +19,13 @@ const StyledPagination = styled.div`
     font-size: 0.75rem;
     font-weight: 900;
     cursor: pointer;
-
+    background-color: white;
     display: inline;
     transition: background-color 0.3s;
-
-    &:hover {
+    &:disabled:hover {
+      cursor: not-allowed;
+    }
+    &:not(:disabled):hover {
       background-color: var(--color-brand-600);
       color: white;
     }
@@ -38,7 +41,6 @@ function Pagination({ count, pagination, pageLength }) {
     has_previous: hasPreviousPage,
     total_pages: totalPages,
   } = pagination;
-  console.log(pageLength);
 
   function nextPage() {
     const next = currentPage === totalPages ? currentPage : currentPage + 1;

@@ -4,6 +4,7 @@ import CarPostForm from "../carposts/CarPostForm";
 import Button from "../../ui/Button";
 
 const StyledButton = styled.button`
+  background-color: white;
   padding: 0.44rem 0.8rem;
   border: none;
   border-radius: 0 10px 10px 10px;
@@ -12,7 +13,7 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   display: block;
-  transition: background-color 0.3s;
+  transition: 0.3s;
 
   &:hover {
     background-color: var(--color-brand-600);

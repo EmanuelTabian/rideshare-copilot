@@ -4,29 +4,50 @@ import { IoSettings } from "react-icons/io5";
 import { IoLogOutOutline } from "react-icons/io5";
 import { HiBars3 } from "react-icons/hi2";
 import { HiXMark } from "react-icons/hi2";
-import Button from "./Button";
+
 import { useLogout } from "../features/authentication/useLogout";
 import { useState } from "react";
 
+const LogoutButton = styled.button`
+  padding: 16px 0;
+  color: white;
+  background-color: transparent;
+  font-size: 1.2rem;
+  border: none;
+  font-weight: 600;
+`;
+
 const StyledHeaderMenu = styled.div`
   & svg {
-    font-size: 1.2rem;
+    font-size: 1.7rem;
+
     transition: color 0.2s;
   }
   & svg:hover {
     color: var(--color-brand-600);
   }
+
+  & button {
+    padding: 10px;
+  }
   @media (min-width: 480px) {
     & svg {
-      font-size: 1.5rem;
+      font-size: 1.7rem;
     }
   }
 `;
+
 const StyledButton = styled.button`
   border: none;
+  background-color: white;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 const StyledBurger = styled.button`
   border: none;
+  background-color: white;
 
   @media (min-width: 480px) {
     display: none;
@@ -69,20 +90,22 @@ const StyledOverlay = styled.div`
 
 const StyledNavButton = styled.button`
   border: none;
-  background-color: transparent;
+  background-color: inherit;
 `;
 
 function HeaderMenu() {
   const [burgerActive, setBurgerActive] = useState(false);
-  const { logout, isLoadin } = useLogout();
+  const { logout, isLoading } = useLogout();
 
   return (
     <StyledHeaderMenu>
-      <NavLink to="/settings">
-        <IoSettings />
-      </NavLink>
       <StyledButton onClick={logout}>
         <IoLogOutOutline />
+      </StyledButton>
+      <StyledButton>
+        <NavLink to="/settings">
+          <IoSettings />
+        </NavLink>
       </StyledButton>
       <StyledBurger onClick={() => setBurgerActive(true)}>
         <HiBars3 />
@@ -111,6 +134,7 @@ function HeaderMenu() {
               </ul>
             </nav>
           </StyledNavButton>
+          <LogoutButton onClick={logout}>Logout</LogoutButton>
         </StyledOverlay>
       )}
     </StyledHeaderMenu>

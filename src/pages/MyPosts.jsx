@@ -34,8 +34,6 @@ const StyledNavLink = styled(NavLink)`
 function MyPosts() {
   const { isLoading, userCarPosts } = useGetUserCarPosts();
 
-  if (isLoading) return <Spinner />;
-  const { data, count, pagination } = userCarPosts;
   return (
     <>
       <H1>My posts</H1>
@@ -43,7 +41,15 @@ function MyPosts() {
         <PostCar />
         <StyledNavLink to="/cars">Back to all posts</StyledNavLink>
       </FlexContainer>
-      <CarPostsLayout carPosts={data} count={count} pagination={pagination} />
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <CarPostsLayout
+          carPosts={userCarPosts.data}
+          count={userCarPosts.count}
+          pagination={userCarPosts.pagination}
+        />
+      )}
     </>
   );
 }
