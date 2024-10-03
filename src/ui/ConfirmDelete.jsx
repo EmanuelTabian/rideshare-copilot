@@ -14,6 +14,8 @@ const StyledConfirmation = styled.div`
     margin: 8px;
     padding: 8px 16px;
     color: black;
+    border: none;
+    background-color: var(--color-brand-700);
     border-radius: 0 16px 16px 16px;
     transition: background-color 0.3s;
   }
