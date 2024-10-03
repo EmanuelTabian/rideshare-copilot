@@ -8,6 +8,15 @@ import { HiXMark } from "react-icons/hi2";
 import { useLogout } from "../features/authentication/useLogout";
 import { useState } from "react";
 
+const LogoutButton = styled.button`
+  padding: 16px 0;
+  color: white;
+  background-color: transparent;
+  font-size: 1.2rem;
+  border: none;
+  font-weight: 600;
+`;
+
 const StyledHeaderMenu = styled.div`
   & svg {
     font-size: 1.7rem;
@@ -27,9 +36,14 @@ const StyledHeaderMenu = styled.div`
     }
   }
 `;
+
 const StyledButton = styled.button`
   border: none;
   background-color: white;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 const StyledBurger = styled.button`
   border: none;
@@ -81,7 +95,7 @@ const StyledNavButton = styled.button`
 
 function HeaderMenu() {
   const [burgerActive, setBurgerActive] = useState(false);
-  const { logout, isLoadin } = useLogout();
+  const { logout, isLoading } = useLogout();
 
   return (
     <StyledHeaderMenu>
@@ -120,6 +134,7 @@ function HeaderMenu() {
               </ul>
             </nav>
           </StyledNavButton>
+          <LogoutButton onClick={logout}>Logout</LogoutButton>
         </StyledOverlay>
       )}
     </StyledHeaderMenu>
