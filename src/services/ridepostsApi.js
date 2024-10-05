@@ -116,6 +116,6 @@ export async function updateCarPost(formData) {
       },
     });
   } catch (err) {
-    throw new Error(`${err.message} Sorry, we were unable to update the post!`);
+    return { error: err.message };
   }
 }
