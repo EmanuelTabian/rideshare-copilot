@@ -62,12 +62,14 @@ function Form({ carDetails = {}, onCloseModal }) {
 
   const updateSession = Boolean(carDetails.id);
 
-  const { register, handleSubmit, reset, getValues, formState } = useForm({
-    defaultValues: updateSession ? carDetails : {},
-  });
+  const { register, handleSubmit, reset, getValues, formState, trigger } =
+    useForm({
+      defaultValues: updateSession ? carDetails : {},
+    });
   const { errors } = formState;
 
   function onSubmit(formData) {
+    console.log(formData);
     if (!updateSession) {
       addCarPost(formData, {
         onSettled: () => {
@@ -84,6 +86,19 @@ function Form({ carDetails = {}, onCloseModal }) {
       });
     }
   }
+
+  async function handleNext() {
+    const isValid = await trigger();
+    if (isValid) {
+      setFormSession((sessionNum) => sessionNum + 1);
+    }
+  }
+
+  function handlePrevious() {
+    if (formSession === 0) return;
+    setFormSession((sessionNum) => sessionNum - 1);
+  }
+
   return (
     <StyledContainer>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
@@ -172,6 +187,12 @@ function Form({ carDetails = {}, onCloseModal }) {
                 })}
               />
             </div>
+            <div>
+              <button onClick={handlePrevious}>Previous</button>
+            </div>
+            <div>
+              <button onClick={handleNext}>Next</button>
+            </div>
           </fieldset>
         )}
         {formSession === 2 && (
@@ -234,6 +255,12 @@ function Form({ carDetails = {}, onCloseModal }) {
                 {...register("description")}
               />
             </div>
+            <div>
+              <button onClick={handlePrevious}>Previous</button>
+            </div>
+            <div>
+              <button onClick={handleNext}>Next</button>
+            </div>
           </fieldset>
         )}
         {formSession === 3 && (
@@ -276,6 +303,10 @@ function Form({ carDetails = {}, onCloseModal }) {
               <label htmlFor="image">Image</label>
               <input type="file" id="image" {...register("image")} />
             </div>
+            <div>
+              <button onClick={handlePrevious}>Previous</button>
+            </div>
+
             <div>
               <input type="submit" />
             </div>
