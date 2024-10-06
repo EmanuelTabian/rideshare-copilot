@@ -5,6 +5,9 @@ axios.defaults.withCredentials = true;
 
 export async function addCarPost(data) {
   try {
+    if (data.image.length && data.image[0].size > 10 * 1024 * 1024) {
+      throw new Error("Image size exceeds 10MB limit");
+    }
     const carPostResponse = await axios.post(
       `${ridebackendURL}/add-carpost`,
       data
@@ -38,7 +41,7 @@ export async function addCarPost(data) {
 
     return carPostResponse.data;
   } catch (err) {
-    throw new Error(`${err.message} Sorry, we were unable to add your post`);
+    return { error: err.message };
   }
 }
 
@@ -113,6 +116,6 @@ export async function updateCarPost(formData) {
       },
     });
   } catch (err) {
-    throw new Error(`${err.message} Sorry, we were unable to update the post!`);
+    return { error: err.message };
   }
 }
