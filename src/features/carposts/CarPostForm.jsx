@@ -55,6 +55,7 @@ const StyledForm = styled.form`
 `;
 
 function Form({ carDetails = {}, onCloseModal }) {
+  const [formSession, setFormSession] = useState(1);
   const { addCarPost, isUploadingPost } = useAddCarPost();
   const { updateCarPost, isUpdatingCarPost } = useUpdateCarPost();
 
