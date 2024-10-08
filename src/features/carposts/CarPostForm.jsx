@@ -30,7 +30,7 @@ const TextareaContainer = styled.div`
   & textarea {
     font-size: 1.2rem;
     resize: none;
-    height: 50%;
+    height: 35%;
   }
 `;
 const StyledError = styled.div`
@@ -155,16 +155,20 @@ function Form({ carDetails = {}, onCloseModal }) {
       "body",
       "transmission",
       "gear_number",
+      "seat_number",
       "emission_standard",
       "description",
     ],
-    3: ["version", "door_number", "seat_number", "mpg", "location", "image"],
+    3: ["version", "door_number", "mpg", "location", "image"],
   };
 
   function onSubmit(formData) {
+    Object.keys(formData).forEach((key) => {
+      if (formData[key] === "") {
+        formData[key] = null;
+      }
+    });
     console.log(formData);
-    console.log(error);
-
     if (!updateSession) {
       addCarPost(formData, {
         onSettled: (data) => {
@@ -178,9 +182,13 @@ function Form({ carDetails = {}, onCloseModal }) {
       });
     } else {
       updateCarPost(formData, {
-        onSettled: () => {
-          reset();
-          onCloseModal?.();
+        onSettled: (data) => {
+          if (data?.error) {
+            setErrorMessage(data.error);
+          } else {
+            reset();
+            onCloseModal?.();
+          }
         },
       });
     }
@@ -431,6 +439,22 @@ function Form({ carDetails = {}, onCloseModal }) {
               )}
             </InputContainer>
             <InputContainer>
+              <label htmlFor="seat_number">Seats</label>
+              <input
+                placeholder={errors?.seat_number ? "" : "Number of seats"}
+                type="number"
+                id="seat_number"
+                {...register("seat_number", {
+                  required: "This field is required",
+                })}
+              />
+              {errors?.seat_number && (
+                <StyledError>
+                  <ErrorMessage>{errors?.seat_number?.message}*</ErrorMessage>
+                </StyledError>
+              )}
+            </InputContainer>
+            <InputContainer>
               <label htmlFor="emission_standard">Emission:</label>
               <input
                 placeholder={
@@ -486,17 +510,6 @@ function Form({ carDetails = {}, onCloseModal }) {
                 type="number"
                 id="door_number"
                 {...register("door_number")}
-              />
-            </InputContainer>
-            <InputContainer>
-              <label htmlFor="seat_number">Seats</label>
-              <input
-                placeholder="Number of seats"
-                type="number"
-                id="seat_number"
-                {...register("seat_number", {
-                  required: "This field is required",
-                })}
               />
             </InputContainer>
 
