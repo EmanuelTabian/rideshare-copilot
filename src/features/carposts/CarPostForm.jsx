@@ -38,6 +38,16 @@ const StyledError = styled.div`
   right: 32px;
   margin: 0 8px;
 `;
+const StyledFileError = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+
+  & span {
+    font-size: 1rem;
+    color: red;
+  }
+`;
 const StyledForm = styled.form`
   height: 100%;
 
@@ -94,9 +104,30 @@ const ButtonsContainer = styled.div`
   }
 `;
 
+const FileInput = styled.input.attrs({ type: "file" })`
+  width: 100%;
+  font-size: 1rem;
+  &::file-selector-button {
+    font-weight: 800;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    border-radius: 20px;
+    border: none;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+    transition: color 0.2s, background-color 0.2s;
+
+    &:hover {
+      background-color: var(--color-grey-400);
+    }
+  }
+`;
+
 function Form({ carDetails = {}, onCloseModal }) {
+  const [errorMessage, setErrorMessage] = useState(null);
   const [formSession, setFormSession] = useState(1);
-  const { addCarPost, isUploadingPost } = useAddCarPost();
+  const { addCarPost, isUploadingPost, error } = useAddCarPost();
   const { updateCarPost, isUpdatingCarPost } = useUpdateCarPost();
 
   const updateSession = Boolean(carDetails.id);
@@ -132,11 +163,17 @@ function Form({ carDetails = {}, onCloseModal }) {
 
   function onSubmit(formData) {
     console.log(formData);
+    console.log(error);
+
     if (!updateSession) {
       addCarPost(formData, {
-        onSettled: () => {
-          reset();
-          onCloseModal?.();
+        onSettled: (data) => {
+          if (data?.error) {
+            setErrorMessage(data.error);
+          } else {
+            reset();
+            onCloseModal?.();
+          }
         },
       });
     } else {
@@ -148,6 +185,7 @@ function Form({ carDetails = {}, onCloseModal }) {
       });
     }
   }
+  console.log(errorMessage);
 
   async function handleNext(e) {
     console.log("click");
@@ -362,9 +400,7 @@ function Form({ carDetails = {}, onCloseModal }) {
               <label htmlFor="transmission">Transmission:</label>
               <input
                 placeholder={
-                  errors?.transmission
-                    ? ""
-                    : "Automatic, manual, semi-automatic etc."
+                  errors?.transmission ? "" : "Automatic, manual etc."
                 }
                 type="text"
                 id="transmission"
@@ -486,8 +522,13 @@ function Form({ carDetails = {}, onCloseModal }) {
 
             <InputContainer>
               <label htmlFor="image">Image</label>
-              <input type="file" id="image" {...register("image")} />
+              <FileInput type="file" id="image" {...register("image")} />
             </InputContainer>
+            {errorMessage && (
+              <StyledFileError>
+                <span>{errorMessage}*</span>
+              </StyledFileError>
+            )}
 
             <ButtonsContainer>
               <button disabled={formSession === 1} onClick={handlePrevious}>
