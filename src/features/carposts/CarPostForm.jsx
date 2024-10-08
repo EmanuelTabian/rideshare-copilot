@@ -434,46 +434,61 @@ function Form({ carDetails = {}, onCloseModal }) {
         {formSession === 3 && (
           <fieldset>
             <legend>Optional Car Specs</legend>
-            <div>
+            <InputContainer>
               <label htmlFor="version">Version</label>
-              <input type="text" id="version" {...register("version")} />
-            </div>
-            <div>
+              <input
+                placeholder="Additional car version information"
+                type="text"
+                id="version"
+                {...register("version")}
+              />
+            </InputContainer>
+            <InputContainer>
               <label htmlFor="door_number">Doors</label>
               <input
+                placeholder="Number of doors"
                 type="number"
                 id="door_number"
                 {...register("door_number")}
               />
-            </div>
-            <div>
+            </InputContainer>
+            <InputContainer>
               <label htmlFor="seat_number">Seats</label>
               <input
+                placeholder="Number of seats"
                 type="number"
                 id="seat_number"
                 {...register("seat_number", {
                   required: "This field is required",
                 })}
               />
-            </div>
+            </InputContainer>
 
-            <div>
-              <label htmlFor="mpg">Mpg</label>
-              <input type="number" id="mpg" {...register("mpg")} />
-            </div>
+            <InputContainer>
+              <label htmlFor="mpg">Fuel economy</label>
+              <input
+                placeholder="Consumed fuel per 100km/miles (number)"
+                type="number"
+                id="mpg"
+                {...register("mpg")}
+              />
+            </InputContainer>
 
-            <div>
+            <InputContainer>
               <label htmlFor="location">Location</label>
-              <input type="text" id="location" {...register("location")} />
-            </div>
+              <input
+                placeholder="Address"
+                type="text"
+                id="location"
+                {...register("location")}
+              />
+            </InputContainer>
 
-            <div>
+            <InputContainer>
               <label htmlFor="image">Image</label>
               <input type="file" id="image" {...register("image")} />
-            </div>
-            <div>
-              <button onClick={handlePrevious}>Previous</button>
-            </div>
+            </InputContainer>
+
             <ButtonsContainer>
               <button disabled={formSession === 1} onClick={handlePrevious}>
                 Previous
