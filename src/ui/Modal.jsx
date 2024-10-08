@@ -18,16 +18,17 @@ const StyledModal = styled.div`
 
 const CloseButton = styled.button`
   font-size: 1.3rem;
-  color: black;
+  color: white;
   position: absolute;
   top: 1rem;
   right: 1rem;
   background: none;
   cursor: pointer;
   border: none;
+  transition: color 0.3s;
 
   &:hover {
-    color: var(--color-brand-600);
+    color: var(--color-gray-400);
   }
 `;
 
