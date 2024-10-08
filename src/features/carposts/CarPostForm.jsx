@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useAddCarPost } from "./useAddCarPost";
 import { useUpdateCarPost } from "./useUpdateCarPost";
+import ErrorMessage from "../../ui/ErrorMessage";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -16,12 +17,32 @@ const StyledContainer = styled.div`
 const InputContainer = styled.div`
   padding: 0.5rem;
   display: grid;
-  grid-template-columns: 5rem 1fr;
+  grid-template-columns: 8rem 1fr;
   gap: 1rem;
 `;
 
+const TextareaContainer = styled.div`
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: inherit;
+  & textarea {
+    font-size: 1.2rem;
+    resize: none;
+    height: 50%;
+  }
+`;
+const StyledError = styled.div`
+  position: absolute;
+  right: 32px;
+  margin: 0 8px;
+`;
 const StyledForm = styled.form`
+  height: 100%;
+
   fieldset {
+    height: inherit;
     border-radius: 10px;
     border: none;
     padding: 0;
@@ -36,6 +57,7 @@ const StyledForm = styled.form`
     border: none;
     border-radius: 4px;
   }
+
   input[type="submit"] {
     padding: 4px 32px;
     border-radius: 32px;
@@ -85,6 +107,29 @@ function Form({ carDetails = {}, onCloseModal }) {
     });
   const { errors } = formState;
 
+  const fieldNames = {
+    1: [
+      "car_name",
+      "model",
+      "year",
+      "engine",
+      "fuel",
+      "power",
+      "milleage",
+      "contact",
+      "price",
+    ],
+    2: [
+      "color",
+      "body",
+      "transmission",
+      "gear_number",
+      "emission_standard",
+      "description",
+    ],
+    3: ["version", "door_number", "seat_number", "mpg", "location", "image"],
+  };
+
   function onSubmit(formData) {
     console.log(formData);
     if (!updateSession) {
@@ -104,10 +149,11 @@ function Form({ carDetails = {}, onCloseModal }) {
     }
   }
 
-  async function handleNext() {
-    console.log(errors);
+  async function handleNext(e) {
+    console.log("click");
 
-    const isValid = await trigger();
+    const isValid = await trigger(fieldNames[formSession]);
+
     if (isValid) {
       setFormSession((sessionNum) => sessionNum + 1);
     }
@@ -125,157 +171,264 @@ function Form({ carDetails = {}, onCloseModal }) {
           <fieldset>
             <legend>Basic Car Specs</legend>
             <InputContainer>
-              <label htmlFor="car_name">Name</label>
+              <label htmlFor="car_name">Name:</label>
               <input
+                placeholder={errors?.car_name ? "" : "Manufacturer"}
                 type="text"
                 id="car_name"
                 {...register("car_name", {
                   required: "This field is required",
                 })}
               />
+              {errors?.car_name && (
+                <StyledError>
+                  <ErrorMessage>{errors?.car_name?.message}*</ErrorMessage>
+                </StyledError>
+              )}
             </InputContainer>
             <InputContainer>
-              <label htmlFor="model">Model</label>
+              <label htmlFor="model">Model:</label>
               <input
+                placeholder={errors?.model ? "" : "Model"}
                 type="text"
                 id="model"
                 {...register("model", { required: "This field is required" })}
               />
+              {errors?.model && (
+                <StyledError>
+                  <ErrorMessage>{errors?.model?.message}*</ErrorMessage>
+                </StyledError>
+              )}
             </InputContainer>
             <InputContainer>
-              <label htmlFor="year">Year</label>
+              <label htmlFor="year">Year:</label>
               <input
+                placeholder={errors?.year ? "" : "Production date"}
                 type="text"
                 id="year"
                 {...register("year", { required: "This field is required" })}
               />
+              {errors?.year && (
+                <StyledError>
+                  <ErrorMessage>{errors?.year?.message}*</ErrorMessage>
+                </StyledError>
+              )}
             </InputContainer>
             <InputContainer>
-              <label htmlFor="engine">Engine</label>
+              <label htmlFor="engine">Engine:</label>
               <input
+                placeholder={
+                  errors?.engine
+                    ? ""
+                    : "Engine type/size/number or any relevant info"
+                }
                 type="text"
                 id="engine"
                 {...register("engine", {
                   required: "This field is required",
                 })}
               />
+              {errors?.engine && (
+                <StyledError>
+                  <ErrorMessage>{errors?.engine?.message}*</ErrorMessage>
+                </StyledError>
+              )}
             </InputContainer>
             <InputContainer>
-              <label htmlFor="fuel">Fuel</label>
+              <label htmlFor="fuel">Fuel:</label>
               <input
+                placeholder={errors?.fuel ? "" : "Type of fuel"}
                 type="text"
                 id="fuel"
                 {...register("fuel", { required: "This field is required" })}
               />
+              {errors?.fuel && (
+                <StyledError>
+                  <ErrorMessage>{errors?.fuel?.message}*</ErrorMessage>
+                </StyledError>
+              )}
             </InputContainer>{" "}
             <InputContainer>
-              <label htmlFor="power">Power</label>
+              <label htmlFor="power">Power:</label>
               <input
+                placeholder={
+                  errors?.power ? "" : "Power measured in HP (number)"
+                }
                 type="number"
                 id="power"
                 {...register("power", {
                   required: "This field is required",
                 })}
               />
+              {errors?.power && (
+                <StyledError>
+                  <ErrorMessage>{errors?.power?.message}*</ErrorMessage>
+                </StyledError>
+              )}
             </InputContainer>
             <InputContainer>
-              <label htmlFor="milleage">Milleage</label>
+              <label htmlFor="milleage">Mileage:</label>
               <input
+                placeholder={
+                  errors?.milleage ? "" : "Mileage measured in km (number)"
+                }
                 type="number"
                 id="milleage"
                 {...register("milleage", {
                   required: "This field is required",
                 })}
               />
+              {errors?.milleage && (
+                <StyledError>
+                  <ErrorMessage>{errors?.milleage?.message}*</ErrorMessage>
+                </StyledError>
+              )}
             </InputContainer>
             <InputContainer>
-              <label htmlFor="contact">Contact</label>
+              <label htmlFor="contact">Contact:</label>
               <input
+                placeholder={errors?.contact ? "" : "Phone number or email"}
                 type="text"
                 id="contact"
                 {...register("contact", {
                   required: "This field is required",
                 })}
               />
+              {errors?.contact && (
+                <StyledError>
+                  <ErrorMessage>{errors?.contact?.message}*</ErrorMessage>
+                </StyledError>
+              )}
             </InputContainer>
             <InputContainer>
-              <label htmlFor="price">Price</label>
+              <label htmlFor="price">Price:</label>
               <input
+                placeholder={errors?.price ? "" : "Price in € (number)"}
                 type="number"
                 id="price"
                 {...register("price", {
                   required: "This field is required",
                 })}
               />
+              {errors?.price && (
+                <StyledError>
+                  <ErrorMessage>{errors?.price?.message}*</ErrorMessage>
+                </StyledError>
+              )}
             </InputContainer>
+            <ButtonsContainer>
+              <button disabled={formSession === 1} onClick={handlePrevious}>
+                Previous
+              </button>
+              <button onClick={handleNext}>Next</button>
+            </ButtonsContainer>
           </fieldset>
         )}
         {formSession === 2 && (
           <fieldset>
             <legend>Additional Car Specs</legend>
-            <div>
-              <label htmlFor="color">Color</label>
+            <InputContainer>
+              <label htmlFor="color">Color:</label>
               <input
+                placeholder={errors?.color ? "" : "Car color"}
                 type="text"
                 id="color"
                 {...register("color", {
                   required: "This field is required",
                 })}
               />
-            </div>
-            <div>
-              <label htmlFor="body">Body</label>
+              {errors?.color && (
+                <StyledError>
+                  <ErrorMessage>{errors?.color?.message}*</ErrorMessage>
+                </StyledError>
+              )}
+            </InputContainer>
+            <InputContainer>
+              <label htmlFor="body">Body:</label>
               <input
+                placeholder={errors?.body ? "" : "Hatchback, sedan, SUV etc."}
                 type="text"
                 id="body"
                 {...register("body", { required: "This field is required" })}
               />
-            </div>
+              {errors?.body && (
+                <StyledError>
+                  <ErrorMessage>{errors?.body?.message}*</ErrorMessage>
+                </StyledError>
+              )}
+            </InputContainer>
 
-            <div>
-              <label htmlFor="transmission">Transmission</label>
+            <InputContainer>
+              <label htmlFor="transmission">Transmission:</label>
               <input
+                placeholder={
+                  errors?.transmission
+                    ? ""
+                    : "Automatic, manual, semi-automatic etc."
+                }
                 type="text"
                 id="transmission"
                 {...register("transmission", {
                   required: "This field is required",
                 })}
               />
-            </div>
-            <div>
-              <label htmlFor="gear_number">Gears</label>
+              {errors?.transmission && (
+                <StyledError>
+                  <ErrorMessage>{errors?.transmission?.message}*</ErrorMessage>
+                </StyledError>
+              )}
+            </InputContainer>
+            <InputContainer>
+              <label htmlFor="gear_number">Gears:</label>
               <input
+                placeholder={errors?.gear_number ? "" : "Number of gears"}
                 type="number"
                 id="gear_number"
                 {...register("gear_number", {
                   required: "This field is required",
                 })}
               />
-            </div>
-            <div>
-              <label htmlFor="emission_standard">Emission</label>
+              {errors?.gear_number && (
+                <StyledError>
+                  <ErrorMessage>{errors?.gear_number?.message}*</ErrorMessage>
+                </StyledError>
+              )}
+            </InputContainer>
+            <InputContainer>
+              <label htmlFor="emission_standard">Emission:</label>
               <input
+                placeholder={
+                  errors?.emission_standard ? "" : "Euro 5, Euro 6 etc."
+                }
                 type="text"
                 id="emission_standard"
                 {...register("emission_standard", {
                   required: "This field is required",
                 })}
               />
-            </div>
-            <div>
-              <label htmlFor="description">Description</label>
+              {errors?.emission_standard && (
+                <StyledError>
+                  <ErrorMessage>
+                    {errors?.emission_standard?.message}*
+                  </ErrorMessage>
+                </StyledError>
+              )}
+            </InputContainer>
+            <TextareaContainer>
+              <label htmlFor="description">Description (optional):</label>
               <textarea
+                placeholder="Additional information about the car"
                 type="text"
                 id="description"
                 {...register("description")}
               />
-            </div>
-            <div>
-              <button onClick={handlePrevious}>Previous</button>
-            </div>
-            <div>
+            </TextareaContainer>
+            <ButtonsContainer>
+              <button disabled={formSession === 1} onClick={handlePrevious}>
+                Previous
+              </button>
               <button onClick={handleNext}>Next</button>
-            </div>
+            </ButtonsContainer>
           </fieldset>
         )}
         {formSession === 3 && (
@@ -321,18 +474,16 @@ function Form({ carDetails = {}, onCloseModal }) {
             <div>
               <button onClick={handlePrevious}>Previous</button>
             </div>
-
-            <div>
-              <input type="submit" />
-            </div>
+            <ButtonsContainer>
+              <button disabled={formSession === 1} onClick={handlePrevious}>
+                Previous
+              </button>
+              <button type="submit">
+                {updateSession ? "Update" : "Submit"}
+              </button>
+            </ButtonsContainer>
           </fieldset>
         )}
-        <ButtonsContainer>
-          <button disabled={formSession === 1} onClick={handlePrevious}>
-            Previous
-          </button>
-          <button onClick={handleNext}>Next</button>
-        </ButtonsContainer>
       </StyledForm>
     </StyledContainer>
   );

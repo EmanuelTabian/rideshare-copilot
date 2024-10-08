@@ -1,6 +1,8 @@
-const ErrorMessage = styled.span`
+import styled from "styled-components";
+
+const StyledError = styled.span`
   color: red;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
 `;
 
 function ErrorMessage({ children }) {
