@@ -3,6 +3,8 @@ import Button from "../../ui/Button";
 import { useUpdateCalculatorEntry } from "./useUpdateCalculatorEntry";
 import { useTableCalculator } from "../../context/TableCalculatorContext";
 import styled from "styled-components";
+import { InputContainer } from "../carposts/CarPostForm";
+import ErrorMessage from "../../ui/ErrorMessage";
 
 const StyledButton = styled.button`
   margin: 8px;
@@ -30,14 +32,18 @@ const StyledContainer = styled.div`
   border-radius: 16px;
   background-color: rgba(10, 146, 69, 0.8);
   color: white;
-  font-size: 0.8rem;
+`;
+
+const ErrorContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
 `;
 
 const StyledForm = styled.form`
   div {
     padding: 0.5rem;
     display: grid;
-    grid-template-columns: 5rem 1fr;
+    grid-template-columns: 8rem 1fr;
     gap: 1rem;
   }
 
@@ -46,26 +52,16 @@ const StyledForm = styled.form`
     border: none;
     padding: 0;
     margin: 0;
+    font-size: 1.2rem;
   }
   legend {
     padding-bottom: 8px;
     text-align: center;
     font-size: 1rem;
-
-    @media (max-width: 480px) {
-      font-size: 0.75rem;
-    }
   }
-  input,
-  textarea {
+  input {
     border: none;
     border-radius: 4px;
-  }
-  input[type="submit"] {
-    padding: 4px 32px;
-    border-radius: 32px;
-    font-weight: 900;
-    transition: background-color 0.2s;
   }
   div:last-of-type {
     display: flex;
@@ -107,12 +103,12 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <fieldset>
           <legend>Edit calculator entry</legend>
-          <div>
+          <InputContainer>
             <label htmlFor="app_income">App income:</label>
             <input
               type="number"
               {...register("app_income", {
-                required: "This field is required",
+                required: "App income is required",
               })}
               value={calcIncome}
               onChange={(e) =>
@@ -122,8 +118,14 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
                 })
               }
             />
-          </div>
-          <div>
+          </InputContainer>
+          {errors?.app_income && (
+            <ErrorContainer>
+              <div></div>
+              <ErrorMessage>{errors?.app_income?.message}*</ErrorMessage>
+            </ErrorContainer>
+          )}
+          <InputContainer>
             <label htmlFor="commission">Commission</label>
             <input
               type="number"
@@ -136,8 +138,8 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
                 })
               }
             />
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <label htmlFor="expenses">Expenses:</label>
             <input
               type="number"
@@ -150,8 +152,8 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
                 })
               }
             />
-          </div>
-          <div>
+          </InputContainer>
+          <InputContainer>
             <label htmlFor="earnings">Earnings:</label>
             <input
               type="number"
@@ -160,7 +162,7 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
               value={calcEarnings}
               onChange={setValue("earnings", calcEarnings)}
             />
-          </div>
+          </InputContainer>
           <div>
             <StyledButton>Save changes</StyledButton>
           </div>

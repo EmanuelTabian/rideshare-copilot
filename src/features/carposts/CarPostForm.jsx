@@ -14,7 +14,7 @@ const StyledContainer = styled.div`
   font-size: 1.3rem;
 `;
 
-const InputContainer = styled.div`
+export const InputContainer = styled.div`
   padding: 0.5rem;
   display: grid;
   grid-template-columns: 8rem 1fr;
@@ -33,7 +33,7 @@ const TextareaContainer = styled.div`
     height: 35%;
   }
 `;
-const StyledError = styled.div`
+export const StyledError = styled.div`
   position: absolute;
   right: 32px;
   margin: 0 8px;
