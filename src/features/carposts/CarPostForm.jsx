@@ -193,11 +193,8 @@ function Form({ carDetails = {}, onCloseModal }) {
       });
     }
   }
-  console.log(errorMessage);
 
-  async function handleNext(e) {
-    console.log("click");
-
+  async function handleNext() {
     const isValid = await trigger(fieldNames[formSession]);
 
     if (isValid) {
@@ -297,10 +294,8 @@ function Form({ carDetails = {}, onCloseModal }) {
             <InputContainer>
               <label htmlFor="power">Power:</label>
               <input
-                placeholder={
-                  errors?.power ? "" : "Power measured in HP (number)"
-                }
-                type="number"
+                placeholder={errors?.power ? "" : "Power measured in HP"}
+                type="text"
                 id="power"
                 {...register("power", {
                   required: "This field is required",
@@ -316,9 +311,9 @@ function Form({ carDetails = {}, onCloseModal }) {
               <label htmlFor="milleage">Mileage:</label>
               <input
                 placeholder={
-                  errors?.milleage ? "" : "Mileage measured in km (number)"
+                  errors?.milleage ? "" : "Mileage measured in km/miles"
                 }
-                type="number"
+                type="text"
                 id="milleage"
                 {...register("milleage", {
                   required: "This field is required",
@@ -349,8 +344,8 @@ function Form({ carDetails = {}, onCloseModal }) {
             <InputContainer>
               <label htmlFor="price">Price:</label>
               <input
-                placeholder={errors?.price ? "" : "Price in € (number)"}
-                type="number"
+                placeholder={errors?.price ? "" : "Price in €"}
+                type="text"
                 id="price"
                 {...register("price", {
                   required: "This field is required",
@@ -426,7 +421,7 @@ function Form({ carDetails = {}, onCloseModal }) {
               <label htmlFor="gear_number">Gears:</label>
               <input
                 placeholder={errors?.gear_number ? "" : "Number of gears"}
-                type="number"
+                type="text"
                 id="gear_number"
                 {...register("gear_number", {
                   required: "This field is required",
@@ -442,7 +437,7 @@ function Form({ carDetails = {}, onCloseModal }) {
               <label htmlFor="seat_number">Seats</label>
               <input
                 placeholder={errors?.seat_number ? "" : "Number of seats"}
-                type="number"
+                type="text"
                 id="seat_number"
                 {...register("seat_number", {
                   required: "This field is required",
@@ -507,7 +502,7 @@ function Form({ carDetails = {}, onCloseModal }) {
               <label htmlFor="door_number">Doors</label>
               <input
                 placeholder="Number of doors"
-                type="number"
+                type="text"
                 id="door_number"
                 {...register("door_number")}
               />
@@ -516,8 +511,8 @@ function Form({ carDetails = {}, onCloseModal }) {
             <InputContainer>
               <label htmlFor="mpg">Fuel economy</label>
               <input
-                placeholder="Consumed fuel per 100km/miles (number)"
-                type="number"
+                placeholder="Consumed fuel per 100km/miles"
+                type="text"
                 id="mpg"
                 {...register("mpg")}
               />
