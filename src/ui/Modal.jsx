@@ -5,6 +5,10 @@ import styled from "styled-components";
 import { useCloseForm } from "../hooks/useCloseForm";
 
 const StyledModal = styled.div`
+  margin: 32px 0;
+  height: 100%;
+  width: 100%;
+  max-width: 720px;
   position: fixed;
   top: 50%;
   left: 50%;

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 const StyledContainer = styled.div`
+  height: 90vh;
   padding: 16px;
   border-radius: 16px;
   background-color: rgba(10, 146, 69, 0.8);
