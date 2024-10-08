@@ -10,22 +10,17 @@ const StyledContainer = styled.div`
   border-radius: 16px;
   background-color: rgba(10, 146, 69, 0.8);
   color: white;
-  font-size: 0.8rem;
+  font-size: 1.3rem;
+`;
+
+const InputContainer = styled.div`
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: 1rem;
 `;
 
 const StyledForm = styled.form`
-  div {
-    padding: 2px;
-    display: grid;
-    grid-template-columns: 4rem 12rem;
-    gap: 1rem;
-  }
-  @media (min-width: 480px) {
-    div {
-      grid-template-columns: 4rem 1fr;
-    }
-  }
-
   fieldset {
     border-radius: 10px;
     border: none;
@@ -50,9 +45,30 @@ const StyledForm = styled.form`
   input[type="submit"]:hover {
     background-color: var(--color-grey-400);
   }
-  div:last-of-type {
-    display: flex;
-    justify-content: center;
+`;
+
+const ButtonsContainer = styled.div`
+  position: absolute;
+  bottom: 68px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & button {
+    padding: 8px 32px;
+    border: none;
+    border-radius: 16px;
+    font-weight: 900;
+
+    transition: background-color 0.3s;
+    &:disabled:hover {
+      cursor: not-allowed;
+    }
+    &:not(:disabled):hover {
+      background-color: var(--color-grey-400);
+    }
   }
 `;
 
@@ -106,7 +122,7 @@ function Form({ carDetails = {}, onCloseModal }) {
         {formSession === 1 && (
           <fieldset>
             <legend>Basic Car Specs</legend>
-            <div>
+            <InputContainer>
               <label htmlFor="car_name">Name</label>
               <input
                 type="text"
@@ -115,40 +131,42 @@ function Form({ carDetails = {}, onCloseModal }) {
                   required: "This field is required",
                 })}
               />
-            </div>
-            <div>
+            </InputContainer>
+            <InputContainer>
               <label htmlFor="model">Model</label>
               <input
                 type="text"
                 id="model"
                 {...register("model", { required: "This field is required" })}
               />
-            </div>
-            <div>
+            </InputContainer>
+            <InputContainer>
               <label htmlFor="year">Year</label>
               <input
                 type="text"
                 id="year"
                 {...register("year", { required: "This field is required" })}
               />
-            </div>
-            <div>
+            </InputContainer>
+            <InputContainer>
               <label htmlFor="engine">Engine</label>
               <input
                 type="text"
                 id="engine"
-                {...register("engine", { required: "This field is required" })}
+                {...register("engine", {
+                  required: "This field is required",
+                })}
               />
-            </div>
-            <div>
+            </InputContainer>
+            <InputContainer>
               <label htmlFor="fuel">Fuel</label>
               <input
                 type="text"
                 id="fuel"
                 {...register("fuel", { required: "This field is required" })}
               />
-            </div>{" "}
-            <div>
+            </InputContainer>{" "}
+            <InputContainer>
               <label htmlFor="power">Power</label>
               <input
                 type="number"
@@ -157,8 +175,8 @@ function Form({ carDetails = {}, onCloseModal }) {
                   required: "This field is required",
                 })}
               />
-            </div>
-            <div>
+            </InputContainer>
+            <InputContainer>
               <label htmlFor="milleage">Milleage</label>
               <input
                 type="number"
@@ -167,8 +185,8 @@ function Form({ carDetails = {}, onCloseModal }) {
                   required: "This field is required",
                 })}
               />
-            </div>
-            <div>
+            </InputContainer>
+            <InputContainer>
               <label htmlFor="contact">Contact</label>
               <input
                 type="text"
@@ -177,8 +195,8 @@ function Form({ carDetails = {}, onCloseModal }) {
                   required: "This field is required",
                 })}
               />
-            </div>
-            <div>
+            </InputContainer>
+            <InputContainer>
               <label htmlFor="price">Price</label>
               <input
                 type="number"
@@ -187,13 +205,7 @@ function Form({ carDetails = {}, onCloseModal }) {
                   required: "This field is required",
                 })}
               />
-            </div>
-            <div>
-              <button onClick={handlePrevious}>Previous</button>
-            </div>
-            <div>
-              <button onClick={handleNext}>Next</button>
-            </div>
+            </InputContainer>
           </fieldset>
         )}
         {formSession === 2 && (
@@ -313,6 +325,12 @@ function Form({ carDetails = {}, onCloseModal }) {
             </div>
           </fieldset>
         )}
+        <ButtonsContainer>
+          <button disabled={formSession === 1} onClick={handlePrevious}>
+            Previous
+          </button>
+          <button onClick={handleNext}>Next</button>
+        </ButtonsContainer>
       </StyledForm>
     </StyledContainer>
   );
