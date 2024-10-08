@@ -14,19 +14,18 @@ const StyledButton = styled.button`
   cursor: pointer;
   position: relative;
   display: inline;
-  background-color: var(--color-gray-600);
+  background-color: white;
 
-  transition: background-color 0.3s;
+  transition: background-color 0.2s;
 
   &:hover {
-    background-color: white;
+    background-color: var(--color-grey-400);
   }
   @media (min-width: 480px) {
     font-size: 1rem;
   }
 `;
 const StyledContainer = styled.div`
-  max-width: 230px;
   padding: 16px;
   border-radius: 16px;
   background-color: rgba(10, 146, 69, 0.8);
@@ -36,14 +35,10 @@ const StyledContainer = styled.div`
 
 const StyledForm = styled.form`
   div {
-    padding: 2px;
+    padding: 0.5rem;
     display: grid;
-    grid-template-columns: 4rem 12rem;
+    grid-template-columns: 5rem 1fr;
     gap: 1rem;
-  }
-
-  div {
-    grid-template-columns: 4rem 1fr;
   }
 
   fieldset {
@@ -70,10 +65,7 @@ const StyledForm = styled.form`
     padding: 4px 32px;
     border-radius: 32px;
     font-weight: 900;
-    transition: background-color 0.3s;
-  }
-  input[type="submit"]:hover {
-    background-color: var(--color-grey-400);
+    transition: background-color 0.2s;
   }
   div:last-of-type {
     display: flex;
@@ -115,50 +107,60 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <fieldset>
           <legend>Edit calculator entry</legend>
-          <label htmlFor="app_income">App income:</label>
-          <input
-            type="number"
-            {...register("app_income", { required: "This field is required" })}
-            value={calcIncome}
-            onChange={(e) =>
-              dispatch({
-                type: "setIncome",
-                payload: +e.target.value ? +e.target.value : "",
-              })
-            }
-          />
-          <label htmlFor="commission">Commission</label>
-          <input
-            type="number"
-            {...register("commission")}
-            value={calcCommission}
-            onChange={(e) =>
-              dispatch({
-                type: "setCommission",
-                payload: +e.target.value ? +e.target.value : "",
-              })
-            }
-          />
-          <label htmlFor="expenses">Expenses:</label>
-          <input
-            type="number"
-            {...register("expenses")}
-            value={calcExpenses}
-            onChange={(e) =>
-              dispatch({
-                type: "setExpenses",
-                payload: +e.target.value ? +e.target.value : "",
-              })
-            }
-          />
-          <label htmlFor="earnings">Earnings:</label>
-          <input
-            type="number"
-            disabled={true}
-            {...register("earnings")}
-            value={calcEarnings}
-            onChange={setValue("earnings", calcEarnings)}
-          />
+          <div>
+            <label htmlFor="app_income">App income:</label>
+            <input
+              type="number"
+              {...register("app_income", {
+                required: "This field is required",
+              })}
+              value={calcIncome}
+              onChange={(e) =>
+                dispatch({
+                  type: "setIncome",
+                  payload: +e.target.value ? +e.target.value : "",
+                })
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor="commission">Commission</label>
+            <input
+              type="number"
+              {...register("commission")}
+              value={calcCommission}
+              onChange={(e) =>
+                dispatch({
+                  type: "setCommission",
+                  payload: +e.target.value ? +e.target.value : "",
+                })
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor="expenses">Expenses:</label>
+            <input
+              type="number"
+              {...register("expenses")}
+              value={calcExpenses}
+              onChange={(e) =>
+                dispatch({
+                  type: "setExpenses",
+                  payload: +e.target.value ? +e.target.value : "",
+                })
+              }
+            />
+          </div>
+          <div>
+            <label htmlFor="earnings">Earnings:</label>
+            <input
+              type="number"
+              disabled={true}
+              {...register("earnings")}
+              value={calcEarnings}
+              onChange={setValue("earnings", calcEarnings)}
+            />
+          </div>
           <div>
             <StyledButton>Save changes</StyledButton>
           </div>
