@@ -105,6 +105,8 @@ function Form({ carDetails = {}, onCloseModal }) {
   }
 
   async function handleNext() {
+    console.log(errors);
+
     const isValid = await trigger();
     if (isValid) {
       setFormSession((sessionNum) => sessionNum + 1);
