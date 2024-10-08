@@ -163,12 +163,6 @@ function Form({ carDetails = {}, onCloseModal }) {
   };
 
   function onSubmit(formData) {
-    Object.keys(formData).forEach((key) => {
-      if (formData[key] === "") {
-        formData[key] = null;
-      }
-    });
-    console.log(formData);
     if (!updateSession) {
       addCarPost(formData, {
         onSettled: (data) => {
