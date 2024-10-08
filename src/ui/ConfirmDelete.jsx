@@ -16,7 +16,7 @@ const StyledConfirmation = styled.div`
     color: black;
     border: none;
     background-color: var(--color-brand-700);
-    border-radius: 0 16px 16px 16px;
+    border-radius: 16px;
     transition: background-color 0.3s;
   }
   button:hover {

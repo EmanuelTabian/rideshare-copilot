@@ -8,6 +8,7 @@ import { IoSettings } from "react-icons/io5";
 const NavList = styled.ul`
   margin-left: 16px;
   font-size: 1.2rem;
+
   @media (max-width: 480px) {
     display: none;
   }

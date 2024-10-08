@@ -5,6 +5,10 @@ import styled from "styled-components";
 import { useCloseForm } from "../hooks/useCloseForm";
 
 const StyledModal = styled.div`
+  margin: 32px 0;
+  height: 100%;
+  width: 100%;
+  max-width: 720px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -14,16 +18,17 @@ const StyledModal = styled.div`
 
 const CloseButton = styled.button`
   font-size: 1.3rem;
-  color: black;
+  color: white;
   position: absolute;
   top: 1rem;
   right: 1rem;
   background: none;
   cursor: pointer;
   border: none;
+  transition: color 0.3s;
 
   &:hover {
-    color: var(--color-brand-600);
+    color: var(--color-gray-400);
   }
 `;
 

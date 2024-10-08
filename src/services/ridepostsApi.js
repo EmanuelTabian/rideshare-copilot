@@ -6,7 +6,9 @@ axios.defaults.withCredentials = true;
 export async function addCarPost(data) {
   try {
     if (data.image.length && data.image[0].size > 10 * 1024 * 1024) {
-      throw new Error("Image size exceeds 10MB limit");
+      throw new Error(
+        "The image size is too large. Please upload an image that is less than 10MB."
+      );
     }
     const carPostResponse = await axios.post(
       `${ridebackendURL}/add-carpost`,
@@ -110,12 +112,16 @@ export async function updateCarPost(formData) {
   data.append("image", formData.image[0]);
 
   try {
-    await axios.put(`${ridebackendURL}/update-ridepost/${formData.id}`, data, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    response = await axios.put(
+      `${ridebackendURL}/update-ridepost/${formData.id}`,
+      data,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
   } catch (err) {
-    return { error: err.message };
+    return { error: err.response.data.Message };
   }
 }
