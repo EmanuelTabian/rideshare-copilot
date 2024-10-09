@@ -5,6 +5,8 @@ import { useEffect } from "react";
 function ProtectedRoute({ children }) {
   const { isLoading, user } = useUser();
   const navigate = useNavigate();
+  console.log(isLoading);
+  console.log(user);
 
   useEffect(
     function () {
