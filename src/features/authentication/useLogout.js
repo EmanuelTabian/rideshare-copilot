@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export function useLogout() {
   const navigate = useNavigate();
-  const queryClient = useQueryClient;
+  const queryClient = useQueryClient();
   const { mutate: logout, isLoading } = useMutation({
     mutationFn: logoutApi,
     onSuccess: () => {

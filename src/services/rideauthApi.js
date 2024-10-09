@@ -32,10 +32,12 @@ export async function signin(data) {
       email,
       password,
     });
-
     return response.data;
   } catch (err) {
-    throw new Error(`${err.message} You were unable to sign in!`);
+    console.error(err);
+    throw new Error(
+      `${err.response.data.detail || "We were unable to sign you in!"}`
+    );
   }
 }
 

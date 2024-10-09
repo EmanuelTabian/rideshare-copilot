@@ -18,9 +18,6 @@ export function useSignin() {
       queryClient.invalidateQueries(["user"]);
       navigate("/dashboard", { replace: true });
     },
-    onError: (err) => {
-      console.log("💥 ", err);
-    },
   });
 
   return { signin, isLoading, isError, isSuccess, status };

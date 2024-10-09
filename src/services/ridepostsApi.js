@@ -112,15 +112,11 @@ export async function updateCarPost(formData) {
   data.append("image", formData.image[0]);
 
   try {
-    response = await axios.put(
-      `${ridebackendURL}/update-ridepost/${formData.id}`,
-      data,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    await axios.put(`${ridebackendURL}/update-ridepost/${formData.id}`, data, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
   } catch (err) {
     return { error: err.response.data.Message };
   }

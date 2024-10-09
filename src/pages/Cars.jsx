@@ -14,6 +14,11 @@ import { useEffect, useState } from "react";
 import CarPostsLayout from "../features/carposts/CarPostsLayout";
 import { carPostsSorter } from "../utils/helpers";
 
+const H2 = styled.h2`
+  margin: 1rem 0;
+  font-size: 1.5rem;
+`;
+
 const FlexContainer = styled.div`
   font-size: 1rem;
 
@@ -68,7 +73,7 @@ function Cars() {
   return (
     <>
       <StyledCars>
-        <h2>Browse car posts</h2>
+        <H2>Browse car posts</H2>
         <FlexContainer>
           <StyledNavLink to="/cars/myposts">My posts</StyledNavLink>
           <PostCar />

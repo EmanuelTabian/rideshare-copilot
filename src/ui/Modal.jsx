@@ -1,11 +1,18 @@
-import { cloneElement, createContext, useContext, useState } from "react";
+import {
+  cloneElement,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { createPortal } from "react-dom";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import styled from "styled-components";
 import { useCloseForm } from "../hooks/useCloseForm";
+import { set } from "date-fns";
 
 const StyledModal = styled.div`
-  margin: 32px 0;
+  overflow: scroll;
   height: 100%;
   width: 100%;
   max-width: 720px;
@@ -13,14 +20,14 @@ const StyledModal = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: var(--color-white);
+  background-color: rgba(10, 146, 69, 0.8);
 `;
 
 const CloseButton = styled.button`
   font-size: 1.3rem;
   color: white;
   position: absolute;
-  top: 1rem;
+  top: 1.5rem;
   right: 1rem;
   background: none;
   cursor: pointer;
@@ -30,6 +37,10 @@ const CloseButton = styled.button`
   &:hover {
     color: var(--color-gray-400);
   }
+`;
+
+const StyledDiv = styled.div`
+  height: 100%;
 `;
 
 const Overlay = styled.div`
@@ -47,22 +58,50 @@ const Overlay = styled.div`
 const ModalContext = createContext();
 
 function Modal({ children }) {
+  const [isOpen, setIsOpen] = useState(false);
   const [openName, setOpenName] = useState("");
 
-  const close = () => setOpenName("");
+  const close = () => {
+    setOpenName("");
+    setIsOpen(false);
+  };
   const open = setOpenName;
 
+  useEffect(
+    function () {
+      if (isOpen) {
+        console.log(isOpen);
+
+        document.body.style.overflow = "hidden";
+      } else {
+        console.log(isOpen);
+
+        document.body.style.overflow = "scroll";
+      }
+
+      return () => {
+        document.body.style.overflow = "scroll";
+      };
+    },
+    [isOpen]
+  );
+
   return (
-    <ModalContext.Provider value={{ openName, close, open }}>
+    <ModalContext.Provider value={{ openName, close, open, isOpen, setIsOpen }}>
       {children}
     </ModalContext.Provider>
   );
 }
 
 function Open({ children, opens: opensWindowName }) {
-  const { open } = useContext(ModalContext);
+  const { open, setIsOpen } = useContext(ModalContext);
   // We are not able to attatch the handler directly on the button so we're cloning the element and attatch it here
-  return cloneElement(children, { onClick: () => open(opensWindowName) });
+  return cloneElement(children, {
+    onClick: () => {
+      open(opensWindowName);
+      setIsOpen(true);
+    },
+  });
 }
 
 function Window({ children, name }) {
@@ -77,7 +116,7 @@ function Window({ children, name }) {
         <CloseButton onClick={close}>
           <IoCloseCircleOutline />
         </CloseButton>
-        <div>{cloneElement(children, { onCloseModal: close })}</div>
+        <StyledDiv>{cloneElement(children, { onCloseModal: close })}</StyledDiv>
       </StyledModal>
     </Overlay>,
     document.body

@@ -5,8 +5,10 @@ import Spinner from "../ui/Spinner";
 
 import CarPostsLayout from "../features/carposts/CarPostsLayout";
 import styled from "styled-components";
+import CarPostTableOperations from "../features/carposts/CarPostTableOperations";
 
 const H1 = styled.h1`
+  margin: 1rem 0;
   font-size: 1.5rem;
 `;
 
@@ -38,8 +40,9 @@ function MyPosts() {
     <>
       <H1>My posts</H1>
       <FlexContainer>
-        <PostCar />
         <StyledNavLink to="/cars">Back to all posts</StyledNavLink>
+        <PostCar />
+        <CarPostTableOperations />
       </FlexContainer>
       {isLoading ? (
         <Spinner />
