@@ -29,7 +29,7 @@ const StyledListItem = styled.li`
 const ImgContainer = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   min-width: 300px;
   margin: 8px;
 `;
