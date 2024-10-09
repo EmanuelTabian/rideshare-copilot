@@ -31,9 +31,9 @@ function EarningsGraph({ recentEntries }) {
       <h1>Earnings graph</h1>
       <div>
         <h2>
-          Sales from {chartDateFormatter(recentEntries.at(0).pub_date)}
+          {chartDateFormatter(recentEntries.at(0).pub_date)}
           {!sameDate &&
-            ` to
+            ` -
           ${chartDateFormatter(recentEntries.at(-1).pub_date)}`}
         </h2>
         <ResponsiveContainer width="100%" height={200}>
