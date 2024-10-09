@@ -30,7 +30,6 @@ const StyledButton = styled.button`
 const StyledContainer = styled.div`
   padding: 16px;
   border-radius: 16px;
-  background-color: rgba(10, 146, 69, 0.8);
   color: white;
 `;
 

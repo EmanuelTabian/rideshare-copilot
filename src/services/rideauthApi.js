@@ -1,7 +1,7 @@
 import axios from "axios";
-// export const ridebackendURL = "https://api.rideshare-copilot.eu/api";
+export const ridebackendURL = "https://api.rideshare-copilot.eu/api";
 
-export const ridebackendURL = "http://localhost:8000/api";
+// export const ridebackendURL = "http://localhost:8000/api";
 axios.defaults.withCredentials = true;
 
 export async function signup(userdata) {

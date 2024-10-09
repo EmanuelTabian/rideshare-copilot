@@ -15,13 +15,13 @@ const StyledDevider = styled.div`
   }
 `;
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   margin: 16px;
   @media (min-width: 480px) {
     margin: 0;
     max-width: 120rem;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
   }
 `;
 
