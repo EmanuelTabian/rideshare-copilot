@@ -6,19 +6,26 @@ import styled from "styled-components";
 import { useState } from "react";
 
 const StyledContainer = styled.div`
-  height: 90vh;
+  height: 100%;
   padding: 16px;
-  border-radius: 16px;
   background-color: rgba(10, 146, 69, 0.8);
   color: white;
-  font-size: 1.3rem;
+  font-size: 1rem;
+
+  @media (min-width: 480px) {
+    font-size: 1.3rem;
+  }
 `;
 
 export const InputContainer = styled.div`
   padding: 0.5rem;
   display: grid;
-  grid-template-columns: 8rem 1fr;
+  grid-template-columns: 6rem 1fr;
   gap: 1rem;
+
+  @media (min-width: 480px) {
+    grid-template-columns: 8rem 1fr;
+  }
 `;
 
 const TextareaContainer = styled.div`
@@ -26,16 +33,15 @@ const TextareaContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  height: inherit;
   & textarea {
     font-size: 1.2rem;
     resize: none;
-    height: 35%;
+    height: 24rem;
   }
 `;
 export const StyledError = styled.div`
   position: absolute;
-  right: 32px;
+  right: 40px;
   margin: 0 8px;
 `;
 const StyledFileError = styled.div`
@@ -55,8 +61,7 @@ const StyledForm = styled.form`
     height: inherit;
     border-radius: 10px;
     border: none;
-    padding: 0;
-    margin: 0;
+    margin: 8px;
   }
   legend {
     padding-bottom: 8px;
@@ -80,10 +85,7 @@ const StyledForm = styled.form`
 `;
 
 const ButtonsContainer = styled.div`
-  position: absolute;
-  bottom: 68px;
-  left: 16px;
-  right: 16px;
+  margin: 16px 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;

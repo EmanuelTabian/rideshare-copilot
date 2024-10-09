@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { useCloseForm } from "../hooks/useCloseForm";
 
 const StyledModal = styled.div`
-  margin: 32px 0;
   height: 100%;
   width: 100%;
   max-width: 720px;
@@ -20,7 +19,7 @@ const CloseButton = styled.button`
   font-size: 1.3rem;
   color: white;
   position: absolute;
-  top: 1rem;
+  top: 1.5rem;
   right: 1rem;
   background: none;
   cursor: pointer;
@@ -42,6 +41,9 @@ const Overlay = styled.div`
   z-index: 1000;
 `;
 
+const StyledClonedElement = styled.div`
+  height: inherit;
+`;
 // Modal compound component originally designed by Jonas Schmedtmann.
 
 const ModalContext = createContext();
@@ -77,7 +79,9 @@ function Window({ children, name }) {
         <CloseButton onClick={close}>
           <IoCloseCircleOutline />
         </CloseButton>
-        <div>{cloneElement(children, { onCloseModal: close })}</div>
+        <StyledClonedElement>
+          {cloneElement(children, { onCloseModal: close })}
+        </StyledClonedElement>
       </StyledModal>
     </Overlay>,
     document.body
