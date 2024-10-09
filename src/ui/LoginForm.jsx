@@ -81,6 +81,7 @@ const Form = styled.form`
   input[type="text"],
   input[type="checkbox"] {
     width: 100%;
+    box-sizing: border-box;
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
