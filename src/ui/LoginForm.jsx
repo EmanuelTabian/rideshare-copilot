@@ -6,6 +6,8 @@ import Button from "./Button";
 import { useState } from "react";
 import styled from "styled-components";
 import SpinnerMini from "./SpinnerMini";
+import { StyledError } from "../features/carposts/CarPostForm";
+import ErrorMessage from "./ErrorMessage";
 
 const LogoContainer = styled.div`
   margin-top: 7rem;
@@ -40,6 +42,7 @@ const LogoContainer = styled.div`
   }
 `;
 
+const ErrorContainer = styled.div``;
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -107,6 +110,7 @@ const username = "test@example.com";
 const password = "123Rideshare!@#";
 
 function LoginForm() {
+  const [authError, setAuthError] = useState(null);
   const { signin, status } = useSignin();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -118,7 +122,13 @@ function LoginForm() {
     if (!formData.email || !formData.password) return;
 
     signin(formData, {
-      onSettled: () => reset(),
+      onSettled: () => {
+        reset();
+      },
+      onError: (error) => {
+        setAuthError(error.message);
+        reset();
+      },
     });
   }
 
@@ -139,6 +149,9 @@ function LoginForm() {
               type="email"
               {...register("email", { required: "This field is required" })}
             />
+            <ErrorContainer>
+              <ErrorMessage>{errors?.email?.message}</ErrorMessage>
+            </ErrorContainer>
           </div>
           <div>
             <label htmlFor="password">Password:</label>
@@ -147,6 +160,12 @@ function LoginForm() {
               type={showPassword ? "text" : "password"}
               {...register("password", { required: "This field is required" })}
             />
+            <ErrorContainer>
+              <ErrorMessage>{errors?.password?.message}</ErrorMessage>
+            </ErrorContainer>
+            <ErrorContainer>
+              <ErrorMessage>{authError}</ErrorMessage>
+            </ErrorContainer>
           </div>
           <div>
             <label htmlFor="checkbox">Show password</label>
