@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 import { passwordStrength } from "check-password-strength";
+import PasswordStrengthBar from "react-password-strength-bar";
 
 const Form = styled.form`
   display: flex;
@@ -72,7 +73,7 @@ const StyledUl = styled.ul`
 
 function Signup() {
   const [signupErrors, setSignupErrors] = useState([]);
-  const [passwordStrengthMessage, setPasswordStrengthMessage] = useState("");
+  const [password, setPassword] = useState("");
   const { signup, isLoading } = useSignup();
 
   const { register, handleSubmit, reset, getValues, formState } = useForm();
@@ -90,7 +91,6 @@ function Signup() {
       }
     );
   }
-  console.log(passwordStrengthMessage);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -119,14 +119,15 @@ function Signup() {
             type="password"
             {...register("password", { required: "This field is required" })}
             onChange={(e) => {
-              const strength = passwordStrength(e.target.value);
-              setPasswordStrengthMessage(strength.value);
-              if ((!e, target.value)) {
-                setPasswordStrengthMessage("");
+              setPassword(e.target.value);
+              if (!e.target.value) {
+                setPassword("");
               }
             }}
           />
         </div>
+
+        {password && <PasswordStrengthBar password={password} />}
 
         <StyledUl>
           {signupErrors.map((error, index) => (
