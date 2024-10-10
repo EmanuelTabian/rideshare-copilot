@@ -61,8 +61,15 @@ const Form = styled.form`
   }
 `;
 
+const StyledUl = styled.ul`
+  color: red;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`;
+
 function Signup() {
-  const [passwordError, setPasswordError] = useState([]);
+  const [signupErrors, setSignupErrors] = useState([]);
   const { signup, isLoading } = useSignup();
 
   const { register, handleSubmit, reset, getValues, formState } = useForm();
@@ -75,14 +82,13 @@ function Signup() {
       {
         onSuccess: () => navigate("/login"),
         onError: (error) => {
-          console.log(error);
-
-          // console.log(error.message.split(","));
-          setPasswordError([error?.message?.split(",")]);
+          setSignupErrors([...error?.message?.split(",")]);
         },
       }
     );
   }
+
+  console.log(signupErrors);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -112,6 +118,13 @@ function Signup() {
             {...register("password", { required: "This field is required" })}
           />
         </div>
+
+        <StyledUl>
+          {signupErrors.map((error, index) => (
+            <li key={index}>{error}</li>
+          ))}
+        </StyledUl>
+
         <div>
           <Button>Create Account</Button>
         </div>
