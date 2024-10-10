@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { useState } from "react";
 
 import PasswordStrengthBar from "react-password-strength-bar";
+import SpinnerMini from "../ui/SpinnerMini";
 
 const Form = styled.form`
   display: flex;
@@ -77,7 +78,7 @@ const StyledUl = styled.ul`
 function Signup() {
   const [signupErrors, setSignupErrors] = useState([]);
   const [password, setPassword] = useState("");
-  const { signup, isLoading } = useSignup();
+  const { signup, status } = useSignup();
 
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
@@ -140,7 +141,13 @@ function Signup() {
           />
         </div>
 
-        {password && <PasswordStrengthBar password={password} minLength={8} />}
+        {password && (
+          <PasswordStrengthBar
+            password={password}
+            minLength={8}
+            onChangeScore={(score, feedback) => {}}
+          />
+        )}
 
         <StyledUl>
           {signupErrors.map((error, index) => (
@@ -149,7 +156,9 @@ function Signup() {
         </StyledUl>
 
         <div>
-          <Button>Create Account</Button>
+          <Button>
+            {status === "pending" ? <SpinnerMini /> : "CreateAccount"}
+          </Button>
         </div>
       </fieldset>
     </Form>
