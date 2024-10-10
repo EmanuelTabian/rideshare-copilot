@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import Button from "./Button";
 import { useUserUpdate } from "../features/authentication/useUserUpdate";
 import styled from "styled-components";
+import { useState } from "react";
+import PasswordStrengthBar from "react-password-strength-bar";
 
 const Form = styled.form`
   fieldset {
@@ -33,6 +35,13 @@ const Form = styled.form`
   }
 `;
 
+const StyledUl = styled.ul`
+  color: red;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`;
+
 const StyledButton = styled.button`
   background-color: white;
   margin: 8px;
@@ -56,6 +65,9 @@ const StyledButton = styled.button`
 `;
 
 function UserUpdateForm() {
+  const [updateErrors, setUpdateErrors] = useState([]);
+  const [password, setPassword] = useState("");
+
   const { userUpdate, isLoading } = useUserUpdate();
 
   const { register, handleSubmit, reset, getValues, formState } = useForm();
@@ -70,7 +82,10 @@ function UserUpdateForm() {
     userUpdate(
       { userdata },
       {
-        onSettled: () => reset(),
+        onSuccess: () => reset(),
+        onError: (error) => {
+          setUpdateErrors([...error?.message?.split(",")]);
+        },
       }
     );
   }
@@ -85,8 +100,22 @@ function UserUpdateForm() {
         </div>
         <div>
           <label htmlFor="password">Password: </label>
-          <input type="password" {...register("password")} />
+          <input
+            type="password"
+            {...register("password")}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              if (!e.target.value) {
+                setPassword("");
+              }
+            }}
+          />
         </div>
+        <StyledUl>
+          {updateErrors.map((error, index) => (
+            <li key={index}>{error}</li>
+          ))}
+        </StyledUl>
         <StyledButton>Save</StyledButton>
       </fieldset>
     </Form>
