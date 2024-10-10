@@ -70,15 +70,10 @@ function Modal({ children }) {
   useEffect(
     function () {
       if (isOpen) {
-        console.log(isOpen);
-
         document.body.style.overflow = "hidden";
       } else {
-        console.log(isOpen);
-
         document.body.style.overflow = "scroll";
       }
-
       return () => {
         document.body.style.overflow = "scroll";
       };

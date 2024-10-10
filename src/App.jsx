@@ -6,6 +6,8 @@ import {
   RouterProvider,
   Navigate,
 } from "react-router-dom";
+import toast, { ToastBar, Toaster } from "react-hot-toast";
+import { HiMiniXMark } from "react-icons/hi2";
 
 import AppLayout from "./ui/AppLayout";
 import Cars from "./pages/Cars";
@@ -98,6 +100,34 @@ function App() {
       <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
       <RouterProvider router={router} />
+      <Toaster
+        position="top-center"
+        gutter={12}
+        containerStyle={{ margin: "8px" }}
+        toastOptions={{
+          success: { duration: 3000 },
+          error: { duration: 5000 },
+          style: {
+            fontSize: "16px",
+            maxWidth: "500px",
+            padding: "16px 24px",
+          },
+        }}
+      >
+        {(t) => (
+          <ToastBar toast={t}>
+            {({ icon, message }) => (
+              <>
+                {icon}
+                {message}
+                {t.type !== "loading" && (
+                  <HiMiniXMark onClick={() => toast.dismiss(t.id)} />
+                )}
+              </>
+            )}
+          </ToastBar>
+        )}
+      </Toaster>
     </QueryClientProvider>
   );
 }

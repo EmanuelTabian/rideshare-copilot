@@ -10,7 +10,10 @@ export async function signup(userdata) {
 
     return response.data;
   } catch (err) {
-    throw new Error(`${err.message} You were unable to sign up! ☹️`);
+    if (err.response.data.email) {
+      throw new Error(err.response.data.email);
+    }
+    throw new Error(err.response.data.error);
   }
 }
 
@@ -32,6 +35,7 @@ export async function signin(data) {
       email,
       password,
     });
+
     return response.data;
   } catch (err) {
     console.error(err);

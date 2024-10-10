@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
 import { useSignup } from "../features/authentication/useSignup";
 import styled from "styled-components";
+import { useState } from "react";
+
+import PasswordStrengthBar from "react-password-strength-bar";
+import SpinnerMini from "../ui/SpinnerMini";
 
 const Form = styled.form`
   display: flex;
@@ -17,9 +21,7 @@ const Form = styled.form`
     border: none;
     width: 100%;
     max-width: 500px;
-    padding: 0;
-    padding: 0;
-    margin: 0;
+    margin: 8px;
   }
   legend {
     font-size: 1.5rem;
@@ -36,6 +38,7 @@ const Form = styled.form`
   }
 
   input {
+    box-sizing: border-box;
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
@@ -60,8 +63,22 @@ const Form = styled.form`
   }
 `;
 
+const FormErrorContainer = styled.div`
+  color: red;
+  margin: 8px;
+`;
+
+const StyledUl = styled.ul`
+  color: red;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`;
+
 function Signup() {
-  const { signup, isLoading } = useSignup();
+  const [signupErrors, setSignupErrors] = useState([]);
+  const [password, setPassword] = useState("");
+  const { signup, status } = useSignup();
 
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
@@ -71,7 +88,10 @@ function Signup() {
     signup(
       { name, email, password },
       {
-        onSettled: () => navigate("/login"),
+        onSuccess: () => navigate("/login"),
+        onError: (error) => {
+          setSignupErrors([...error?.message?.split(",")]);
+        },
       }
     );
   }
@@ -89,6 +109,11 @@ function Signup() {
             type="email"
             {...register("email", { required: "This field is required" })}
           />
+          {errors?.email && (
+            <FormErrorContainer>
+              <div>{errors?.email?.message}*</div>
+            </FormErrorContainer>
+          )}
         </div>
         <div>
           <label htmlFor="name">Username:</label>
@@ -96,16 +121,44 @@ function Signup() {
             type="text"
             {...register("name", { required: "This field is required" })}
           />
+          {errors?.name && (
+            <FormErrorContainer>
+              <div>{errors?.name?.message}*</div>
+            </FormErrorContainer>
+          )}
         </div>
         <div>
           <label htmlFor="password">Password:</label>
           <input
             type="password"
             {...register("password", { required: "This field is required" })}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              if (!e.target.value) {
+                setPassword("");
+              }
+            }}
           />
         </div>
+
+        {password && (
+          <PasswordStrengthBar
+            password={password}
+            minLength={8}
+            onChangeScore={(score, feedback) => {}}
+          />
+        )}
+
+        <StyledUl>
+          {signupErrors.map((error, index) => (
+            <li key={index}>{error}</li>
+          ))}
+        </StyledUl>
+
         <div>
-          <Button>Create Account</Button>
+          <Button>
+            {status === "pending" ? <SpinnerMini /> : "CreateAccount"}
+          </Button>
         </div>
       </fieldset>
     </Form>
