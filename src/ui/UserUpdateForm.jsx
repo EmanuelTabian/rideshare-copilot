@@ -54,7 +54,11 @@ const StyledButton = styled.button`
 
   display: inline;
   transition: background-color 0.3s;
-
+  &:disabled:hover {
+    background-color: var(--color-grey-300);
+    color: black;
+    cursor: not-allowed;
+  }
   &:hover {
     background-color: var(--color-brand-600);
     color: white;
@@ -68,7 +72,7 @@ function UserUpdateForm() {
   const [updateErrors, setUpdateErrors] = useState([]);
   const [password, setPassword] = useState("");
 
-  const { userUpdate, isLoading } = useUserUpdate();
+  const { userUpdate, status } = useUserUpdate();
 
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
@@ -89,6 +93,7 @@ function UserUpdateForm() {
       }
     );
   }
+  console.log(status);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -116,7 +121,7 @@ function UserUpdateForm() {
             <li key={index}>{error}</li>
           ))}
         </StyledUl>
-        <StyledButton>Save</StyledButton>
+        <StyledButton disabled={status === "pending"}>Save</StyledButton>
       </fieldset>
     </Form>
   );
