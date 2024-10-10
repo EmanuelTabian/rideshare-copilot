@@ -5,7 +5,6 @@ import { useSignup } from "../features/authentication/useSignup";
 import styled from "styled-components";
 import { useState } from "react";
 
-import { passwordStrength } from "check-password-strength";
 import PasswordStrengthBar from "react-password-strength-bar";
 
 const Form = styled.form`
@@ -21,9 +20,7 @@ const Form = styled.form`
     border: none;
     width: 100%;
     max-width: 500px;
-    padding: 0;
-    padding: 0;
-    margin: 0;
+    margin: 8px;
   }
   legend {
     font-size: 1.5rem;
@@ -40,6 +37,7 @@ const Form = styled.form`
   }
 
   input {
+    box-sizing: border-box;
     width: 100%;
     padding: 0.5rem;
     border: 1px solid #ccc;
@@ -62,6 +60,11 @@ const Form = styled.form`
       font-size: 1.25rem;
     }
   }
+`;
+
+const FormErrorContainer = styled.div`
+  color: red;
+  margin: 8px;
 `;
 
 const StyledUl = styled.ul`
@@ -105,6 +108,11 @@ function Signup() {
             type="email"
             {...register("email", { required: "This field is required" })}
           />
+          {errors?.email && (
+            <FormErrorContainer>
+              <div>{errors?.email?.message}*</div>
+            </FormErrorContainer>
+          )}
         </div>
         <div>
           <label htmlFor="name">Username:</label>
@@ -112,6 +120,11 @@ function Signup() {
             type="text"
             {...register("name", { required: "This field is required" })}
           />
+          {errors?.name && (
+            <FormErrorContainer>
+              <div>{errors?.name?.message}*</div>
+            </FormErrorContainer>
+          )}
         </div>
         <div>
           <label htmlFor="password">Password:</label>
@@ -127,7 +140,7 @@ function Signup() {
           />
         </div>
 
-        {password && <PasswordStrengthBar password={password} />}
+        {password && <PasswordStrengthBar password={password} minLength={8} />}
 
         <StyledUl>
           {signupErrors.map((error, index) => (
