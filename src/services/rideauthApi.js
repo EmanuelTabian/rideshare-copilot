@@ -1,17 +1,15 @@
 import axios from "axios";
-// export const ridebackendURL = "https://api.rideshare-copilot.eu/api";
+export const ridebackendURL = "https://api.rideshare-copilot.eu/api";
 
-export const ridebackendURL = "http://localhost:8000/api";
+// export const ridebackendURL = "http://localhost:8000/api";
 axios.defaults.withCredentials = true;
 
 export async function signup(userdata) {
   try {
     const response = await axios.post(`${ridebackendURL}/register`, userdata);
-    console.log(response.data);
 
     return response.data;
   } catch (err) {
-    console.log(err);
     if (err.response.data.email) {
       throw new Error(err.response.data.email);
     }
@@ -37,7 +35,7 @@ export async function signin(data) {
       email,
       password,
     });
-    console.log(response.data);
+
     return response.data;
   } catch (err) {
     console.error(err);
