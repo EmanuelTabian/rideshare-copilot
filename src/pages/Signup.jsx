@@ -5,6 +5,8 @@ import { useSignup } from "../features/authentication/useSignup";
 import styled from "styled-components";
 import { useState } from "react";
 
+import { passwordStrength } from "check-password-strength";
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -70,6 +72,7 @@ const StyledUl = styled.ul`
 
 function Signup() {
   const [signupErrors, setSignupErrors] = useState([]);
+  const [passwordStrengthMessage, setPasswordStrengthMessage] = useState("");
   const { signup, isLoading } = useSignup();
 
   const { register, handleSubmit, reset, getValues, formState } = useForm();
@@ -87,8 +90,7 @@ function Signup() {
       }
     );
   }
-
-  console.log(signupErrors);
+  console.log(passwordStrengthMessage);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -116,6 +118,13 @@ function Signup() {
           <input
             type="password"
             {...register("password", { required: "This field is required" })}
+            onChange={(e) => {
+              const strength = passwordStrength(e.target.value);
+              setPasswordStrengthMessage(strength.value);
+              if ((!e, target.value)) {
+                setPasswordStrengthMessage("");
+              }
+            }}
           />
         </div>
 
