@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../ui/Button";
 import { useSignup } from "../features/authentication/useSignup";
 import styled from "styled-components";
+import { useState } from "react";
 
 const Form = styled.form`
   display: flex;
@@ -61,6 +62,7 @@ const Form = styled.form`
 `;
 
 function Signup() {
+  const [passwordError, setPasswordError] = useState([]);
   const { signup, isLoading } = useSignup();
 
   const { register, handleSubmit, reset, getValues, formState } = useForm();
@@ -71,7 +73,13 @@ function Signup() {
     signup(
       { name, email, password },
       {
-        onSettled: () => navigate("/login"),
+        onSuccess: () => navigate("/login"),
+        onError: (error) => {
+          console.log(error);
+
+          // console.log(error.message.split(","));
+          setPasswordError([error?.message?.split(",")]);
+        },
       }
     );
   }
