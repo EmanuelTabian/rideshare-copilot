@@ -107,8 +107,8 @@ const Form = styled.form`
     }
   }
 `;
-const username = "test@example.com";
-const password = "123Rideshare!@#";
+// const username = "test@example.com";
+// const password = "123Rideshare!@#";
 
 function LoginForm() {
   const [authError, setAuthError] = useState(null);
@@ -146,7 +146,7 @@ function LoginForm() {
           <div>
             <label htmlFor="email">Email:</label>
             <input
-              defaultValue={username}
+              // defaultValue={username}
               type="email"
               {...register("email", { required: "This field is required" })}
             />
@@ -157,7 +157,7 @@ function LoginForm() {
           <div>
             <label htmlFor="password">Password:</label>
             <input
-              defaultValue={password}
+              // defaultValue={password}
               type={showPassword ? "text" : "password"}
               {...register("password", { required: "This field is required" })}
             />
