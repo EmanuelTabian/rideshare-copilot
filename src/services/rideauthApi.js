@@ -1,7 +1,9 @@
 import axios from "axios";
-// export const ridebackendURL = "https://api.rideshare-copilot.eu/api";
 
-export const ridebackendURL = "http://localhost:8000/api";
+// export const ridebackendURL = import.meta.env.VITE_RIDEBACKEND_DEV_URL;
+
+export const ridebackendURL = import.meta.env.VITE_RIDEBACKEND_PROD_URL;
+
 axios.defaults.withCredentials = true;
 
 export async function signup(userdata) {
@@ -33,6 +35,7 @@ export async function signin(data) {
       email,
       password,
     });
+    console.log(ridebackendURL);
 
     return response.data;
   } catch (err) {
