@@ -29,6 +29,11 @@ const StyledButton = styled.button`
   display: inline;
   transition: background-color 0.3s;
 
+  &:disabled:hover {
+    background-color: var(--color-grey-300);
+    color: black;
+    cursor: not-allowed;
+  }
   &:hover {
     background-color: var(--color-brand-600);
     color: white;
@@ -43,7 +48,7 @@ const StyledDiv = styled.div`
 `;
 
 function CalculatorLayout() {
-  const { addCalculatorEntry, isLoading } = useAddCalculatorEntry();
+  const { addCalculatorEntry, status } = useAddCalculatorEntry();
 
   const {
     income,
@@ -113,7 +118,9 @@ function CalculatorLayout() {
             {toggle ? "Close" : " Expenses"}
           </StyledButton>
           <StyledButton onClick={handleReset}>Reset</StyledButton>
-          <StyledButton onClick={handleAdd}>Save</StyledButton>
+          <StyledButton disabled={status === "pending"} onClick={handleAdd}>
+            Save
+          </StyledButton>
         </StyledDiv>
       )}
       {toggle && (

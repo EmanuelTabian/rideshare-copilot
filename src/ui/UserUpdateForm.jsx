@@ -93,7 +93,6 @@ function UserUpdateForm() {
       }
     );
   }
-  console.log(status);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>

@@ -79,14 +79,13 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
     dispatch,
   } = useTableCalculator();
 
-  const { updateCalculatorEntry, isLoading } = useUpdateCalculatorEntry();
+  const { updateCalculatorEntry, status } = useUpdateCalculatorEntry();
   const { register, handleSubmit, reset, setValue, formState } = useForm();
 
   const { errors } = formState;
 
   function onSubmit(data) {
     const payload = { ...data, id };
-    console.log(payload);
 
     updateCalculatorEntry(payload, {
       onSuccess: () => {
@@ -163,7 +162,9 @@ function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
             />
           </InputContainer>
           <div>
-            <StyledButton>Save changes</StyledButton>
+            <StyledButton disabled={status === "pending"}>
+              Save changes
+            </StyledButton>
           </div>
         </fieldset>
       </StyledForm>

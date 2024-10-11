@@ -146,8 +146,6 @@ function CarPost({ carPost }) {
         <ImgContainer>
           <StyledImg
             src={imageUrl?.url ? imageUrl?.url : "no-photo.png"}
-            // For test purpose
-            // src="../../public/no-photo.png"
             alt={carName}
           />
         </ImgContainer>

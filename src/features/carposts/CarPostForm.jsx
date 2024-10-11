@@ -127,7 +127,7 @@ const FileInput = styled.input.attrs({ type: "file" })`
 function Form({ carDetails = {}, onCloseModal }) {
   const [errorMessage, setErrorMessage] = useState(null);
   const [formSession, setFormSession] = useState(1);
-  const { addCarPost, isUploadingPost, error } = useAddCarPost();
+  const { addCarPost, isAddingCarPost } = useAddCarPost();
   const { updateCarPost, isUpdatingCarPost } = useUpdateCarPost();
 
   const updateSession = Boolean(carDetails.id);
@@ -536,7 +536,13 @@ function Form({ carDetails = {}, onCloseModal }) {
               <button disabled={formSession === 1} onClick={handlePrevious}>
                 Previous
               </button>
-              <button type="submit">
+              <button
+                disabled={
+                  isAddingCarPost === "pending" ||
+                  isUpdatingCarPost === "pending"
+                }
+                type="submit"
+              >
                 {updateSession ? "Update" : "Submit"}
               </button>
             </ButtonsContainer>
