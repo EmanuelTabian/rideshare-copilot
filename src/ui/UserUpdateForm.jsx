@@ -2,6 +2,8 @@ import { useForm } from "react-hook-form";
 import Button from "./Button";
 import { useUserUpdate } from "../features/authentication/useUserUpdate";
 import styled from "styled-components";
+import { useState } from "react";
+import PasswordStrengthBar from "react-password-strength-bar";
 
 const Form = styled.form`
   fieldset {
@@ -33,6 +35,13 @@ const Form = styled.form`
   }
 `;
 
+const StyledUl = styled.ul`
+  color: red;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`;
+
 const StyledButton = styled.button`
   background-color: white;
   margin: 8px;
@@ -45,7 +54,11 @@ const StyledButton = styled.button`
 
   display: inline;
   transition: background-color 0.3s;
-
+  &:disabled:hover {
+    background-color: var(--color-grey-300);
+    color: black;
+    cursor: not-allowed;
+  }
   &:hover {
     background-color: var(--color-brand-600);
     color: white;
@@ -56,7 +69,10 @@ const StyledButton = styled.button`
 `;
 
 function UserUpdateForm() {
-  const { userUpdate, isLoading } = useUserUpdate();
+  const [updateErrors, setUpdateErrors] = useState([]);
+  const [password, setPassword] = useState("");
+
+  const { userUpdate, status } = useUserUpdate();
 
   const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
@@ -70,7 +86,10 @@ function UserUpdateForm() {
     userUpdate(
       { userdata },
       {
-        onSettled: () => reset(),
+        onSuccess: () => reset(),
+        onError: (error) => {
+          setUpdateErrors([...error?.message?.split(",")]);
+        },
       }
     );
   }
@@ -85,9 +104,23 @@ function UserUpdateForm() {
         </div>
         <div>
           <label htmlFor="password">Password: </label>
-          <input type="password" {...register("password")} />
+          <input
+            type="password"
+            {...register("password")}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              if (!e.target.value) {
+                setPassword("");
+              }
+            }}
+          />
         </div>
-        <StyledButton>Save</StyledButton>
+        <StyledUl>
+          {updateErrors.map((error, index) => (
+            <li key={index}>{error}</li>
+          ))}
+        </StyledUl>
+        <StyledButton disabled={status === "pending"}>Save</StyledButton>
       </fieldset>
     </Form>
   );

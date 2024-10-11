@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCarPost as deleteCarPostApi } from "../../services/ridepostsApi";
+import toast from "react-hot-toast";
 
 export function useDeleteCarPost() {
   const queryClient = useQueryClient();
@@ -9,6 +10,7 @@ export function useDeleteCarPost() {
       queryClient.removeQueries({ queryKey: ["imageUrl", id] });
       queryClient.invalidateQueries({ queryKey: ["car-posts"] });
       queryClient.invalidateQueries({ queryKey: ["user-car-posts"] });
+      toast.success("Post deleted successfully!");
     },
   });
 

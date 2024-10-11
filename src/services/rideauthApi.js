@@ -1,7 +1,7 @@
 import axios from "axios";
-export const ridebackendURL = "https://api.rideshare-copilot.eu/api";
+// export const ridebackendURL = "https://api.rideshare-copilot.eu/api";
 
-// export const ridebackendURL = "http://localhost:8000/api";
+export const ridebackendURL = "http://localhost:8000/api";
 axios.defaults.withCredentials = true;
 
 export async function signup(userdata) {
@@ -21,9 +21,7 @@ export async function userUpdate({ userdata }) {
   try {
     await axios.put(`${ridebackendURL}/user-update`, userdata);
   } catch (err) {
-    throw new Error(
-      `${err.message} You were unable to update your credentials! ☹️`
-    );
+    throw new Error(`${err.response.data.error}`);
   }
 }
 

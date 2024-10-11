@@ -141,13 +141,7 @@ function Signup() {
           />
         </div>
 
-        {password && (
-          <PasswordStrengthBar
-            password={password}
-            minLength={8}
-            onChangeScore={(score, feedback) => {}}
-          />
-        )}
+        {password && <PasswordStrengthBar password={password} minLength={8} />}
 
         <StyledUl>
           {signupErrors.map((error, index) => (
