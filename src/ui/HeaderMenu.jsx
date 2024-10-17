@@ -95,7 +95,7 @@ const StyledNavButton = styled.button`
 
 function HeaderMenu() {
   const [burgerActive, setBurgerActive] = useState(false);
-  const { logout, isLoading } = useLogout();
+  const { logout } = useLogout();
 
   return (
     <StyledHeaderMenu>

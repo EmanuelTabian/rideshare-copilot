@@ -1,7 +1,6 @@
 import axios from "axios";
 
 // export const ridebackendURL = import.meta.env.VITE_RIDEBACKEND_DEV_URL;
-
 export const ridebackendURL = import.meta.env.VITE_RIDEBACKEND_PROD_URL;
 
 axios.defaults.withCredentials = true;
@@ -21,7 +20,7 @@ export async function signup(userdata) {
 
 export async function userUpdate({ userdata }) {
   try {
-    await axios.put(`${ridebackendURL}/user-update`, userdata);
+    const response = await axios.put(`${ridebackendURL}/user-update`, userdata);
   } catch (err) {
     throw new Error(`${err.response.data.error}`);
   }
@@ -35,11 +34,9 @@ export async function signin(data) {
       email,
       password,
     });
-    console.log(ridebackendURL);
 
     return response.data;
   } catch (err) {
-    console.error(err);
     throw new Error(
       `${err.response.data.detail || "We were unable to sign you in!"}`
     );

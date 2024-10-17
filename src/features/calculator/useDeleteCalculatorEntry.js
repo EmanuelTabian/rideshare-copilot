@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteCalculatorEntry as deleteCalculatorEntryAPI } from "../../services/ridecalcApi";
 import toast from "react-hot-toast";
+
 export function useDeleteCalaculatorEntry() {
   const queryClient = useQueryClient();
   const { isLoading, mutate: deleteCalculatorEntry } = useMutation({

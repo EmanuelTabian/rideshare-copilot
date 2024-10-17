@@ -93,8 +93,8 @@ function CarCard({ carDetails }) {
     price,
   } = carDetails;
   const canEditOrRemove = user_id === user.id;
-  const { isLoading, imageUrl, error } = useGetImageUrl(id);
-  const { deleteCarPost, isDeletingCarPost } = useDeleteCarPost();
+  const { isLoading, imageUrl } = useGetImageUrl(id);
+  const { deleteCarPost } = useDeleteCarPost();
 
   function handleDelete() {
     deleteCarPost(id);

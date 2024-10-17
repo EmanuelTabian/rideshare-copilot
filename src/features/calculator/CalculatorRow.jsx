@@ -1,14 +1,13 @@
 import { IoPencilSharp } from "react-icons/io5";
 import { IoTrashBinSharp } from "react-icons/io5";
+import styled from "styled-components";
 
 import Table from "../../ui/Table";
 import { dateFormatter } from "../../utils/helpers";
-import Button from "../../ui/Button";
 import Modal from "../../ui/Modal";
 import UpdateCalculatorEntryForm from "./UpdateCalculatorEntryForm";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { useDeleteCalaculatorEntry } from "./useDeleteCalculatorEntry";
-import styled from "styled-components";
 
 const StyledButton = styled.button`
   /* padding: 0.44rem 0.8rem; */
@@ -32,7 +31,7 @@ const StyledButton = styled.button`
 `;
 
 function CalculatorRow({ calcEntry }) {
-  const { deleteCalculatorEntry, isLoading } = useDeleteCalaculatorEntry();
+  const { deleteCalculatorEntry } = useDeleteCalaculatorEntry();
   const {
     id,
     pub_date: pubDate,

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Button from "./Button";
 
 const StyledConfirmation = styled.div`
   display: flex;

@@ -1,9 +1,6 @@
 import { useSearchParams } from "react-router-dom";
-import { HiChevronDoubleLeft } from "react-icons/hi2";
-import { HiChevronDoubleRight } from "react-icons/hi2";
 import { HiChevronLeft } from "react-icons/hi2";
 import { HiChevronRight } from "react-icons/hi2";
-import { useEffect } from "react";
 import styled from "styled-components";
 
 const StyledPagination = styled.div`

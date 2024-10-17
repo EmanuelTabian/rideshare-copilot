@@ -1,3 +1,4 @@
+// Dummy data for cars component.
 export const cars = [
   {
     createdAt: "11.07.2024",

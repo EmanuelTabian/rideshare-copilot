@@ -1,9 +1,10 @@
+import styled from "styled-components";
+
 import Table from "../../ui/Table";
 import CalculatorRow from "./CalculatorRow";
 import { useGetCalculatorEntries } from "./useGetCalculatorEntries";
 import Spinner from "../../ui/Spinner";
 import Pagination from "../../ui/Pagination";
-import styled from "styled-components";
 
 const SpinnerContainer = styled.div`
   overflow: hidden;

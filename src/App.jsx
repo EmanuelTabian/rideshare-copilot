@@ -1,6 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import GlobalStyles from "./styles/GlobalStyles";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -9,6 +8,7 @@ import {
 import toast, { ToastBar, Toaster } from "react-hot-toast";
 import { HiMiniXMark } from "react-icons/hi2";
 
+import GlobalStyles from "./styles/GlobalStyles";
 import AppLayout from "./ui/AppLayout";
 import Cars from "./pages/Cars";
 import Login from "./pages/Login";

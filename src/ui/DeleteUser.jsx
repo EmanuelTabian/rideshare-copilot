@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { useUserDelete } from "../features/authentication/useUserDelete";
 import Modal from "./Modal";
 import ConfirmDelete from "./ConfirmDelete";

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import EarningsGraph from "../../ui/EarningsGraph";
 import Message from "../../ui/Message";
 import Spinner from "../../ui/Spinner";
