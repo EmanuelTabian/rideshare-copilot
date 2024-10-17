@@ -1,22 +1,40 @@
-# Rideshare Copilot V2
+# Rideshare Copilot
+
+[![Live Version](https://img.shields.io/badge/Live%20Version-Click%20Here-brightgreen)](https://www.rideshare-copilot.eu/login)
 
 ## Description
 
-An app that helps drivers calculate their weekly net income, track their earning curvature, receive document due time notifications, buy/rent cars and upload their own post.
+This application assists drivers in calculating their weekly net income, tracking their earnings trends, and managing car rentals by allowing them to buy, rent, or sell their own vehicles.
+
+### Inspiration
+
+This front-end project is highly inspired by the [Ultimate React Course](https://www.udemy.com/course/the-ultimate-react-course/?couponCode=LETSLEARNNOW) by Jonas Schmedtmann. Additionally, the demo version of the **Wild Oasis** app, that served as inspiration can be found [here](https://the-wild-oasis.vercel.app/login).
+
+**The Wild Oasis** leverages essential front-end capabilities of the **React.js framework** and integrates seamlessly with a backend configured on [Supabase](https://supabase.com/). My ambition was to develop a custom backend for Rideshare Copilot using **Python**, **Django**, and **PostgreSQL**, ensuring a tailored and robust solution for managing rideshare operations.
+
+- For more information about the Rideshare Copilot backend, access this repository [here](https://github.com/EmanuelTabian/rideshare-copilot-backend).
 
 ### Overview
 
-The app requires authentication. Once the user gets logged in he can perform various tasks like exploring car rental posts, upload their own post, calculate their earnings based on commision percentages and other expenses, and save it in order to generate the earning curvature chart and more.
+The application requires user **authentication**. Upon successful login, users can engage in a variety of activities such as browsing car rental listings, posting their own rental offers, calculating earnings based on commission rates and other expenses, and saving this data to generate earnings trend charts and additional insights.
 
-### Prerequisite
+## Table of Contents
 
-1. Download and install [Node.js](https://nodejs.org/en/download) latest version.
+- [Backend Integration](#backend-integration)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Setup and Installation](#setup-and-installation)
+- [Running the Project](#running-the-project)
+- [Deployment](#deployment)
+- [Future Updates](#future-updates)
 
-1. Make sure you have installed the latest npm version.
+## Backend Integration
 
-```sh
-   npm install -g npm
-```
+To run this application, it is essential to have the **Rideshare Copilot V2** backend service up and running. You can find the backend repository [here](https://github.com/EmanuelTabian/rideshare-copilot-backend). Ensure that the backend is properly configured and operational to enable full functionality of the application.
+
+## Features
+
+### Prerequisites
 
 ## Installation
 
