@@ -187,3 +187,46 @@ Once you have accessed the application, follow these steps to get started:
 - When you are done, click on the **`Log Out`** icon to securely log out of the application.
 
 By following these steps, you can effectively navigate and utilize the features of the Rideshare Copilot application.
+
+## Deployment
+
+To deploy the Rideshare Copilot application on Vercel, follow these steps:
+
+1. **Sign Up / Log In to Vercel**:
+
+   - Go to [Vercel](https://vercel.com/).
+   - Sign up for a new account or log in if you already have one.
+
+2. **Import Project**:
+
+   - After logging in, click on the **`New Project`** button.
+   - Select **`Import Git Repository`**.
+   - Connect your GitHub account if you haven't already.
+   - Find and select the `rideshare-copilot-v2` repository.
+
+3. **Configure Project**:
+
+   - Once the repository is imported, Vercel will automatically detect the framework (React.js) and configure the build settings.
+   - Ensure the build command is set to `npm run build` or `yarn build`.
+   - Ensure the output directory is set to `build`.
+
+4. **Set Environment Variables**:
+
+   - Go to the **`Settings`** tab of your project.
+   - Click on **`Environment Variables`**.
+   - Add the necessary environment variables as specified in your `.env` file:
+     ```plaintext
+     VITE_RIDEBACKEND_DEV_URL=https://your-backend-url/api
+     ```
+
+5. **Deploy**:
+
+   - Click on the **`Deploy`** button.
+   - Vercel will build and deploy your application.
+   - Once the deployment is complete, you will receive a live URL where your application is hosted.
+
+6. **Verify Deployment**:
+   - Open the provided live URL in your browser.
+   - Verify that the application is running as expected.
+
+By following these steps, you can successfully deploy the Rideshare Copilot application on Vercel.
