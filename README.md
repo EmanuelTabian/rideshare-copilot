@@ -59,8 +59,67 @@ To run this application, it is essential to have the **Rideshare Copilot V2** ba
 | **React Hot Toast**   | A library for displaying toast notifications in React applications.                                       |
 | **Recharts**          | A charting library built on React components for creating data visualizations.                            |
 | **ESLint**            | A tool for identifying and fixing linting issues in JavaScript code.                                      |
-| **date-fns**          | A modern JavaScript date utility library for parsing, formatting, and manipulating dates.                 |
 
 ## Setup and Installation
 
 ### Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- **Node.js**: Install Node.js from [nodejs.org](https://nodejs.org/). This project requires Node.js version 14 or higher.
+- **npm or Yarn**: Ensure you have npm (comes with Node.js) or Yarn installed for managing dependencies.
+
+Once you have these prerequisites installed, you can proceed with the installation steps.
+
+### Installation Steps
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/EmanuelTabian/rideshare-copilot-v2.git
+   cd rideshare-copilot-v2
+   ```
+
+2. **Install Dependencies**:
+
+   - Using npm:
+
+   ```bash
+   npm install
+   ```
+
+   - Or using Yarn:
+
+   ```bash
+   yarn install
+   ```
+
+3. **Set Up Backend URL Environment variable**:
+
+   - Set up the **Rideshare Copilot Backend** app. The repository can be found [here](https://github.com/EmanuelTabian/rideshare-copilot-backend).
+   - Start a development server:
+     ```bash
+     python manage.py runserver
+     ```
+   - Create a `.env` file in the root directory and add the necessary **backend URL** variable. Refer to the `.env.example` file.
+     ```bash
+     VITE_RIDEBACKEND_DEV_URL=http://localhost:example-port/api
+     ```
+
+4. **Run the Application**:
+
+   - Using npm:
+
+   ```bash
+   npm start
+   ```
+
+   - Or using Yarn:
+
+   ```bash
+   yarn start
+   ```
+
+5. **Access the Application**:
+
+- Open your browser and navigate to `http://localhost:example-port` to see the application in action.
