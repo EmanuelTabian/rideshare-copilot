@@ -230,3 +230,15 @@ To deploy the Rideshare Copilot application on Vercel, follow these steps:
    - Verify that the application is running as expected.
 
 By following these steps, you can successfully deploy the Rideshare Copilot application on Vercel.
+
+## Future updates
+
+- **Email Validation**: Currently, the application allows registration with any email address, including placeholder addresses like `test@example.com`. The only restriction is that duplicate email registrations are not permitted.
+
+- **Password Reset**: Implement a password reset feature to allow users to reset their passwords if they forget it.
+
+- **Multiple Image Upload**: Implement a feature that allows users to upload multiple images for a single car rental listing. This will include an image slider to display the uploaded images. Each image will be indexed to the car post based on a foreign key (backend).
+
+- **Documents Section**: The application will include a dedicated documents section, allowing users to input document details such as start and expiration dates. Additionally, the dashboard will provide alerts for documents nearing their expiration.
+
+- **Bundle Size Optimization**: Break the bundle into smaller chunks to facilitate performance improvements. This can be achieved by implementing code splitting, ensuring that only the necessary code is loaded when required.

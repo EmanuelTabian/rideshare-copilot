@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const ridebackendURL = import.meta.env.VITE_RIDEBACKEND_DEV_URL;
-// export const ridebackendURL = import.meta.env.VITE_RIDEBACKEND_PROD_URL;
+// export const ridebackendURL = import.meta.env.VITE_RIDEBACKEND_DEV_URL;
+export const ridebackendURL = import.meta.env.VITE_RIDEBACKEND_PROD_URL;
 
 axios.defaults.withCredentials = true;
 
