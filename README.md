@@ -25,6 +25,7 @@ The application requires user **authentication**. Upon successful login, users c
 - [Tech Stack](#tech-stack)
 - [Setup and Installation](#setup-and-installation)
 - [Running the Project](#running-the-project)
+- [Usage](#usage)
 - [Deployment](#deployment)
 - [Future Updates](#future-updates)
 
@@ -106,22 +107,83 @@ Once you have these prerequisites installed, you can proceed with the installati
      VITE_RIDEBACKEND_DEV_URL=http://localhost:<backend-port>/api
      ```
 
-4. **Run the Application**:
+## Running the project
 
-   - Using npm:
+This application runs in conjunction with the **Rideshare Copilot Backend**. For detailed configuration steps, refer to the backend repository [here](https://github.com/EmanuelTabian/rideshare-copilot-backend).
 
-   ```bash
-   npm start
-   ```
+**Run the Application**:
 
-   - Or using Yarn:
+- Using npm:
 
-   ```bash
-   yarn start
-   ```
+```bash
+npm start
+```
 
-5. **Access the Application**:
+- Or using Yarn:
+
+```bash
+yarn start
+```
+
+**Access the Application**:
 
 - Open your browser and navigate to `http://localhost:<frontend-port>` to see the application in action.
 
-## Running the project
+## Usage
+
+Once you have accessed the application, follow these steps to get started:
+
+### 1. Register or Log In
+
+- **Register**: If you are a new user, click on the **`Sign Up`** button and fill in the required details to create an account. Fill in a strong password as the backend features **password validators**.
+- **Log In**: If you already have an account, click on the **`Log In`** button and enter your credentials.
+
+### 2. Browse Car Rental Listings
+
+- After logging in, navigate to the **`Cars`** section.
+- Browse through the available car rental listings.
+- Use the sorting options to filter listings based on your preferences.
+
+### 3. Post a Car Rental Offer
+
+- Click on the **`+New Post`** button.
+- Fill in the details of your car rental offer, including the car model, rental price, optional image etc.
+- The form will guide you through three distinct sections, each accessible via the **`Next`** button. Progressing to the subsequent section requires completion of all mandatory fields:
+  - **General Specs**
+  - **Additional Specs**
+  - **Optional Specs**
+- **Submit** the form to post your rental offer.
+
+### 4. Calculate Earnings
+
+- Navigate to the **`Calculator`** section.
+- Enter your gross income, commission rates, and other expenses.
+- Click on the **`Save`** button to register your income details.
+- Save at least **two** income entries to track your earnings over time via **Dashboard** section chart.
+
+### 5. Update or Delete Earnings Entry
+
+- Navigate to the **`Calculator`** section.
+- Locate the earnings entry you wish to update or delete.
+  - **Update**: Click on the **`Edit`** button next to the entry. Fill in the prompted form with the updated details and click **`Save`** to apply the changes.
+  - **Delete**: Click on the **`Delete`** button next to the entry. Confirm the deletion to remove the entry from your records.
+
+### 6. View Dashboard
+
+- Go to the **`Dashboard`** section.
+- Analyze your earnings trends over the last `7, 30, or 90 days`.
+- Use the `charts` to gain insights into your earnings patterns.
+
+### 7. Manage User Settings
+
+- Go to the **`Settings`** section.
+- Update your user credentials as needed.
+- **Password update** requires a strong password, otherwise you will be prompted with errors.
+- Save the changes to update your profile.
+- Click on the **`Delete Account`** button and confirm the action to permanently delete your account and all associated data.
+
+### 8. Log Out
+
+- When you are done, click on the **`Log Out`** icon to securely log out of the application.
+
+By following these steps, you can effectively navigate and utilize the features of the Rideshare Copilot application.
