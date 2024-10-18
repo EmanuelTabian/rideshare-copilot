@@ -6,7 +6,7 @@
 
 This application assists drivers in calculating their weekly net income, tracking their earnings trends, and managing car rentals by allowing them to buy, rent, or sell their own vehicles.
 
-### Inspiration
+## Inspiration
 
 This front-end project is highly inspired by the [Ultimate React Course](https://www.udemy.com/course/the-ultimate-react-course/?couponCode=LETSLEARNNOW) by Jonas Schmedtmann. Additionally, the demo version of the **Wild Oasis** app, that served as inspiration can be found [here](https://the-wild-oasis.vercel.app/login).
 
@@ -14,7 +14,7 @@ This front-end project is highly inspired by the [Ultimate React Course](https:/
 
 - For more information about the Rideshare Copilot backend, access this repository [here](https://github.com/EmanuelTabian/rideshare-copilot-backend).
 
-### Overview
+## Overview
 
 The application requires user **authentication**. Upon successful login, users can engage in a variety of activities such as browsing car rental listings, posting their own rental offers, calculating earnings based on commission rates and other expenses, and saving this data to generate earnings trend charts and additional insights.
 
@@ -94,16 +94,16 @@ Once you have these prerequisites installed, you can proceed with the installati
    yarn install
    ```
 
-3. **Set Up Backend URL Environment variable**:
+3. **Set Up Backend URL Environment Variable**:
 
-   - Set up the **Rideshare Copilot Backend** app. The repository can be found [here](https://github.com/EmanuelTabian/rideshare-copilot-backend).
-   - Start a development server:
+   - Ensure the **Rideshare Copilot Backend** app is set up and running. The repository can be found [here](https://github.com/EmanuelTabian/rideshare-copilot-backend).
+   - Start the backend development server:
      ```bash
      python manage.py runserver
      ```
-   - Create a `.env` file in the root directory and add the necessary **backend URL** variable. Refer to the `.env.example` file.
+   - Create a `.env` file in the root directory and add the necessary **backend URL** variable. Refer to the `.env.example` file for guidance.
      ```bash
-     VITE_RIDEBACKEND_DEV_URL=http://localhost:example-port/api
+     VITE_RIDEBACKEND_DEV_URL=http://localhost:<backend-port>/api
      ```
 
 4. **Run the Application**:
@@ -122,4 +122,6 @@ Once you have these prerequisites installed, you can proceed with the installati
 
 5. **Access the Application**:
 
-- Open your browser and navigate to `http://localhost:example-port` to see the application in action.
+- Open your browser and navigate to `http://localhost:<frontend-port>` to see the application in action.
+
+## Running the project
