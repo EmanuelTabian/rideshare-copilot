@@ -68,7 +68,7 @@ export async function updateCalculatorEntry(calcData) {
 
 export async function deleteCalculatorEntry(id) {
   try {
-    const response = axios.delete(
+    const response = await axios.delete(
       `${ridebackendURL}/delete-calculator-entry/${id}`
     );
   } catch (err) {

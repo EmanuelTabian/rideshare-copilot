@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
+import PasswordStrengthBar from "react-password-strength-bar";
 import { useNavigate } from "react-router-dom";
-import Button from "../ui/Button";
-import { useSignup } from "../features/authentication/useSignup";
 import styled from "styled-components";
 import { useState } from "react";
 
-import PasswordStrengthBar from "react-password-strength-bar";
+import Button from "../ui/Button";
+import { useSignup } from "../features/authentication/useSignup";
 import SpinnerMini from "../ui/SpinnerMini";
 
 const Form = styled.form`
@@ -80,7 +80,7 @@ function Signup() {
   const [password, setPassword] = useState("");
   const { signup, status } = useSignup();
 
-  const { register, handleSubmit, reset, getValues, formState } = useForm();
+  const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
   const navigate = useNavigate();
 

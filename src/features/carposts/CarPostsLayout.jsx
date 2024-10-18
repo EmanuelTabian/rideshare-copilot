@@ -1,12 +1,10 @@
 import { useSearchParams } from "react-router-dom";
+import styled from "styled-components";
+
 import CarCard from "../../ui/CarCard";
 import Message from "../../ui/Message";
 import Pagination from "../../ui/Pagination";
-import CarPostTableOperations from "./CarPostTableOperations";
-import { useEffect, useState } from "react";
-import Spinner from "../../ui/Spinner";
 import { carPostsSorter } from "../../utils/helpers";
-import styled from "styled-components";
 
 const CarList = styled.ul`
   list-style: none;

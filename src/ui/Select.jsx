@@ -1,6 +1,6 @@
-// Component originally built by Jonas Schmedtmann.
-
 import styled from "styled-components";
+
+// Component originally built by Jonas Schmedtmann.
 
 const StyledSelect = styled.select`
   background-color: white;

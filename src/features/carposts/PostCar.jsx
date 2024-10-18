@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Modal from "../../ui/Modal";
 import CarPostForm from "../carposts/CarPostForm";
-import Button from "../../ui/Button";
 
 const StyledButton = styled.button`
   background-color: white;

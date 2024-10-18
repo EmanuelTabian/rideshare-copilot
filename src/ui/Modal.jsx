@@ -8,8 +8,8 @@ import {
 import { createPortal } from "react-dom";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import styled from "styled-components";
+
 import { useCloseForm } from "../hooks/useCloseForm";
-import { set } from "date-fns";
 
 const StyledModal = styled.div`
   overflow: scroll;

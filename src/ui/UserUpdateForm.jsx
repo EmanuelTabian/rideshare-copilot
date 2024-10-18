@@ -1,9 +1,8 @@
 import { useForm } from "react-hook-form";
-import Button from "./Button";
-import { useUserUpdate } from "../features/authentication/useUserUpdate";
 import styled from "styled-components";
 import { useState } from "react";
-import PasswordStrengthBar from "react-password-strength-bar";
+
+import { useUserUpdate } from "../features/authentication/useUserUpdate";
 
 const Form = styled.form`
   fieldset {
@@ -74,8 +73,7 @@ function UserUpdateForm() {
 
   const { userUpdate, status } = useUserUpdate();
 
-  const { register, handleSubmit, reset, getValues, formState } = useForm();
-  const { errors } = formState;
+  const { register, handleSubmit, reset } = useForm();
 
   function onSubmit({ name, password }) {
     if (!name && !password) return;

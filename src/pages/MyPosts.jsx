@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+
 import PostCar from "../features/carposts/PostCar";
 import { useGetUserCarPosts } from "../features/carposts/useGetUserCarPosts";
 import Spinner from "../ui/Spinner";
-
 import CarPostsLayout from "../features/carposts/CarPostsLayout";
-import styled from "styled-components";
 import CarPostTableOperations from "../features/carposts/CarPostTableOperations";
 
 const H1 = styled.h1`

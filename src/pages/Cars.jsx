@@ -1,18 +1,12 @@
 import styled from "styled-components";
 import { NavLink, useSearchParams } from "react-router-dom";
 
-import CarCard from "../ui/CarCard";
 import Button from "../ui/Button";
-import CarPostForm from "../features/carposts/CarPostForm";
 import Message from "../ui/Message";
 import PostCar from "../features/carposts/PostCar";
 import { useGetAllCarPosts } from "../features/carposts/useGetAllCarPosts";
-import Spinner from "../ui/Spinner";
 import CarPostTableOperations from "../features/carposts/CarPostTableOperations";
-import Pagination from "../ui/Pagination";
-import { useEffect, useState } from "react";
 import CarPostsLayout from "../features/carposts/CarPostsLayout";
-import { carPostsSorter } from "../utils/helpers";
 
 const H2 = styled.h2`
   margin: 1rem 0;
@@ -49,7 +43,7 @@ const StyledCars = styled.div`
 `;
 
 function Cars() {
-  const { isLoading, carPosts, error } = useGetAllCarPosts();
+  const { isLoading, carPosts } = useGetAllCarPosts();
   const [searchParams, setSearchParams] = useSearchParams();
   if (carPosts?.error)
     return (
@@ -68,7 +62,6 @@ function Cars() {
         </div>
       </>
     );
-  // const { data, count, pagination } = carPosts;
 
   return (
     <>

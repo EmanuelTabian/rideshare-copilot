@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import {
   Area,
   AreaChart,
@@ -11,6 +10,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+
 import { chartDateFormatter } from "../utils/helpers";
 
 function EarningsGraph({ recentEntries }) {

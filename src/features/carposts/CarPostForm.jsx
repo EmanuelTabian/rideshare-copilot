@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import styled from "styled-components";
+
 import { useAddCarPost } from "./useAddCarPost";
 import { useUpdateCarPost } from "./useUpdateCarPost";
 import ErrorMessage from "../../ui/ErrorMessage";
-import styled from "styled-components";
-import { useState } from "react";
 
 const StyledContainer = styled.div`
   padding: 16px;
@@ -132,10 +133,9 @@ function Form({ carDetails = {}, onCloseModal }) {
 
   const updateSession = Boolean(carDetails.id);
 
-  const { register, handleSubmit, reset, getValues, formState, trigger } =
-    useForm({
-      defaultValues: updateSession ? carDetails : {},
-    });
+  const { register, handleSubmit, reset, formState, trigger } = useForm({
+    defaultValues: updateSession ? carDetails : {},
+  });
   const { errors } = formState;
 
   const fieldNames = {

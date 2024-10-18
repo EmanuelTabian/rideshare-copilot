@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 import { UseCalculator } from "../context/CalculatorContext";
 import IncomeField from "./IncomeField";
-import Button from "./Button";
 import Earnings from "./Earnings";
 import CalcInput from "./CalcInput";
 import { useAddCalculatorEntry } from "../features/calculator/useAddCalculatorEntry";

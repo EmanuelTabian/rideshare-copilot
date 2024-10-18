@@ -1,17 +1,16 @@
 import styled from "styled-components";
+import { TbFileDescription } from "react-icons/tb";
+import { MdDateRange } from "react-icons/md";
+import { MdLocationPin } from "react-icons/md";
+
 import { useUser } from "../features/authentication/useUser";
 import { useGetImageUrl } from "../features/carposts/useGetImageUrl";
 import { dateFormatter } from "../utils/helpers";
 import Spinner from "./Spinner";
 import CarPostForm from "../features/carposts/CarPostForm";
-
-import { TbFileDescription } from "react-icons/tb";
-import { MdDateRange } from "react-icons/md";
-import { MdLocationPin } from "react-icons/md";
 import Modal from "./Modal";
 import ConfirmDelete from "./ConfirmDelete";
 import { useDeleteCarPost } from "../features/carposts/useDeleteCarPost";
-import { useNavigate } from "react-router-dom";
 import { useMoveBack } from "../hooks/useMoveBack";
 
 const SpinnerContainer = styled.div`
@@ -108,7 +107,6 @@ function CarPost({ carPost }) {
     engine,
     fuel,
     gear_number: gearNumber,
-    image,
     location,
     milleage,
     model,
@@ -122,13 +120,11 @@ function CarPost({ carPost }) {
     year,
   } = carPost;
   const canEditOrRemove = user_id === user.id;
-  const { isLoading, imageUrl, error } = useGetImageUrl(id);
+  const { isLoading, imageUrl } = useGetImageUrl(id);
 
-  const { deleteCarPost, isDeletingCarPost } = useDeleteCarPost();
+  const { deleteCarPost } = useDeleteCarPost();
 
   function handleDelete() {
-    console.log(id);
-
     deleteCarPost(id, {
       onSettled: () => {
         navigate();

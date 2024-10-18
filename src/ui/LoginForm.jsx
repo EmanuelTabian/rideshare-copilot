@@ -1,12 +1,10 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 import { useSignin } from "../features/authentication/useSignin";
 import Button from "./Button";
 import { useState } from "react";
-import styled from "styled-components";
 import SpinnerMini from "./SpinnerMini";
-import { StyledError } from "../features/carposts/CarPostForm";
 import ErrorMessage from "./ErrorMessage";
 
 const LogoContainer = styled.div`
@@ -107,17 +105,14 @@ const Form = styled.form`
     }
   }
 `;
-// const username = "test@example.com";
-// const password = "123Rideshare!@#";
 
 function LoginForm() {
   const [authError, setAuthError] = useState(null);
   const { signin, status } = useSignin();
   const [showPassword, setShowPassword] = useState(false);
 
-  const { register, handleSubmit, reset, getValues, formState } = useForm();
+  const { register, handleSubmit, reset, formState } = useForm();
   const { errors } = formState;
-  const navigate = useNavigate();
 
   function onSubmit(formData) {
     if (!formData.email || !formData.password) return;

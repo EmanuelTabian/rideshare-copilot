@@ -1,3 +1,4 @@
+// Test purpose dummy data for calcEntries component.
 export const calcEntriesData = [
   {
     id: 11,

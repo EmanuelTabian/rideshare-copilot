@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import Button from "../../ui/Button";
+import styled from "styled-components";
+
 import { useUpdateCalculatorEntry } from "./useUpdateCalculatorEntry";
 import { useTableCalculator } from "../../context/TableCalculatorContext";
-import styled from "styled-components";
 import { InputContainer } from "../carposts/CarPostForm";
 import ErrorMessage from "../../ui/ErrorMessage";
 
@@ -69,7 +69,7 @@ const StyledForm = styled.form`
 `;
 
 function UpdateCalculatorEntryForm({ calcEntry, onCloseModal }) {
-  const { id, app_income, commission, expenses, earnings } = calcEntry;
+  const { id } = calcEntry;
 
   const {
     income: calcIncome,
