@@ -6,6 +6,10 @@
 
 This application assists drivers in calculating their weekly net income, tracking their earnings trends, and managing car rentals by allowing them to buy, rent, or sell their own vehicles.
 
+## Demo
+
+Checkout [Rideshare Calculator](https://calculator.rideshare-copilot.eu/), the initial version of the app. It's a simplified version of the calculator section that doesn't require authentication. The source code can be found [here](https://github.com/EmanuelTabian/rideshare-calculator).
+
 ## Inspiration
 
 This front-end project is highly inspired by the [Ultimate React Course](https://www.udemy.com/course/the-ultimate-react-course/?couponCode=LETSLEARNNOW) by Jonas Schmedtmann. Additionally, the demo version of the **Wild Oasis** app, that served as inspiration can be found [here](https://the-wild-oasis.vercel.app/login).
